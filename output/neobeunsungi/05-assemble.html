@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<script>
+  // 메인 화면(index.html)과 같은 localStorage 키를 공유 — 이 페이지의 토글 버튼과
+  // 메인 화면 토글이 서로 언어 설정을 이어받는다. 챗봇도 이 값을 읽어 같은 언어로 답한다.
+  try { if (localStorage.getItem("jeju43-lang") === "en") document.documentElement.lang = "en"; } catch (e) { /* 무시 */ }
+  function jeju43ToggleLang() {
+    try {
+      var cur = localStorage.getItem("jeju43-lang") === "en" ? "en" : "ko";
+      localStorage.setItem("jeju43-lang", cur === "en" ? "ko" : "en");
+    } catch (e) { /* 무시 */ }
+    location.reload();
+  }
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>너븐숭이와 북촌 유적군 (북촌대학살) — 제주 4·3 스토리</title>
+<meta name="internal-only" content="true">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="../design/archive.css">
+</head>
+<body>
+<article class="story-page" data-location-id="neobeunsungi">
+
+  <nav class="story-nav" aria-label="이동">
+    <a href="../index.html"><span aria-hidden="true">←</span> <span class="lang-ko-inline">지도로 돌아가기</span><span class="lang-en-inline" lang="en">Back to map</span></a>
+    <button type="button" class="lang-toggle-btn" onclick="jeju43ToggleLang()" id="langToggleBtn">EN</button>
+  </nav>
+  <script>(function () {
+    var isEn = document.documentElement.lang === "en";
+    var b = document.getElementById("langToggleBtn");
+    if (b) b.textContent = isEn ? "KO" : "EN";
+    if (isEn) document.title = "Neobeunsungi and the Bukchon Heritage Sites (The Bukchon Massacre) — Jeju 4·3 Story";
+  })();</script>
+
+  <header class="story-hero">
+    <figure class="ai-generated hero-figure" data-origin="ai">
+      <div class="hero-media">
+        <img src="../../assets/neobeunsungi/img-01.png" alt="이른 아침 너븐숭이 고갯길, 텅 빈 길과 희미한 안개">
+      </div>
+      <figcaption><span class="lang-ko-inline">이른 아침 너븐숭이 고갯길, 텅 빈 길과 희미한 안개 [연출]</span><span class="lang-en-inline" lang="en">Neobeunsungi hill road in the early morning, an empty road in faint mist [Staged]</span></figcaption>
+    </figure>
+    <div class="story-hero-overlay">
+      <span class="overline">JEJU 4·3 STORY</span>
+      <h1><span class="lang-ko-inline">너븐숭이와 북촌 유적군 (북촌대학살)</span><span class="lang-en-inline" lang="en">Neobeunsungi and the Bukchon Heritage Sites (The Bukchon Massacre)</span></h1>
+    </div>
+  </header>
+
+  <section class="story-intro" data-segment="intro">
+    <p class="lang-ko">해마다 명절처럼, 이 마을 사람들은 같은 날 같은 시간에 제사를 지낸다고 합니다. 왜 이 북촌마을은 제사를 한 날 한 시에 지낼까요? 제주시 조천읍 동쪽 끝, 바다와 맞닿은 이 조용한 해변마을에는 1949년 1월 17일 한 날 한 시에 벌어진 일이 아직도 마을 전체의 기억으로 남아 있기 때문입니다. 너븐숭이 4·3기념관(조천읍 북촌3길 3)은 그 아픔을 기억하기 위해 2009년 조성된 추모공원으로, 위령비·기념관·방사탑을 품고 있습니다. 이 이야기는 그 날, 그리고 그날 이후에도 오랫동안 이어진 상처와 회복의 시간 이야기입니다.</p>
+    <p class="lang-en" lang="en">Every year, as if it were a holiday, the people of this village hold ancestral rites on the very same day and hour. Why does Bukchon Village mark its rites at one single date and time? At the eastern edge of Jocheon-eup, Jeju City, this quiet coastal village still holds, as a memory shared by the whole community, what happened here in a single day and hour on January 17, 1949. The Neobeunsungi 4·3 Memorial Hall (Bukchon 3-gil 3, Jocheon-eup) is a memorial park built in 2009 to remember that pain, home to a memorial monument, an exhibition hall, and a bangsatap (stone guardian tower). This is the story of that day — and of the long years of wound and recovery that followed.</p>
+  </section>
+
+  <section class="story-development" data-segment="development">
+    <p class="lang-ko">북촌은 포구를 중심으로 '본동', 서쪽에 서우봉과 접한 '해동', 남쪽 중산간 방향의 '억수동', 그리고 1990년대에 새로 조성된 '한사동'까지 네 개의 자연마을로 이루어진 마을입니다. 일제 강점기에는 항일 운동에 나선 이들이 많았고, 해방 뒤에는 지역 자치조직이 활발했습니다.
+
+그런데 <span class="fact" data-fact-id="f-05" data-source="제주4·3사건일지·현장 안내판" title="제주4·3사건일지·현장 안내판">1947년 8월 13일, 삐라(전단)를 붙이던 주민들을 향해 경찰이 발포해 3명이 다치는 일이 벌어졌습니다</span>. 이 일은 작은 불씨처럼 시작되었습니다. 1948년에도 사건들이 이어졌습니다. 4월 21일에는 무장대가 북촌리 선거관리위원회 사무소를 공격해 선거기록을 가져가 버렸고, 6월 16일에는 북촌포구에서 우도지서 경찰관 2명이 무장대에게 목숨을 잃었습니다. <span class="fact" data-fact-id="f-07" data-source="현장 안내판" title="현장 안내판">12월 16일에는 마을을 지키며 토벌대에 협조하던 민보단원 24명이 구좌읍 동복리 '낸시빌레'에서 군인들에게 집단총살당했습니다</span>. 그리고 1949년 1월 10일, 북촌국민학교가 개교 7년 만에 문을 닫았습니다.
+
+결정적인 날은 1949년 1월 17일 새벽이었습니다. 너븐숭이 고갯길에서 군인 2명이 무장대의 습격으로 숨지자, 함덕에 주둔하던 2연대 3대대 군인들이 보복에 나섰습니다. 마을에 불을 지르고, 주민들을 북촌국민학교 운동장으로 불러 모았습니다. <span class="fact" data-fact-id="f-09" data-source="현장 안내판·추념비·제주4·3사건일지" title="현장 안내판·추념비·제주4·3사건일지">군경 가족과 민보단 가족을 제외한 주민들을 동쪽의 당팟과 서쪽의 너븐숭이·옴팡밭으로 4·50명씩 끌고 가 총살했습니다</span>. <span class="fact" data-fact-id="f-10" data-source="현장 안내판·추념비·제주4·3사건일지" title="현장 안내판·추념비·제주4·3사건일지">학교 주변에서 300여 명이 희생되었고, 이튿날까지 400명 가량이 집단총살되었습니다. 행방불명자를 포함한 전체 희생자는 434명이라는 기록도 있습니다</span> — 하나로 단정하지 않고 이 세 수치를 함께 기억합니다.
+
+<span class="fact" data-fact-id="f-11" data-source="추념비(2013)" title="추념비(2013)">살아남은 주민들은 함덕으로 소개되었고, 5개월 만에 마을을 복구했고, 2년 9개월 만에 학교가 다시 문을 열었습니다</span>. 폐교 당시 재학생 216명은 53년 만에 명예졸업장을 받기도 했습니다.
+
+이곳에 붙은 지명 하나하나가 사건을 품고 있습니다. '너븐숭이'는 넓은 돌밭, '옴팡밭'은 오목하게 쏙 들어간 밭, '당팟'은 그때 주민들이 끌려와 총살당한 동쪽 들판, '낸시빌레'는 민보단원들이 희생된 곳입니다. 옴팡밭 한가운데에는 당시 희생된 어린아이의 작은 무덤도 있습니다.</p>
+    <p class="lang-en" lang="en">Bukchon is made up of four natural hamlets centered on its harbor: 'Bondong,' 'Haedong' bordering Seoubong to the west, 'Eoksu-dong' toward the inland hills to the south, and 'Hansa-dong,' newly formed in the 1990s. Many villagers took part in anti-Japanese resistance during the colonial period, and after liberation, self-governing organizations centered on People's Committees were active here.
+
+On August 13, 1947, however, police opened fire on villagers who were putting up leaflets, injuring three. It was a small spark. More incidents followed in 1948: on April 21, an armed group attacked the Bukchon-ri election management office and seized the election records; on June 16, two police officers from the Udo substation were killed by an armed group at Bukchon harbor; on December 16, 24 members of the local defense corps who had cooperated with the suppression forces while guarding the village were shot to death by soldiers at 'Naensibille' in Dongbok-ri, Gujwa-eup. Then, on January 10, 1949, Bukchon Elementary School closed, just seven years after it opened.
+
+The decisive day came before dawn on January 17, 1949. When two soldiers were killed in an ambush by an armed group on the Neobeunsungi hill road, soldiers of the 3rd Battalion, 2nd Regiment stationed in Hamdeok set out for revenge. They set the village on fire and gathered the residents in the schoolyard of Bukchon Elementary School. Excluding the families of police and of local defense corps members, they marched the villagers in groups of 40 to 50 to Dangpat in the east and to Neobeunsungi/Ompangbat in the west, and shot them. Around 300 people were killed near the school that day, and by the next day the number of those massacred reached about 400. Another record, including the missing, puts the total number of victims at 434 — rather than settle on one number, this page remembers all three together.
+
+Survivors were evacuated to Hamdeok. The village was rebuilt within five months, and the school reopened after two years and nine months. The 216 students who had been enrolled when the school closed received honorary diplomas 53 years later.
+
+Every place name here carries a piece of this history. 'Neobeunsungi' means a wide field of stones, 'Ompangbat' a concave field, 'Dangpat' the eastern field where villagers were marched and shot, and 'Naensibille' the place where the defense corps members died. At the center of Ompangbat lies the small grave of a child killed that day. <span class="src-en">[Source: Jeju 4·3 Incident Chronicle · on-site board; on-site information board; memorial (2013)]</span></p>
+  </section>
+
+  <div class="conflict-box" data-conflict-topic="북촌대학살 희생자 수">
+    <h4>⚖️ 기록마다 다릅니다 — 북촌대학살 희생자 수</h4>
+    <table>
+      <tr><th>출처</th><th>기록</th></tr>
+      <tr><td>북촌마을 안내판·추념비(2013) 뒷면</td><td>300여 명 (1월 17일 당일 학교 주변 학살)</td></tr>
+      <tr><td>제주4·3사건일지·너븐숭이 안내판</td><td>400명 가량 / 400여 명 (이튿날까지의 집단총살)</td></tr>
+      <tr><td>추념비(2013) 뒷면</td><td>434명 (행방불명 포함 전체 희생자)</td></tr>
+    </table>
+    <p>본문은 "학교 주변에서 300여 명이 희생되었고, 이튿날까지 400명 가량이 집단총살되었습니다. 행방불명자를 포함한 전체 희생자는 434명이라는 기록도 있습니다"라는 문장으로 세 수치를 모두 병기함</p>
+  </div>
+
+  <div class="timeline">
+    <div class="timeline-event" data-event-id="tl-01"><span class="lang-ko-inline"><strong>1947-08-13</strong> — 삐라 발포 사건: 삐라 붙이던 주민 향해 경찰 발포, 3명 부상</span><span class="lang-en-inline" lang="en"><strong>1947-08-13</strong> — Leaflet shooting incident: Police fired on villagers putting up leaflets, injuring 3</span></div>
+    <div class="timeline-event" data-event-id="tl-02"><span class="lang-ko-inline"><strong>1948-04-21</strong> — 선관위 사무소 공격: 무장대가 북촌리 선거관리위원회 사무소 공격, 선거기록 탈취</span><span class="lang-en-inline" lang="en"><strong>1948-04-21</strong> — Election office attacked: An armed group attacked the Bukchon-ri election office and seized election records</span></div>
+    <div class="timeline-event" data-event-id="tl-03"><span class="lang-ko-inline"><strong>1948-06-16</strong> — 북촌포구 경찰관 피살: 북촌포구에서 우도지서 경찰관 2명 무장대에게 살해</span><span class="lang-en-inline" lang="en"><strong>1948-06-16</strong> — Police officers killed at Bukchon harbor: Two police officers from the Udo substation were killed by an armed group at Bukchon harbor</span></div>
+    <div class="timeline-event" data-event-id="tl-04"><span class="lang-ko-inline"><strong>1948-12-16</strong> — 낸시빌레 집단총살: 민보단원 24명 구좌읍 동복리 '낸시빌레'에서 군인에게 집단총살</span><span class="lang-en-inline" lang="en"><strong>1948-12-16</strong> — Naensibille mass shooting: 24 members of the local defense corps were shot to death by soldiers at 'Naensibille' in Dongbok-ri, Gujwa-eup</span></div>
+    <div class="timeline-event" data-event-id="tl-05"><span class="lang-ko-inline"><strong>1949-01-10</strong> — 북촌국민학교 폐교: 개교 7년 만에 폐교</span><span class="lang-en-inline" lang="en"><strong>1949-01-10</strong> — Bukchon Elementary School closed: Closed just 7 years after opening</span></div>
+    <div class="timeline-event" data-event-id="tl-06"><span class="lang-ko-inline"><strong>1949-01-17</strong> — 북촌대학살: 군인 2명 무장대 습격 사망 → 함덕 2연대 3대대 보복 → 마을 방화·학교 집결 → 당팟(동쪽)·너븐숭이/옴팡밭(서쪽)으로 분산 총살 → 당일 300여 명·이튿날까지 400명 가량 희생(전체 434명 기록도 있음)</span><span class="lang-en-inline" lang="en"><strong>1949-01-17</strong> — The Bukchon Massacre: 2 soldiers killed in an ambush → the 2nd Regiment's 3rd Battalion from Hamdeok retaliated → the village was burned and residents gathered at the school → villagers were marched to Dangpat (east) and Neobeunsungi/Ompangbat (west) and shot → about 300 killed that day, around 400 by the next day (another record puts the total at 434)</span></div>
+    <div class="timeline-event" data-event-id="tl-07"><span class="lang-ko-inline"><strong>1949-01 이후</strong> — 함덕 소개·마을 복구: 생존 주민 함덕으로 소개 → 5개월 만에 마을 복구 → 2년 9개월 만에 학교 재건(분교→본교)</span><span class="lang-en-inline" lang="en"><strong>after 1949-01</strong> — Evacuation to Hamdeok, village rebuilt: Survivors were evacuated to Hamdeok → the village was rebuilt within 5 months → the school reopened after 2 years and 9 months</span></div>
+    <div class="timeline-event" data-event-id="tl-08"><span class="lang-ko-inline"><strong>1954-01</strong> — '아이고 사건': 북촌국민학교에서 발생 — 이후에도 주민 억압 지속</span><span class="lang-en-inline" lang="en"><strong>1954-01</strong> — The "Aigo Incident": Occurred at Bukchon Elementary School — repression of villagers continued afterward</span></div>
+    <div class="timeline-event" data-event-id="tl-09"><span class="lang-ko-inline"><strong>2002~2003</strong> — 명예졸업장 수여: 폐교 당시 재학생 216명, 53년 만에 명예졸업장 수여</span><span class="lang-en-inline" lang="en"><strong>2002–2003</strong> — Honorary diplomas awarded: 216 students enrolled at closure received honorary diplomas 53 years later</span></div>
+    <div class="timeline-event" data-event-id="tl-10"><span class="lang-ko-inline"><strong>2008</strong> — 순이삼촌 문학비 건립: 정부가 옴팡밭 부지 매입, 문학비 건립</span><span class="lang-en-inline" lang="en"><strong>2008</strong> — Aunt Suni Literary Monument erected: The government purchased the land at Ompangbat and erected the monument</span></div>
+    <div class="timeline-event" data-event-id="tl-11"><span class="lang-ko-inline"><strong>2009</strong> — 너븐숭이 4·3기념관 조성: 추모공원(위령비·기념관·방사탑) 조성</span><span class="lang-en-inline" lang="en"><strong>2009</strong> — Neobeunsungi 4·3 Memorial Hall built: A memorial park with a monument, exhibition hall, and stone tower was built</span></div>
+    <div class="timeline-event" data-event-id="tl-12"><span class="lang-ko-inline"><strong>2013-10-27</strong> — 북촌초등학교 추념비 건립: 추념비 건립</span><span class="lang-en-inline" lang="en"><strong>2013-10-27</strong> — Bukchon Elementary School memorial erected: The memorial monument was erected</span></div>
+  </div>
+
+  <section class="story-closing" data-segment="closing">
+    <p class="lang-ko">이 마을이 왜 명절처럼 한 날 한 시에 제사를 지내는지, 이제 조금 알 것 같습니다. 어른들의 시신은 살아남은 사람들이 다른 곳에 모셨지만, 아이들의 시신은 임시로 묻은 상태 그대로 70년 가까이 남아 있습니다. <span class="fact" data-fact-id="f-13" data-source="현장 안내판(애기무덤 안내판, N-3)" title="현장 안내판(애기무덤 안내판, N-3)">애기무덤에는 20여 기의 아이들 무덤이 모여 있고, 그중 적어도 8기 이상은 북촌대학살 때 희생된 어린아이의 무덤입니다</span>. 오랫동안 묻혀 있던 이 사건의 진실은 소설 『순이삼촌』(현기영, 1978)이 먼저 세상에 알렸고, <span class="fact" data-fact-id="f-14" data-source="현장 안내판(순이삼촌 문학비 안내판, N-4)" title="현장 안내판(순이삼촌 문학비 안내판, N-4)">2008년 정부는 옴팡밭 부지를 매입해 문학비를 세웠습니다</span>. <span class="fact" data-fact-id="f-15" data-source="현장 안내판(정지퐁낭 기념비, N-8)" title="현장 안내판(정지퐁낭 기념비, N-8)">당팟 인근의 800년 된 팽나무 '정지퐁낭' 옆 선정비에는 지금도 4·3 당시 총탄 자국이 남아 있어</span>, 눈으로 확인할 수 있는 물증이 되고 있습니다. 너븐숭이 4·3기념관은 2009년 조성되어 위령비·기념관·방사탑이 추모공원을 이루며, 올레 19코스를 걷는 사람들은 이 유적군을 지나며 조용히 그날의 이야기를 만나게 됩니다.</p>
+    <p class="lang-en" lang="en">Now we understand a little better why this village holds its ancestral rites on one single day and hour, like a holiday. The bodies of adults were later moved elsewhere by survivors, but the bodies of children have remained where they were temporarily buried for nearly 70 years. The children's graves hold about 20 burial mounds, at least 8 of which belong to children killed in the Bukchon massacre. The long-buried truth of this event was first brought to public light by the novel Aunt Suni (Hyun Ki-young, 1978), and in 2008 the government purchased the land at Ompangbat and erected a literary monument there. Beside 'Jeongjipongnang,' a roughly 800-year-old hackberry tree near Dangpat, a monument to a Joseon-era magistrate still bears bullet marks from 4·3 — visible physical evidence to this day. The Neobeunsungi 4·3 Memorial Hall, built in 2009, forms a memorial park with its monument, exhibition hall, and stone tower, and those walking Olle Trail Course 19 pass quietly through this cluster of sites and encounter the story of that day.</p>
+  </section>
+
+  <section class="visuals">
+    <figure class="ai-generated" data-origin="ai">
+      <img src="../../assets/neobeunsungi/img-02.png" alt="북촌국민학교 운동장, 오래된 학교 건물과 넓은 빈 운동장">
+      <figcaption><span class="lang-ko-inline">북촌국민학교 운동장, 오래된 학교 건물과 넓은 빈 운동장 [연출]</span><span class="lang-en-inline" lang="en">The schoolyard of Bukchon Elementary School, an old school building and a wide empty yard [Staged]</span></figcaption>
+    </figure>
+    <figure class="ai-generated" data-origin="ai">
+      <img src="../../assets/neobeunsungi/img-03.png" alt="옴팡밭의 현재 모습, 한가운데 작은 봉분">
+      <figcaption><span class="lang-ko-inline">옴팡밭의 현재 모습, 한가운데 작은 봉분 [연출]</span><span class="lang-en-inline" lang="en">Present-day view of Ompangbat, a small burial mound at its center [Staged]</span></figcaption>
+    </figure>
+    <figure class="ai-generated" data-origin="ai">
+      <img src="../../assets/neobeunsungi/img-04.png" alt="애기무덤, 20여 기의 작은 돌무덤이 모여 있는 모습">
+      <figcaption><span class="lang-ko-inline">애기무덤, 20여 기의 작은 돌무덤이 모여 있는 모습 [연출]</span><span class="lang-en-inline" lang="en">The children's graves, around twenty small stone burial mounds gathered together [Staged]</span></figcaption>
+    </figure>
+    <figure class="ai-generated" data-origin="ai">
+      <img src="../../assets/neobeunsungi/img-05.png" alt="순이삼촌 문학비, 송이(붉은 화산 자갈) 위에 눕혀진 비석들">
+      <figcaption><span class="lang-ko-inline">순이삼촌 문학비, 송이(붉은 화산 자갈) 위에 눕혀진 비석들 [연출]</span><span class="lang-en-inline" lang="en">The Aunt Suni Literary Monument, tombstones laid flat atop reddish volcanic scoria [Staged]</span></figcaption>
+    </figure>
+    <figure class="ai-generated" data-origin="ai">
+      <img src="../../assets/neobeunsungi/img-06.png" alt="정지퐁낭, 800년 팽나무와 옆 선정비">
+      <figcaption><span class="lang-ko-inline">정지퐁낭, 800년 팽나무와 옆 선정비 [연출]</span><span class="lang-en-inline" lang="en">Jeongjipongnang, the 800-year-old hackberry tree beside the stone monument [Staged]</span></figcaption>
+    </figure>
+  </section>
+
+  <section class="audio-player">
+    <audio id="narrationAudio" controls src="audio/narration-ko.wav"></audio>
+    <audio id="bgmAudio" class="bgm" src="audio/bgm.wav" loop style="display:none"></audio>
+    <p class="audio-note">
+      <span class="lang-ko-inline">낭독: AI TTS (Microsoft Heami Desktop, ko-KR, Windows SAPI 오프라인 합성) · 배경음악: 자체 생성 앰비언트 패드 (numpy 합성, 로열티 프리)(낭독 대비 음량 25%)</span>
+      <span class="lang-en-inline" lang="en">Narration: AI TTS (Microsoft Heami Desktop, ko-KR, offline synthesis via Windows SAPI — Korean only) · BGM: self-generated ambient pad (synthesized with numpy, royalty-free) (25% volume relative to narration)</span>
+    </p>
+    <script>
+      (function () {
+        var narration = document.getElementById("narrationAudio");
+        var bgm = document.getElementById("bgmAudio");
+        if (!narration || !bgm) return;
+        bgm.volume = 0.25;
+        narration.addEventListener("play", function () { bgm.play().catch(function () {}); });
+        narration.addEventListener("pause", function () { bgm.pause(); });
+        narration.addEventListener("ended", function () { bgm.pause(); bgm.currentTime = 0; });
+
+        // 낭독 자막 하이라이트 — 04-audio.json의 sync_timeline을 그대로 쓴다.
+        var SYNC_TIMELINE = [
+          { id: "intro", start: 0.0, end: 46.0 },
+          { id: "development", start: 46.0, end: 210.2 },
+          { id: "closing", start: 210.2, end: Infinity }
+        ];
+        var segmentEls = {};
+        SYNC_TIMELINE.forEach(function (seg) {
+          segmentEls[seg.id] = document.querySelector('[data-segment="' + seg.id + '"]');
+        });
+        function updateHighlight() {
+          var t = narration.currentTime;
+          SYNC_TIMELINE.forEach(function (seg) {
+            var el = segmentEls[seg.id];
+            if (el) el.classList.toggle("narration-active", t >= seg.start && t < seg.end);
+          });
+        }
+        function clearHighlight() {
+          SYNC_TIMELINE.forEach(function (seg) {
+            if (segmentEls[seg.id]) segmentEls[seg.id].classList.remove("narration-active");
+          });
+        }
+        narration.addEventListener("timeupdate", updateHighlight);
+        narration.addEventListener("seeked", updateHighlight);
+        narration.addEventListener("ended", clearHighlight);
+      })();
+    </script>
+  </section>
+
+  <section class="quiz-section">
+    <h3><span class="lang-ko-inline">🌼 이야기 확인 퀴즈</span><span class="lang-en-inline" lang="en">🌼 Story Check Quiz</span></h3>
+    <div class="quiz-q" data-answer="c">
+      <p class="q-text"><span class="lang-ko-inline">Q1. 너븐숭이 4·3기념관은 언제 조성되었나요?</span><span class="lang-en-inline" lang="en">Q1. When was the Neobeunsungi 4·3 Memorial Hall built?</span></p>
+      <div class="choices">
+        <button class="choice" data-choice="a"><span class="lang-ko-inline">1949년</span><span class="lang-en-inline" lang="en">1949</span></button>
+        <button class="choice" data-choice="b"><span class="lang-ko-inline">1978년</span><span class="lang-en-inline" lang="en">1978</span></button>
+        <button class="choice" data-choice="c"><span class="lang-ko-inline">2009년</span><span class="lang-en-inline" lang="en">2009</span></button>
+      </div>
+      <p class="explain"><span class="lang-ko-inline">정답은 2009년! 위령비·기념관·방사탑을 갖춘 추모공원으로 조성됐어요.</span><span class="lang-en-inline" lang="en">The answer is 2009! It was built as a memorial park with a monument, exhibition hall, and stone tower.</span></p>
+    </div>
+    <div class="quiz-q" data-answer="b">
+      <p class="q-text"><span class="lang-ko-inline">Q2. 북촌대학살은 왜 일어났나요?</span><span class="lang-en-inline" lang="en">Q2. Why did the Bukchon Massacre happen?</span></p>
+      <div class="choices">
+        <button class="choice" data-choice="a"><span class="lang-ko-inline">무장대가 마을을 직접 공격해서</span><span class="lang-en-inline" lang="en">An armed group directly attacked the village</span></button>
+        <button class="choice" data-choice="b"><span class="lang-ko-inline">군인 2명이 무장대 습격으로 숨진 데 대한 보복으로</span><span class="lang-en-inline" lang="en">In retaliation for 2 soldiers killed in an ambush by an armed group</span></button>
+        <button class="choice" data-choice="c"><span class="lang-ko-inline">전염병이 돌아서</span><span class="lang-en-inline" lang="en">Because of a disease outbreak</span></button>
+      </div>
+      <p class="explain"><span class="lang-ko-inline">정답은 B! 인과 순서를 그대로 기억하는 것이 중요해요.</span><span class="lang-en-inline" lang="en">The answer is B! It's important to remember the sequence of events as recorded.</span></p>
+    </div>
+    <div class="quiz-q" data-answer="b">
+      <p class="q-text"><span class="lang-ko-inline">Q3. 북촌대학살 희생자 수는 정확히 몇 명인가요?</span><span class="lang-en-inline" lang="en">Q3. Exactly how many people were killed in the Bukchon Massacre?</span></p>
+      <div class="choices">
+        <button class="choice" data-choice="a"><span class="lang-ko-inline">모든 기록이 300명으로 통일되어 있다</span><span class="lang-en-inline" lang="en">All records agree on 300</span></button>
+        <button class="choice" data-choice="b"><span class="lang-ko-inline">기록마다 다르다(300여 명/400명 가량/434명)</span><span class="lang-en-inline" lang="en">The records differ (about 300 / about 400 / 434)</span></button>
+        <button class="choice" data-choice="c"><span class="lang-ko-inline">기록이 전혀 남아있지 않다</span><span class="lang-en-inline" lang="en">No record survives at all</span></button>
+      </div>
+      <p class="explain"><span class="lang-ko-inline">정답은 B! 세 수치는 서로 다른 기준을 가리켜서, 이 페이지는 하나로 단정하지 않고 함께 보여줘요.</span><span class="lang-en-inline" lang="en">The answer is B! The three figures use different scopes, so this page shows all of them together rather than picking one.</span></p>
+    </div>
+    <div class="quiz-q" data-answer="b">
+      <p class="q-text"><span class="lang-ko-inline">Q4. 애기무덤에는 왜 아이들 무덤만 있나요?</span><span class="lang-en-inline" lang="en">Q4. Why does the children's grave site hold only children's graves?</span></p>
+      <div class="choices">
+        <button class="choice" data-choice="a"><span class="lang-ko-inline">어른들도 함께 묻혀 있다</span><span class="lang-en-inline" lang="en">Adults are buried there too</span></button>
+        <button class="choice" data-choice="b"><span class="lang-ko-inline">어른 시신은 다른 곳으로 옮겨지고, 아이들만 임시 매장 상태로 남아서</span><span class="lang-en-inline" lang="en">Adults' bodies were reburied elsewhere, but children remained as temporarily buried</span></button>
+        <button class="choice" data-choice="c"><span class="lang-ko-inline">원래부터 아동 전용 묘지였다</span><span class="lang-en-inline" lang="en">It was originally a children-only cemetery</span></button>
+      </div>
+      <p class="explain"><span class="lang-ko-inline">정답은 B! 어른들의 시신은 다른 곳에 모셔졌지만, 아이들은 70년 가까이 그대로 남아 있어요.</span><span class="lang-en-inline" lang="en">The answer is B! Adults were reburied elsewhere, but the children have remained for nearly 70 years.</span></p>
+    </div>
+  </section>
+
+  <footer class="sources">
+    <ul>
+      <li data-source-ref="제주4·3사건일지·현장 안내판"><span class="lang-ko-inline">1947-08-13 삐라 발포 사건 (f-05)</span><span class="lang-en-inline" lang="en">Leaflet shooting incident record (f-05)</span></li>
+      <li data-source-ref="추념비(2013)"><span class="lang-ko-inline">북촌초등학교 추념비 기록 (f-08, f-10, f-11, f-16)</span><span class="lang-en-inline" lang="en">Bukchon Elementary School memorial record (f-08, f-10, f-11, f-16)</span></li>
+      <li data-source-ref="현장 안내판"><span class="lang-ko-inline">안내판 원문 채록 (f-04, f-06~f-17)</span><span class="lang-en-inline" lang="en">On-site information board transcriptions (f-04, f-06–f-17)</span></li>
+      <li data-source-ref="현장 안내판(순이삼촌 문학비 안내판, N-4)"><span class="lang-ko-inline">현장 안내판(순이삼촌 문학비 안내판, N-4)</span><span class="lang-en-inline" lang="en">On-site information board (Aunt Suni literary monument board, N-4)</span></li>
+      <li data-source-ref="현장 안내판(애기무덤 안내판, N-3)"><span class="lang-ko-inline">현장 안내판(애기무덤 안내판, N-3)</span><span class="lang-en-inline" lang="en">On-site information board (Children's graves board, N-3)</span></li>
+      <li data-source-ref="현장 안내판(정지퐁낭 기념비, N-8)"><span class="lang-ko-inline">현장 안내판(정지퐁낭 기념비, N-8)</span><span class="lang-en-inline" lang="en">On-site information board (Jeongjipongnang monument, N-8)</span></li>
+      <li data-source-ref="현장 안내판·추념비·제주4·3사건일지"><span class="lang-ko-inline">현장 안내판·추념비·제주4·3사건일지</span><span class="lang-en-inline" lang="en">On-site board · Memorial monument · Jeju 4·3 Incident Chronicle</span></li>
+    </ul>
+  </footer>
+
+  <div id="chatbot-modal" data-kb-source="07"></div>
+  <script src="chatbot-modal.js"></script>
+
+  <script>
+    (function () {
+      // 이야기 확인 퀴즈 — 정답/오답 표시 후 설명 노출, 임의로 다시 풀 수 없게 잠금
+      document.querySelectorAll(".quiz-q").forEach(function (q) {
+        var answer = q.dataset.answer;
+        var buttons = q.querySelectorAll("button.choice");
+        var explain = q.querySelector(".explain");
+        buttons.forEach(function (choiceBtn) {
+          choiceBtn.addEventListener("click", function () {
+            if (q.dataset.answered) return;
+            q.dataset.answered = "1";
+            buttons.forEach(function (b) {
+              if (b.dataset.choice === answer) b.classList.add("correct");
+              else if (b === choiceBtn) b.classList.add("incorrect");
+              b.disabled = true;
+            });
+            if (explain) explain.classList.add("show");
+          });
+        });
+      });
+    })();
+  </script>
+
+</article>
+</body>
+</html>

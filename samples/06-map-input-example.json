@@ -1,0 +1,48 @@
+{
+  "_설명": "이 파일은 06-map 스킬의 입력 샘플(더미)입니다. 06은 여러 장소의 05-assemble 결과 목록을 받아 Leaflet + OpenStreetMap 지도 인덱스 .html을 만드는 C그룹(조립형) 스킬입니다. 좌표(coord.lat/lng)를 위경도 그대로 마커에 쓰므로 지도 이미지 메타는 필요 없습니다. places[0]은 관덕정 실좌표 예시, places[1]은 '확장 구조'(마커가 여러 개 늘어남)를 보여주기 위한 라벨된 예시 항목입니다 — 실제 장소가 추가되면 이 배열에 항목만 append하면 됩니다. 구현 상세는 spec.md 4장 참조.",
+  "places": [
+    {
+      "location_id": "gwandeokjeong",
+      "name": {
+        "ko": "관덕정",
+        "en": ""
+      },
+      "coord": {
+        "lat": 33.5137,
+        "lng": 126.5219
+      },
+      "one_liner": {
+        "ko": "제주 4·3이 어디서, 어떻게 시작되었는지를 보여주는 상징적인 장소",
+        "en": ""
+      },
+      "thumbnail": "output/gwandeokjeong/assets/vis-02.png",
+      "page_link": "output/gwandeokjeong/index.html"
+    },
+    {
+      "location_id": "example_place_2",
+      "name": {
+        "ko": "다른 유적지 (예시 — 실제 카드 추가 시 교체)",
+        "en": ""
+      },
+      "coord": {
+        "lat": 33.25,
+        "lng": 126.56
+      },
+      "one_liner": {
+        "ko": "장소를 추가하면 이렇게 핀이 하나 더 늘어난다는 것을 보여주는 예시 항목",
+        "en": ""
+      },
+      "thumbnail": "",
+      "page_link": "",
+      "timeline_events": [
+        {
+          "event_id": "tl-01",
+          "date": "{YYYY 또는 YYYY-MM-DD}",
+          "title": { "ko": "{02-story timeline_events를 그대로 복사}", "en": "" },
+          "description": { "ko": "{02-story timeline_events를 그대로 복사}", "en": "" },
+          "source": "{02-story에서 온 출처}"
+        }
+      ]
+    }
+  ]
+}

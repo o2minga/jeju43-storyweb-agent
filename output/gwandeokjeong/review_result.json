@@ -1,0 +1,110 @@
+{
+  "location_id": "gwandeokjeong",
+  "overall_status": "HOLD",
+  "checks": [
+    {
+      "check_id": "01-source-missing",
+      "name": "출처 누락 여부",
+      "status": "fail",
+      "issues": [
+        {
+          "location": "data-fact-id=dev-4",
+          "detail": "01-verify.json의 verified_facts에 존재하지 않는 fact_id를 참조합니다."
+        }
+      ],
+      "reason": null
+    },
+    {
+      "check_id": "02-ai-generated-label",
+      "name": "[연출] 표시 여부",
+      "status": "pass",
+      "issues": [],
+      "reason": null
+    },
+    {
+      "check_id": "03-fabrication",
+      "name": "지어내기 여부",
+      "status": "needs_human",
+      "issues": [
+        {
+          "location": "output/gwandeokjeong/05-assemble.html — section.story-development > p.lang-ko (본문 최장 구간, 5개 단락)",
+          "detail": "사건 서술이 가장 길고 구체적인 구간이다. 인용 스팬(data-fact-id) 자체는 출처가 붙어 있으나, 그 사이를 잇는 무출처 문장들이 카드 밖 해석을 담고 있는지 사람이 다시 읽어야 한다: ① \"이 광경을 본 군중이 격분해 항의했고\"(군중의 감정·인과), ② \"두 수치를 합치거나 하나의 사건으로 뭉뚱그려 이해해서는 안 됩니다\"(독자 지시형 편집자 논평), ③ \"3월 1일 오후의 한 장면이 어떻게 역사의 방아쇠가 되었는지, 그 연쇄가 이 광장에서 시작됐습니다\"(역사적 평가). 또한 \"이문규 순경이 공포감에 총을 쏘아\"는 동기 서술로, 안내판 조사보고서 원문 표현 범위 안인지 확인 필요."
+        },
+        {
+          "location": "output/gwandeokjeong/05-assemble.html — section.story-closing > p.lang-ko 2단락 \"두 곳 모두 지금 가서 볼 수 있는 유적이라기보다, '무슨 일이 있었던 자리'로 좌표만 남아 있는 옛터입니다\"",
+          "detail": "도립병원 옛터(흔적 없음)와 제주시민회관을 하나로 묶어 '좌표만 남아 있는 옛터'로 일반화했다. 기록은 시민회관에 대해 '표시가 없다'까지이고, 같은 페이지 visuals의 img-03 설명은 시민회관을 '건물'로 지칭한다 — 현존 건물을 '옛터'로 서술한 것이 카드 근거를 넘는 확장인지 사람 확인 필요. 무출처 문장."
+        },
+        {
+          "location": "output/gwandeokjeong/05-assemble.html — section.story-intro > p.lang-ko 마지막 문장 \"그런데 이 평범해 보이는 광장은 제주 4·3을 이야기할 때 거의 언제나 가장 먼저 등장합니다. 왜일까요?\"",
+          "detail": "출처 태그가 없는 일반화 진술('거의 언제나 가장 먼저 등장한다')로, 카드 자료에 근거가 없는 통설성 서술일 수 있다. forbidden_topics 1항(자료 밖 통설 사용 금지)의 경계선에 있어 사람이 판단해야 한다."
+        },
+        {
+          "location": "output/gwandeokjeong/05-assemble.html — section.story-closing > p.lang-ko 3단락 \"그 겹겹의 시간 가운데 가장 설명이 적은 시간이 바로 1947년입니다. 이 페이지는 안내판이 아직 말하지 않은 그 빈자리를 대신 채웁니다\"",
+          "detail": "무출처 평가·자기 규정 문장. '가장 설명이 적은 시간'은 자료에 없는 비교 판단이며, 조사보고서 총론의 지적을 페이지가 대신 확장한 서술인지 사람이 확인해야 한다."
+        },
+        {
+          "location": "output/gwandeokjeong/05-assemble.html — section.visuals > 두 번째 figure(assets/img-03.png) alt/figcaption \"지금은 흔적이 없는 병원 옛터 자리(평범한 거리와 현대 건물)\"",
+          "detail": "카드 기록은 '흔적이 남아 있지 않다'까지이고, '평범한 거리와 현대 건물'이라는 현재 경관 묘사는 자료에 없는 구체화다. 이미지 지시문이 본문 alt/캡션으로 그대로 노출되어 독자에게 사실 서술처럼 읽힐 수 있어 사람 확인 필요."
+        },
+        {
+          "location": "output/gwandeokjeong/05-assemble.html — section.quiz-section > 각 quiz-q의 p.explain (Q1~Q5 해설 5건)",
+          "detail": "퀴즈 문항·해설은 본문에서 파생된 재서술이지만 출처 태그가 없다. Q2 해설은 아이의 생사 미기록을 그대로 지켰고 Q3 해설도 두 장소 병기를 유지해 현재 위반은 보이지 않으나, 새로 만든 문장이 사실 범위를 미세하게 넘지 않는지(특히 Q1 '회의 장소·죄인을 다스리는 곳은 건립 이후'의 시점 단정) 사람이 한 번 더 읽어야 한다."
+        }
+      ],
+      "reason": "1차 키워드 대조: forbidden_topics 3건(자료 밖 통설='무장대 지도자 시신 전시' 등, 어린아이의 생사, 발포 위치 단정)의 핵심 문구가 05-assemble.html 본문에 그대로 등장하지 않음 — fail 아님. 오히려 아이의 생사는 \"그 뒤 어떻게 되었는지는 남아 있는 기록에 없습니다\"로 명시적으로 비워 두고, 사망 6명은 \"관덕정과 도립병원 앞\"으로 병기하며 4명 즉사·2명 병원 사망까지 구분해 금지선을 지켰다. 다만 spec.md 4장 ③에 따라 pass로 끝내지 않는다 — story-development(5단락, 서술이 가장 구체적)와 story-closing 등에서 출처 태그 밖에 놓인 연결·해석 문장, 카드 근거를 넘는 현재 경관 서술이 확인되어 needs_human으로 분류하고 해당 구간을 아래에 남긴다."
+    },
+    {
+      "check_id": "04-fact-consistency",
+      "name": "사실 일치 여부",
+      "status": "fail",
+      "issues": [
+        {
+          "location": "data-fact-id=dev-4",
+          "detail": "05-assemble.html이 01-verify.json에 없는 fact_id를 참조합니다."
+        }
+      ],
+      "reason": null
+    },
+    {
+      "check_id": "05-terminology",
+      "name": "용어 풀이 여부",
+      "status": "needs_human",
+      "issues": [],
+      "reason": "용어 풀이 여부는 spec.md 규칙상 원칙적으로 항상 needs_human으로 분류함"
+    },
+    {
+      "check_id": "06-chatbot-kb-consistency",
+      "name": "AI 챗봇 지식베이스 일치 여부",
+      "status": "fail",
+      "issues": [
+        {
+          "location": "07-chatbot.json > kb[qa_id=kb-01]",
+          "detail": "가드레일 테스트용 항목(note_for_07)이 07의 kb[]에 실제 답변 가능 항목으로 들어가 있습니다."
+        },
+        {
+          "location": "07-chatbot.json > kb[qa_id=kb-03]",
+          "detail": "가드레일 테스트용 항목(note_for_07)이 07의 kb[]에 실제 답변 가능 항목으로 들어가 있습니다."
+        },
+        {
+          "location": "07-chatbot.json > kb[qa_id=kb-04]",
+          "detail": "가드레일 테스트용 항목(note_for_07)이 07의 kb[]에 실제 답변 가능 항목으로 들어가 있습니다."
+        },
+        {
+          "location": "07-chatbot.json > kb[qa_id=kb-05]",
+          "detail": "가드레일 테스트용 항목(note_for_07)이 07의 kb[]에 실제 답변 가능 항목으로 들어가 있습니다."
+        },
+        {
+          "location": "07-chatbot.json > kb[qa_id=kb-07]",
+          "detail": "가드레일 테스트용 항목(note_for_07)이 07의 kb[]에 실제 답변 가능 항목으로 들어가 있습니다."
+        },
+        {
+          "location": "07-chatbot.json > kb[qa_id=kb-08]",
+          "detail": "가드레일 테스트용 항목(note_for_07)이 07의 kb[]에 실제 답변 가능 항목으로 들어가 있습니다."
+        }
+      ],
+      "reason": null
+    }
+  ],
+  "missing_required_files": [],
+  "generated_at": "2026-08-13T21:42:21.633654+09:00"
+}

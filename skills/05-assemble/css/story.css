@@ -1,0 +1,167 @@
+/* ============================================================
+   story.css — 스토리 상세 페이지 (story.html) 전용
+   토큰(:root)은 style.css 에서 상속. 여기선 스토리 본문 컴포넌트만.
+   ============================================================ */
+
+/* ---------- 본문 컬럼 ---------- */
+.story-wrap{max-width:720px; margin:0 auto; padding:0 var(--sp-6)}
+.story-body section{padding:var(--sp-16) 0}
+.story-body section.bg-warm{background:var(--warm)}
+.story-body section.bg-sea{background:var(--sea-bg)}
+
+.story-body h2{font-family:var(--font-serif); font-weight:700; font-size:1.6em; letter-spacing:-.01em; margin-bottom:var(--sp-4)}
+.story-body p{margin-bottom:var(--sp-4); color:var(--ink-2)}
+.story-body p b{color:var(--ink)}
+.src{font-size:.78em; color:var(--ink-3); white-space:nowrap; vertical-align:1px}
+
+/* ---------- 히어로 (배경 이미지 + 연출 배지) ---------- */
+.story-hero{
+  position:relative; color:#fff; text-align:center; overflow:hidden;
+  padding:130px var(--sp-6) 104px;
+  background:linear-gradient(180deg,var(--sea) 0%,var(--sea-2) 100%);
+}
+.story-hero.has-media{
+  background-image:linear-gradient(rgba(23,38,52,.62),rgba(23,38,52,.74)), var(--hero-img);
+  background-size:cover; background-position:center;
+}
+/* 이미지 없이 type=ai/photo 만 지정된 경우: 상징적 결 표현 */
+.story-hero.media-symbolic::before{
+  content:''; position:absolute; inset:0; opacity:.5; mix-blend-mode:soft-light;
+  background:
+    radial-gradient(60% 40% at 20% 10%, rgba(255,255,255,.25), transparent 60%),
+    radial-gradient(50% 40% at 90% 80%, rgba(176,103,44,.35), transparent 60%);
+}
+.story-hero .hero-inner{position:relative; z-index:2; max-width:760px; margin:0 auto}
+.story-hero .badge{
+  display:inline-block; border:1px solid rgba(255,255,255,.5); border-radius:var(--radius-pill);
+  padding:6px 18px; font-size:.85em; letter-spacing:.06em; margin-bottom:var(--sp-6);
+}
+.story-hero h1{
+  color:#fff; font-family:var(--font-serif); font-weight:700;
+  font-size:2.5em; line-height:1.32; letter-spacing:-.015em;
+  text-shadow:0 2px 30px rgba(0,0,0,.5);
+}
+.story-hero .lead{color:rgba(255,255,255,.88); font-size:1.05em; margin-top:var(--sp-4)}
+
+/* ---------- 상단 뒤로/지도 바 ---------- */
+.story-nav{
+  position:sticky; top:0; z-index:var(--z-toolbar);
+  display:flex; gap:var(--sp-2); padding:10px var(--sp-6);
+  background:rgba(10,18,22,.72); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
+  border-bottom:var(--border);
+}
+.story-nav a,.story-nav button{
+  font-size:.85em; font-weight:700; color:var(--ink-2);
+  background:transparent; border:none; padding:8px 12px; border-radius:var(--radius-sm);
+  min-height:40px; display:inline-flex; align-items:center; gap:6px;   /* 터치 타깃 */
+}
+.story-nav a:hover,.story-nav button:hover{color:var(--sea-2); text-decoration:none; background:var(--surface-2)}
+.story-nav .spacer{flex:1}
+
+/* ---------- [연출] 문장 하이라이트 ---------- */
+.fx{background:var(--fx-bg); border-radius:4px; padding:1px 6px}
+.fx::before{
+  content:'연출'; font-size:.72em; font-weight:800; color:var(--accent);
+  border:1px solid var(--accent); border-radius:3px; padding:0 4px; margin-right:6px; vertical-align:1px;
+}
+
+/* ---------- 시각자료: 이미지 / 갤러리 + 자동 배지 ---------- */
+figure.media{margin:var(--sp-8) 0}
+.media-frame{
+  position:relative; border-radius:var(--radius-lg); overflow:hidden;
+  border:var(--border); box-shadow:var(--shadow-sm); background:var(--sea-bg);
+}
+.media-frame img{width:100%; height:auto; display:block}
+
+/* 이미지 자산이 없을 때: 상징적 플레이스홀더 */
+.media-ph{
+  aspect-ratio:16/9; display:flex; align-items:center; justify-content:center;
+  color:#fff; font-size:.9em; text-align:center; padding:var(--sp-6);
+  background:linear-gradient(135deg,var(--sea) 0%,var(--sea-2) 55%,var(--accent) 140%);
+}
+.media-ph i{font-size:1.8em; opacity:.85; margin-bottom:10px; display:block}
+
+/* 자동 배지 (JS가 flag 에 따라 부착) */
+.media-badge{
+  position:absolute; top:12px; left:12px; z-index:3;
+  display:inline-flex; align-items:center; gap:6px;
+  font-size:.74em; font-weight:800; letter-spacing:.02em;
+  padding:5px 11px; border-radius:var(--radius-pill);
+  backdrop-filter:blur(4px);
+}
+.media-badge i{font-size:.9em}
+.media-badge.badge-fx{background:rgba(251,243,232,.95); color:var(--accent); border:1px solid var(--accent)}
+.media-badge.badge-ai{background:rgba(35,35,35,.78); color:#fff}
+
+figure.media figcaption{
+  margin-top:10px; font-size:.82em; color:var(--ink-3); text-align:center; line-height:1.6;
+}
+figure.media figcaption .credit{display:block; color:var(--ink-3); opacity:.85; margin-top:2px}
+
+/* 갤러리 그리드 */
+.gallery{display:grid; gap:var(--sp-4); margin:var(--sp-8) 0}
+@media(min-width:620px){.gallery.cols-2{grid-template-columns:1fr 1fr}
+  .gallery.cols-3{grid-template-columns:repeat(3,1fr)}}
+.gallery figure.media{margin:0}
+
+/* ---------- 타임라인 ---------- */
+.days{border-left:3px solid var(--sea); margin:var(--sp-6) 0 var(--sp-2); padding-left:26px}
+.day{position:relative; margin-bottom:var(--sp-6)}
+.day::before{content:''; position:absolute; left:-33px; top:.5em;
+  width:11px; height:11px; border-radius:50%; background:var(--sea)}
+.day .date{font-weight:800; color:var(--sea); font-size:.95em; margin-bottom:6px}
+
+/* ---------- 인용 ---------- */
+.quote{
+  background:var(--sea-bg); border-left:5px solid var(--sea); border-radius:0 10px 10px 0;
+  padding:18px 22px; margin:var(--sp-6) 0; font-weight:700; line-height:1.7; color:var(--ink);
+}
+.quote.stone{background:var(--warm); border-left-color:var(--accent); font-weight:500}
+.quote .from{display:block; font-weight:400; font-size:.8em; color:var(--ink-3); margin-top:10px}
+
+/* ---------- 통계 카드 ---------- */
+.tteum{display:flex; gap:var(--sp-3); margin:var(--sp-6) 0; text-align:center}
+.tteum .cell{flex:1; border:var(--border); border-radius:var(--radius); padding:18px 8px; background:var(--warm)}
+.tteum .n{font-size:1.7em; font-weight:800; color:var(--sea)}
+.tteum .c{font-size:.85em; color:var(--ink-3); margin-top:4px}
+.stat-note{font-size:.82em; color:var(--ink-3); margin-top:-6px}
+
+/* ---------- 기록 차이(diff) 상자 ---------- */
+.diff{border:1px solid var(--accent); border-radius:14px; padding:22px 24px; margin:var(--sp-8) 0; background:var(--warm-2)}
+.diff h3{font-size:.95em; color:var(--accent); margin-bottom:12px}
+.table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch}
+.diff table{width:100%; min-width:340px; border-collapse:collapse; font-size:.85em}
+.diff th,.diff td{border-bottom:1px solid var(--diff-line); padding:7px 8px; text-align:left; color:var(--ink-2)}
+.diff th{color:var(--ink)}
+.diff .note{font-size:.85em; margin-top:12px; color:var(--ink-3)}
+
+/* ---------- 올레 / 연계 박스 ---------- */
+.olle{background:var(--sea-bg); border:var(--border); border-radius:14px; padding:24px 26px; margin-top:var(--sp-8)}
+.olle h3{font-size:1em; color:var(--sea); margin-bottom:10px}
+.olle p{font-size:.92em; margin-bottom:8px}
+.olle .links{margin-top:12px; display:flex; gap:10px; flex-wrap:wrap}
+.olle .links a{
+  font-size:.85em; font-weight:700; border:1px solid var(--sea); color:var(--sea);
+  border-radius:var(--radius-sm); padding:6px 14px;
+}
+.olle .links a:hover{background:var(--sea); color:var(--deep); text-decoration:none}
+
+/* ---------- 고지 박스 ---------- */
+.notice{
+  margin-top:var(--sp-6); font-size:.82em; color:var(--ink-3);
+  border:1px dashed var(--line); border-radius:10px; padding:12px 16px; line-height:1.7;
+}
+.notice b{color:var(--danger)}
+
+/* ---------- 출처 목록 ---------- */
+.story-sources{border-top:var(--border)}
+.story-sources ul{list-style:none; display:grid; gap:10px}
+.story-sources li{font-size:.88em; color:var(--ink-2); padding-left:16px; position:relative; line-height:1.6}
+.story-sources li::before{content:''; position:absolute; left:2px; top:.65em;
+  width:6px; height:6px; border-radius:50%; background:var(--sea)}
+.story-sources b{color:var(--ink)}
+
+@media(max-width:560px){
+  .story-hero h1{font-size:1.8em}
+  .tteum{flex-direction:column}
+}

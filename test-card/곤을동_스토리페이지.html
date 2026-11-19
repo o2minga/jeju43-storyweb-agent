@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ko" style="--fz:1">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>곤을동 — 바닷가에 있던 예순일곱 집 이야기</title>
+<style>
+:root{--ink:#232323;--ink2:#464C53;--ink3:#6D7882;--line:#D9DDEA;--sea:#2C4A63;--sea-bg:#EEF3F7;--warm:#F7F4EF;--accent:#B0672C;--fz:1}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Pretendard Variable',Pretendard,-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Noto Sans KR',sans-serif;color:var(--ink);background:#fff;font-size:calc(16px*var(--fz));line-height:1.8;word-break:keep-all}
+.wrap{max-width:720px;margin:0 auto;padding:0 24px}
+section{padding:64px 0}
+.hero{background:linear-gradient(180deg,var(--sea) 0%,#3A5E7C 100%);color:#fff;padding:110px 0 90px;text-align:center}
+.hero .region{display:inline-block;border:1px solid rgba(255,255,255,.5);border-radius:999px;padding:6px 18px;font-size:.85em;letter-spacing:.06em}
+.hero h1{font-size:2.1em;line-height:1.4;margin-top:28px;font-weight:800}
+.hero .sub{margin-top:16px;color:rgba(255,255,255,.85);font-size:1em}
+.kicker{font-size:.82em;font-weight:800;color:var(--accent);letter-spacing:.08em;margin-bottom:14px}
+h2{font-size:1.5em;line-height:1.45;margin-bottom:20px}
+p{margin-bottom:16px;color:var(--ink2)}
+p b{color:var(--ink)}
+.src{font-size:.78em;color:var(--ink3);vertical-align:1px;white-space:nowrap}
+.gloss{border-bottom:1px dotted var(--ink3);cursor:help}
+.fx{background:#FBF3E8;border-radius:4px;padding:1px 6px}
+.fx:before{content:'연출';font-size:.72em;font-weight:800;color:var(--accent);margin-right:6px;border:1px solid var(--accent);border-radius:3px;padding:0 4px;vertical-align:1px}
+.days{border-left:3px solid var(--sea);margin:28px 0 8px;padding-left:26px}
+.day{margin-bottom:30px;position:relative}
+.day:before{content:'';position:absolute;left:-33px;top:.5em;width:11px;height:11px;border-radius:50%;background:var(--sea)}
+.day .date{font-weight:800;color:var(--sea);font-size:.95em;margin-bottom:6px}
+.quote{background:var(--sea-bg);border-left:5px solid var(--sea);border-radius:0 10px 10px 0;padding:18px 22px;margin:26px 0;font-weight:700;line-height:1.7}
+.quote.stone{background:var(--warm);border-left-color:var(--accent);font-weight:500}
+.quote .from{display:block;font-weight:400;font-size:.8em;color:var(--ink3);margin-top:10px}
+.tteum{display:flex;gap:12px;margin:26px 0;text-align:center}
+.tteum div{flex:1;border:1px solid var(--line);border-radius:12px;padding:18px 8px;background:var(--warm)}
+.tteum .n{font-size:1.7em;font-weight:800;color:var(--sea)}
+.tteum .c{font-size:.85em;color:var(--ink3);margin-top:4px}
+/* 기록 차이 상자 */
+.diff{border:1px solid var(--accent);border-radius:14px;padding:22px 24px;margin:30px 0;background:#FDF9F3}
+.diff h3{font-size:.95em;color:var(--accent);margin-bottom:12px}
+.diff table{width:100%;border-collapse:collapse;font-size:.85em}
+.diff th,.diff td{border-bottom:1px solid #EAD9C3;padding:7px 8px;text-align:left;color:var(--ink2)}
+.diff th{color:var(--ink);font-size:.92em}
+.diff p{font-size:.85em;margin:12px 0 0;color:var(--ink3)}
+.trace{background:var(--warm)}
+.olle{background:var(--sea-bg);border:1px solid var(--line);border-radius:14px;padding:24px 26px;margin-top:34px}
+.olle h3{font-size:1em;color:var(--sea);margin-bottom:10px}
+.olle p{font-size:.92em;margin-bottom:8px}
+.sources{border-top:1px solid var(--line)}
+.sources ul{list-style:none}
+.sources li{font-size:.88em;color:var(--ink2);padding-left:16px;position:relative;margin:8px 0}
+.sources li:before{content:'';position:absolute;left:2px;top:.7em;width:6px;height:6px;border-radius:50%;background:var(--sea)}
+.notice{margin-top:22px;font-size:.82em;color:var(--ink3);border:1px dashed var(--line);border-radius:10px;padding:12px 16px}
+#bar{position:fixed;top:14px;right:14px;z-index:50;display:flex;gap:6px}
+#bar button{font-family:inherit;font-weight:800;border:1px solid var(--line);border-radius:6px;background:#fff;color:var(--ink2);padding:8px 12px;cursor:pointer;font-size:13px}
+#bar button:hover{border-color:var(--sea);color:var(--sea)}
+@media print{#bar{display:none}.hero{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+@media (max-width:560px){.hero h1{font-size:1.7em}}
+</style>
+</head>
+<body>
+<div id="bar"><button onclick="fz(-1)">A−</button><button onclick="fz(0)">A</button><button onclick="fz(1)">A+</button><button onclick="window.print()">인쇄 · PDF</button></div>
+
+<div class="hero"><div class="wrap">
+  <span class="region">제주시 중부 · 잃어버린 마을</span>
+  <h1>곤을동,<br>바닷가에 있던 예순일곱 집</h1>
+  <div class="sub">700년을 이어온 마을이, 1949년 1월 이틀 만에 사라졌습니다</div>
+</div></div>
+
+<section><div class="wrap">
+  <div class="kicker">지금, 이곳</div>
+  <h2>집은 없고, 집터는 남았습니다</h2>
+  <p><span class="fx">바다에서 올라온 바람이 빈 집터의 돌담 사이를 지나갑니다.</span></p>
+  <p>제주시 화북동 바닷가, 화북천이 바다와 만나는 자리에 <b>곤을동 옛터</b>가 있습니다. '곤을'은 <b>항상 물이 고여 있는 땅</b>이라는 뜻 — 고려 충렬왕 26년(1300년) 기록에 나올 만큼 <b>700년이 넘은 유서 깊은 마을</b>이었고, 주민들은 농사를 지으며 바다를 낀 덕에 고기잡이도 함께 했습니다. <span class="src">〔곤을동 표석(2003)〕</span></p>
+  <p>4·3 당시 마을이 불타 사라진 뒤 끝내 복구되지 못한 <b>'잃어버린 마을'</b> — 지금도 집터와 올레(집과 마을길을 잇는 작은 길)가 옛 모습을 간직하고 있습니다. <span class="src">〔잃어버린 마을 안내판·안내판 조사보고서〕</span></p>
+  <p>마을은 화북천 물줄기를 사이에 두고 세 뜸(작은 동네)으로 나뉘어 있었습니다.</p>
+  <div class="tteum">
+    <div><div class="n">22</div><div class="c">안곤을</div></div>
+    <div><div class="n">17</div><div class="c">가운데곤을</div></div>
+    <div><div class="n">28</div><div class="c">밧곤을</div></div>
+  </div>
+  <p style="font-size:.82em;color:var(--ink3);margin-top:-14px">세 뜸 합계 67가구 — 잃어버린 마을 안내판 기준. 기록마다 차이가 있습니다(아래 '기록마다 다릅니다' 참조). <span class="src">〔잃어버린 마을 안내판〕</span></p>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap">
+  <div class="kicker">그날</div>
+  <h2>1949년 1월, 이틀</h2>
+  <div class="days">
+    <div class="day">
+      <div class="date">1949년 1월 4일 오후 3~4시경</div>
+      <p><span class="gloss" title="당시의 군대 — 대한민국 국군의 전신">국방경비대</span> 제2연대의 한 소대가 곤을동을 포위하고 주민들을 모두 모이게 했습니다. 젊은 사람 10여 명이 바닷가로 끌려가 학살됐고, 안곤을 22가구와 가운데곤을 17가구가 모두 불탔습니다. <span class="src">〔잃어버린 마을 안내판〕</span></p>
+    </div>
+    <div class="day">
+      <div class="date">다음날, 1월 5일</div>
+      <p>인근 화북초등학교에 가뒀던 주민 일부가 화북동 동쪽 바닷가 '영디밑'에서 학살됐습니다. 남아 있던 밧곤을 28가구도 이날 모두 불탔습니다. 그 후 곤을동은 인적이 끊겼습니다. <span class="src">〔잃어버린 마을 안내판〕</span></p>
+    </div>
+  </div>
+  <div class="quote">"토벌대, 제주읍 화북리 곤을동 주민을 이틀에 걸쳐 집단총살"
+    <span class="from">— 제주4·3평화재단, 『제주4·3사건일지』 1949년 1월 4일자 기록 (원문 그대로)</span></div>
+
+  <div class="diff">
+    <h3>⚖️ 기록마다 다릅니다</h3>
+    <table>
+      <tr><th></th><th>잃어버린 마을 안내판</th><th>곤을동 표석 (2003)</th></tr>
+      <tr><td>마을 규모</td><td>67가구 (22+17+28)</td><td>43호</td></tr>
+      <tr><td>희생자</td><td>젊은 사람 10여 명 외</td><td>24명</td></tr>
+      <tr><td>1월 4일 시각</td><td>오후 3~4시께</td><td>아침 9시경</td></tr>
+    </table>
+    <p>같은 자리에 서 있는 두 안내판의 기록이 서로 다릅니다. 이 페이지는 잃어버린 마을 안내판을 기준으로 서술했으며, 확정 수치는 정부 진상조사보고서 대조 후 갱신될 예정입니다.</p>
+  </div>
+  <p>두 달 뒤인 1949년 2월 27일에도 같은 화북리 일대에서 군법회의 사형선고를 받은 39명의 사형이 집행됐습니다 — 마을이 사라진 뒤에도 이 해안의 비극은 끝나지 않았습니다. <span class="src">〔제주4·3사건일지〕</span></p>
+</div></section>
+
+<section class="trace"><div class="wrap">
+  <div class="kicker">흔적</div>
+  <h2>마을을 기억하는 방법</h2>
+  <p>곤을동 터에는 '잃어버린 마을' 안내판과 표석이 서 있습니다. 그리고 2004년, 마을을 지키기 위해 세우던 제주의 돌탑 <b>'거욱대'</b>가 이 자리에 다시 세워졌습니다. <span class="src">〔안내판 조사보고서〕</span></p>
+  <div class="quote stone">"집과 사람은 오간데 없고 그 돌담만 남아 이 억울하고 원통한 사실을 기억하게 하는 곤을동 초토화 마을 유적터에 55년이 지난 오늘에야 온 도민들의 마음을 모아 … 다시는 이러한 일이 발생하지 않기를 기원하며 이 '거욱대'를 세운다."
+    <span class="from">— 4·3 해원 상생 거욱대 비문 (2004.4.5, 현장 안내판 원문 그대로)</span></div>
+  <div class="olle">
+    <h3>🥾 올레길에서 오셨나요?</h3>
+    <p><b>올레 18코스</b>가 이 마을 터를 지납니다 — "초토화 작전으로 마을 전체가 불타 사라진 곤을동을 지납니다." <span class="src">〔올레길 연계 안내〕</span></p>
+    <p>같은 코스에서 4·3의 도화선이 된 <b>관덕정</b>도 만날 수 있습니다.</p>
+  </div>
+</div></section>
+
+<section class="sources"><div class="wrap">
+  <div class="kicker">출처</div>
+  <ul>
+    <li><b>제주4·3평화재단</b>, 『제주4·3사건일지』 — 사건 기록 원문 (1949.1.4 / 1949.2.27)</li>
+    <li><b>(사)제주다크투어·제주4·3연구소</b>, 「제주지역 다크투어 유적지 국·영문 안내판 조사보고서」(개정판, 2020.9.17 현장조사) 제주시편 p.85~89 — 유적지 개요·좌표·현장 안내판 채록</li>
+    <li><b>현장 안내판 4기</b> (위 보고서 채록) — 잃어버린 마을(곤을동) 안내판 · 곤을동 표석(2003, 제주도지사) · 4·3 해원 상생 거욱대 비문(2004) · 4·3 유적지 표지석</li>
+    <li>올레길 × 4·3 유적지 코스별 안내 — 올레 18코스 연계</li>
+  </ul>
+  <div class="notice">이 페이지의 모든 사실 서술은 위 출처의 기록에 근거하며, 분위기 묘사 문장에는 <b>[연출]</b> 표시를 붙였습니다. 기록 인용문은 원문 그대로이며, 기록 간 차이는 '기록마다 다릅니다' 상자에 병기했습니다. 현장 사진은 저작권 확인 전이라 싣지 않았습니다.<br><b>내부 검토용 — 함께공 감수 전 외부 공개 금지.</b></div>
+</div></section>
+
+<script>
+function fz(d){let v=d===0?1:parseFloat(document.documentElement.style.getPropertyValue('--fz')||1)+(d*.08);v=Math.max(.85,Math.min(1.4,v));document.documentElement.style.setProperty('--fz',v.toFixed(2))}
+</script>
+</body>
+</html>

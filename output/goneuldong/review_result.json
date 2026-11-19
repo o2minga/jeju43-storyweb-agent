@@ -1,0 +1,58 @@
+{
+  "location_id": "goneuldong",
+  "overall_status": "HOLD",
+  "checks": [
+    {
+      "check_id": "01-source-missing",
+      "name": "출처 누락 여부",
+      "status": "pass",
+      "issues": []
+    },
+    {
+      "check_id": "02-ai-generated-label",
+      "name": "[연출] 표시 여부",
+      "status": "pass",
+      "issues": [],
+      "reason": "vis-01/vis-02(이미지, Cloudflare Workers AI flux-1-schnell로 생성), narration-ko.wav/bgm.wav(오디오) 모두 실제 파일이 존재하며, 05-assemble.html의 두 figure 모두 [연출] 표시가 붙어 있음. 관덕정과 동일한 이미지 생성 API로 전환 완료 — 이전 절차적 렌더링 버전은 assets/_procedural-backup/에 보관."
+    },
+    {
+      "check_id": "03-fabrication",
+      "name": "지어내기 여부",
+      "status": "needs_human",
+      "issues": [
+        {
+          "location": "output/goneuldong/05-assemble.html > section.story-development",
+          "detail": "forbidden_topics(희생자 실명, 자극적 피해 묘사, 주정공장 올레 연계)에 해당하는 서술은 발견되지 않았고, 화북리 사형 집행 지점도 '정확히 어느 지점이었는지는 기록에 남아 있지 않다'로 정직하게 처리됨. 다만 학살·방화를 다루는 민감한 구간이라 사람이 한 번 더 읽어볼 것을 권장."
+        }
+      ]
+    },
+    {
+      "check_id": "04-fact-consistency",
+      "name": "사실 일치 여부",
+      "status": "pass",
+      "issues": [],
+      "reason": "05-assemble.html의 모든 data-fact-id(f-03~f-07, f-10, f-11)가 01-verify.json의 verified_facts에 존재함. 01의 conflicts(c-01~c-03)는 conflict-box(data-conflict-ids)로 정확히 반영되고, 02-story의 conflicts_carried_forward와도 일치함."
+    },
+    {
+      "check_id": "05-terminology",
+      "name": "용어 풀이 여부",
+      "status": "needs_human",
+      "issues": [
+        {
+          "location": "output/goneuldong/05-assemble.html > section.story-development",
+          "detail": "괄호 설명 없이 등장하는 용어 후보(참고용 — 판정 근거 아님): '국방경비대', '군법회의'. ('올레'는 이미 본문에서 괄호로 풀이됨)"
+        }
+      ],
+      "reason": "용어 풀이 여부는 spec.md 규칙상 원칙적으로 항상 needs_human으로 분류함"
+    },
+    {
+      "check_id": "06-chatbot-kb-consistency",
+      "name": "AI 챗봇 지식베이스 일치 여부",
+      "status": "pass",
+      "issues": [],
+      "reason": "02-story.json의 chatbot_kb 5건 중 가드레일 테스트 항목(kb-guardrail-test) 1건을 제외한 4건(kb-01~04)이 07-chatbot.json의 kb[]와 chatbot-modal.js의 KB 배열에 그대로 반영됨. 가드레일 테스트 질문의 거절 동작은 chatbot-modal.js의 REFUSE_KEYWORDS(실명·이름 등)로 정상 확인됨."
+    }
+  ],
+  "missing_required_files": [],
+  "generated_at": "2026-08-11T00:00:00+09:00"
+}

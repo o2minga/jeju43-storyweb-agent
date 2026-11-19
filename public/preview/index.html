@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>제주 4·3 스토리웹 — 지도 (팀 미리보기)</title>
+<style>
+  body { font-family: sans-serif; margin: 0; background: #FAFAF8; color: #2C2C2A; }
+  #loading, #error { padding: 40px; text-align: center; }
+  #error { color: #b3261e; }
+</style>
+</head>
+<body>
+<div id="loading">지도를 불러오는 중…</div>
+<script>
+(function () {
+  "use strict";
+  fetch("/api/preview/map")
+    .then(function (res) {
+      if (!res.ok) {
+        return res.json().then(function (body) {
+          throw new Error(body.error || ("HTTP " + res.status));
+        });
+      }
+      return res.text();
+    })
+    .then(function (html) {
+      document.open();
+      document.write(html);
+      document.close();
+    })
+    .catch(function (err) {
+      document.body.innerHTML = '<div id="error">지도를 불러오지 못했습니다: ' + err.message + '</div>';
+    });
+})();
+</script>
+</body>
+</html>

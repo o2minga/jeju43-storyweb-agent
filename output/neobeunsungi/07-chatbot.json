@@ -1,0 +1,85 @@
+{
+  "location_id": "neobeunsungi",
+  "kb": [
+    {
+      "qa_id": "kb-01",
+      "question": { "ko": "너븐숭이 4·3기념관은 어떤 곳인가요?", "en": "What kind of place is the Neobeunsungi 4·3 Memorial Hall?" },
+      "answer": { "ko": "2009년 조성된 추모공원으로 위령비·기념관·방사탑을 갖추고 있으며, 1949년 1월 17일 북촌주민이 희생된 장소 중 하나이자 소설 『순이삼촌』의 배경이 된 곳입니다.", "en": "It is a memorial park built in 2009, with a memorial monument, an exhibition hall, and a stone tower. It is one of the sites where Bukchon residents were killed on January 17, 1949, and the setting for the novel Aunt Suni." },
+      "source": "너븐숭이 4·3유적지 안내판(N-1)",
+      "tags": ["너븐숭이", "기념관", "조성", "2009", "순이삼촌"]
+    },
+    {
+      "qa_id": "kb-02",
+      "question": { "ko": "북촌대학살(1949.1.17)은 왜 일어났나요?", "en": "Why did the Bukchon Massacre (Jan 17, 1949) happen?" },
+      "answer": { "ko": "너븐숭이 고갯길 군인 2명 무장대 습격 사망 → 함덕 2연대 3대대 보복 → 마을 방화·학교 집결 후 분산 총살.", "en": "After two soldiers were killed in an ambush by an armed group on the Neobeunsungi hill road, the 3rd Battalion, 2nd Regiment stationed in Hamdeok retaliated, burning the village, gathering residents at the school, and shooting them in separate groups." },
+      "source": "현장 안내판·추념비·제주4·3사건일지",
+      "tags": ["북촌대학살", "1949", "보복", "총살", "원인"]
+    },
+    {
+      "qa_id": "kb-03",
+      "question": { "ko": "희생자는 몇 명인가요?", "en": "How many people were killed?" },
+      "answer": { "ko": "하나로 단정할 수 없습니다. 당일 300여 명(학교 주변), 이튿날까지 400명 가량(사건일지·너븐숭이 안내판), 행방불명 포함 전체 434명(추념비)이라는 기록이 함께 있습니다.", "en": "This cannot be reduced to a single figure. Records show about 300 that day (near the school), around 400 by the next day (Incident Chronicle · Neobeunsungi board), and 434 in total including the missing (memorial monument)." },
+      "source": "현장 안내판·추념비·제주4·3사건일지",
+      "tags": ["희생자", "수", "300", "400", "434", "기록마다다름"]
+    },
+    {
+      "qa_id": "kb-04",
+      "question": { "ko": "애기무덤에는 왜 아이들 무덤만 있나요?", "en": "Why does the children's grave site hold only children's graves?" },
+      "answer": { "ko": "어른 시신은 다른 곳에 안장되었지만, 아이들은 임시 매장 그대로 70년. 20여 기 중 최소 8기 이상이 대학살 희생 아동입니다.", "en": "The bodies of adults were reburied elsewhere by survivors, but children's bodies have remained where they were temporarily buried for nearly 70 years. At least 8 of the roughly 20 graves belong to children killed in the massacre." },
+      "source": "애기무덤 안내판(N-3)",
+      "tags": ["애기무덤", "아이", "무덤", "안장"]
+    },
+    {
+      "qa_id": "kb-05",
+      "question": { "ko": "『순이삼촌』은 어떤 소설인가요?", "en": "What kind of novel is Aunt Suni?" },
+      "answer": { "ko": "현기영(1978), 4·3 참혹함과 후유증 고발, 묻혀 있던 진실을 문학으로 공론화. 2008년 정부 옴팡밭 매입 후 문학비 건립.", "en": "Written by Hyun Ki-young in 1978, it exposed the brutality and aftermath of 4·3 and brought the buried truth into public discussion through literature. In 2008 the government purchased land at Ompangbat and erected a literary monument there." },
+      "source": "순이삼촌 문학비 안내판(N-4)",
+      "tags": ["순이삼촌", "소설", "현기영", "문학비", "옴팡밭"]
+    },
+    {
+      "qa_id": "kb-06",
+      "question": { "ko": "옴팡밭의 시신 묘사를 더 자세히 알 수 있나요?", "en": "Can you describe in more detail what happened to the bodies at Ompangbat?" },
+      "answer": { "ko": "옴팡밭 안내판(N-5)의 원문 표현만 인용할 수 있으며, 이를 바탕으로 장면을 확장하거나 재현하지는 않습니다.", "en": "Only the original wording of the Ompangbat information board (N-5) can be quoted; this page does not expand on or reenact the scene." },
+      "source": "옴팡밭 안내판(N-5)",
+      "tags": ["옴팡밭", "시신", "묘사", "제한"]
+    },
+    {
+      "qa_id": "kb-07",
+      "question": { "ko": "당팟과 너븐숭이는 어떻게 다른가요?", "en": "What is the difference between Dangpat and Neobeunsungi?" },
+      "answer": { "ko": "당팟은 북촌국민학교 동쪽 학살터(100여 명 희생), 너븐숭이/옴팡밭은 서쪽 학살터입니다.", "en": "Dangpat is the massacre site to the east of Bukchon Elementary School (about 100 killed), while Neobeunsungi/Ompangbat is the site to the west." },
+      "source": "당팟 안내판(N-6)·북촌마을 안내판(N-2)",
+      "tags": ["당팟", "너븐숭이", "옴팡밭", "위치"]
+    },
+    {
+      "qa_id": "kb-08",
+      "question": { "ko": "북촌초등학교는 당시 어떤 일을 겪었나요?", "en": "What happened to Bukchon Elementary School at the time?" },
+      "answer": { "ko": "1949.1.10 폐교(개교 7년 만), 주민 집결·1차 총살 장소. 5개월 후 마을 복구, 2년 9개월 후 학교 재건, 재학생 216명 53년 만에 명예졸업장.", "en": "It closed on January 10, 1949, just seven years after opening, and was the site where residents were gathered before the first round of shootings. The village was rebuilt after 5 months, the school reopened after 2 years and 9 months, and the 216 enrolled students received honorary diplomas 53 years later." },
+      "source": "북촌초등학교 추념비(N-7)",
+      "tags": ["북촌초등학교", "폐교", "복구", "명예졸업장"]
+    },
+    {
+      "qa_id": "kb-09",
+      "question": { "ko": "정지퐁낭은 어떤 나무인가요?", "en": "What is the Jeongjipongnang tree?" },
+      "answer": { "ko": "당팟 인근 800년 된 팽나무. 1958년 태풍 '사라'로 쓰러졌다가 다시 심음. 옆 제주목사 선정비에 4·3 총탄 자국 선명.", "en": "It is a roughly 800-year-old hackberry tree near Dangpat, which fell during Typhoon Sarah in 1958 and was replanted. The nearby monument to a Joseon-era magistrate still clearly bears bullet marks from 4·3." },
+      "source": "정지퐁낭 기념비(N-8)",
+      "tags": ["정지퐁낭", "팽나무", "총탄자국", "800년"]
+    }
+  ],
+  "guardrail": {
+    "system_prompt": "너는 너븐숭이·북촌 유적군 전용 안내 챗봇이다. 반드시 kb 배열과 카드 내용(01-verify.json의 verified_facts·verbatim_quotes)에 있는 사실만 근거로 답하라. 그 밖의 내용, 특히 refuse_topics에 해당하는 질문(인과 관계 단죄, 실명, 옴팡밭 시신 장면 확장 등)은 절대 창작하지 말고 fallback_answer로만 답하라. 추측·개연성 있는 서술·'아마도'류 표현을 쓰지 마라. 정치적 편향, 가치판단, 과장된 감정 이입, 주관적 논평을 하지 마라. 희생자 수처럼 기록마다 값이 다르면 하나로 확정하지 말고 '기록마다 다름'으로 병기해서 안내하라.",
+    "fallback_answer": { "ko": "기록에 명시되지 않은 내용입니다.", "en": "This is not specified in the record." },
+    "refuse_topics": [
+      "희생자 수 세 수치(300여 명/400명 가량·400여 명/434명)를 하나로 단정하는 행위 금지",
+      "인과 순서(무장대 습격→군인 2명 사망→보복 학살)를 생략하거나 학살을 정당화하는 서술 금지",
+      "옴팡밭 안내판의 \"마치 무를 뽑아 널어놓은 것 같이\" 표현(원문 인용)을 바탕으로 장면을 확장·재현하는 서술 금지",
+      "'아이고 사건'(1954)의 상세를 지어내는 행위 금지",
+      "실명(추념비 건립 명단 등)을 원문 인용 밖에서 서술·외부 공개하는 행위 금지"
+    ],
+    "conflict_note": "희생자 수(300여 명/400명 가량/434명)는 서로 다른 기준을 가리키므로 하나로 확정하지 않고 항상 세 수치를 함께 병기해 안내"
+  },
+  "widget": {
+    "launcher": "floating-bottom-right",
+    "modal_script_path": "output/neobeunsungi/chatbot-modal.js",
+    "notes": "05-assemble이 <script src=\"chatbot-modal.js\"></script> 삽입만 하면 동작하는 자기완결 스크립트. KB·가드레일 데이터가 스크립트 내부에 내장되어 별도 fetch 없이 동작함. 답변 근거는 이 kb[] 9건으로 한정하지 않고, chatbot-modal.js 안에 01-verify.json의 verified_facts(f-01~f-17)·verbatim_quotes(q-01~q-11) 전체를 FACTS/QUOTES로 함께 내장해 검색 대상으로 삼는다(=카드 내용 전체 기반)."
+  }
+}

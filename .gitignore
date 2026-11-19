@@ -1,0 +1,52 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# env files (can opt-in for committing if needed)
+.env*
+!.env.local.example
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# python (agent/)
+__pycache__/
+*.pyc
+
+# agent 파이프라인 실행 로그(run_agent.py가 실행마다 생성) — 재현 가능한 산출물이 아니므로 커밋하지 않음
+logs/
+
+# Claude Code 개인 로컬 설정(사용자별 권한 허용 이력) — 공유 대상 아님
+.claude/settings.local.json

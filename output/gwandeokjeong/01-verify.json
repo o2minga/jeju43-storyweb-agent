@@ -1,0 +1,324 @@
+{
+  "location_id": "gwandeokjeong",
+  "verified_facts": [
+    {
+      "fact_id": "f-01",
+      "text": "관덕정 광장은 1947년 3·1 발포사건이 일어난 현장이며, 4·3의 도화선으로 불린다.",
+      "source": {
+        "type": "card",
+        "ref": "안내판 조사보고서 (조사일 2020-09-29)"
+      },
+      "note": null
+    },
+    {
+      "fact_id": "f-02",
+      "text": "주소는 제주특별자치도 제주시 관덕로 19 (삼도이동)이다.",
+      "source": {
+        "type": "card",
+        "ref": "안내판 조사보고서 (조사일 2020-09-29)"
+      },
+      "note": null
+    },
+    {
+      "fact_id": "f-03",
+      "text": "좌표는 33.5136572, 126.521839이다.",
+      "source": {
+        "type": "card",
+        "ref": "안내판 조사보고서 현장 기록"
+      },
+      "note": null
+    },
+    {
+      "fact_id": "f-04",
+      "text": "유형은 역사현장으로, 보물 제322호 관덕정(1448년 건립)이 있는 원도심 광장이다.",
+      "source": {
+        "type": "card",
+        "ref": "안내판 조사보고서 (조사일 2020-09-29)"
+      },
+      "note": null
+    },
+    {
+      "fact_id": "f-05",
+      "text": "관덕정 건물과 광장은 현재도 현존한다.",
+      "source": {
+        "type": "card",
+        "ref": "안내판 조사보고서 (조사일 2020-09-29)"
+      },
+      "note": null
+    },
+    {
+      "fact_id": "f-06",
+      "text": "관덕정에 현존하는 안내판은 조선시대 건축 해설뿐이며, 4·3 관련 내용은 없다.",
+      "source": {
+        "type": "card",
+        "ref": "안내판 조사보고서 (조사일 2020-09-29)"
+      },
+      "note": "정보 부재 자체가 검증된 사실 — forbidden_topics 아님"
+    },
+    {
+      "fact_id": "f-07",
+      "text": "연계 지점인 제주도립병원 옛터는 삼도이동 154(33.510834, 126.521998)에 있으며, 1947년 3월 1일 같은 날 2차 발포가 일어난 곳이다.",
+      "source": {
+        "type": "card",
+        "ref": "안내판 조사보고서(도립병원 옛터)"
+      },
+      "note": null
+    },
+    {
+      "fact_id": "f-08",
+      "text": "제주도립병원 옛터에는 현재 흔적이 남아 있지 않다.",
+      "source": {
+        "type": "card",
+        "ref": "안내판 조사보고서(도립병원 옛터)"
+      },
+      "note": "정보 부재 자체가 검증된 사실 — forbidden_topics 아님"
+    },
+    {
+      "fact_id": "f-09",
+      "text": "연계 지점인 제주시민회관은 이도이동(33.505401, 126.534483)에 있으며, 1989년 제1회 4·3추모제가 열린 곳이다.",
+      "source": {
+        "type": "card",
+        "ref": "안내판 조사보고서(제주시민회관)"
+      },
+      "note": null
+    },
+    {
+      "fact_id": "f-10",
+      "text": "1448년(세종 30년) 안무사(목사) 신숙청이 병사 훈련 목적으로 관덕정을 건립했고, 이후 관민의 회의 장소와 죄인을 다스리는 곳 등으로 사용되었다.",
+      "source": {
+        "type": "card",
+        "ref": "현장 안내판·안내판 조사보고서"
+      },
+      "note": null
+    },
+    {
+      "fact_id": "f-11",
+      "text": "관덕정은 제주목 관아의 일부를 이루고 있다.",
+      "source": {
+        "type": "card",
+        "ref": "현장 안내판 — 관덕정 안내판 (보물 해설)"
+      },
+      "note": null
+    },
+    {
+      "fact_id": "f-12",
+      "text": "'관덕'이라는 명칭은 '활을 쏘는 것은 높고 훌륭한 덕을 쌓는 것이다'라는 예기(禮記)의 내용에서 따온 것으로, 문무(文武)의 올바른 정신을 본받기 위해 지어진 이름이다.",
+      "source": {
+        "type": "card",
+        "ref": "현장 안내판 — 관덕정 안내판 (보물 해설)"
+      },
+      "note": null
+    },
+    {
+      "fact_id": "f-13",
+      "text": "1924년 일제강점기에 일본인이 수리하면서 지붕처마가 2척 정도 잘려 변형되었으나, 2006년 보수를 통해 원래의 모습을 되찾았다.",
+      "source": {
+        "type": "card",
+        "ref": "현장 안내판"
+      },
+      "note": null
+    },
+    {
+      "fact_id": "f-14",
+      "text": "1947년 3월 1일 북국민학교에서 3·1절 제28주년 기념대회가 열렸고 3만여 명이 참가했으며, 행사 후 참가자들이 동·서로 나뉘어 시위했다.",
+      "source": {
+        "type": "card",
+        "ref": "제주4·3사건일지·한눈에 보는 4·3·안내판 조사보고서"
+      },
+      "note": null
+    },
+    {
+      "fact_id": "f-15",
+      "text": "서쪽 행렬이 관덕정 앞을 지날 즈음 어린아이가 기마경찰의 말발굽에 치였으나 경찰은 조치 없이 지나갔다.",
+      "source": {
+        "type": "card",
+        "ref": "제주4·3사건일지·한눈에 보는 4·3·안내판 조사보고서"
+      },
+      "note": null
+    },
+    {
+      "fact_id": "f-16",
+      "text": "말발굽에 치인 어린아이가 그 뒤 어떻게 되었는지에 대한 기록은 자료에 없다.",
+      "source": {
+        "type": "card",
+        "ref": "⚠️ 주의 2 — 어린아이의 생사"
+      },
+      "note": "정보 부재 자체가 검증된 사실 — forbidden_topics 아님. 단, 결과를 추정해 채워 넣는 것은 금지(forbidden_topics 참조)"
+    },
+    {
+      "fact_id": "f-17",
+      "text": "격분한 군중의 항의에 이어 응원경찰이 발포했고, 관덕정과 도립병원 앞에서 주민 6명이 사망하고 8명이 중경상을 입었다. 이를 '3·1사건'이라 부른다.",
+      "source": {
+        "type": "card",
+        "ref": "제주4·3사건일지·한눈에 보는 4·3·안내판 조사보고서"
+      },
+      "note": null
+    },
+    {
+      "fact_id": "f-18",
+      "text": "같은 날 부상자들이 실려간 도립병원에서 2차 발포가 있었고, 관덕정 앞 총상자 중 4명은 즉사하고 2명은 병원에서 사망했다.",
+      "source": {
+        "type": "card",
+        "ref": "안내판 조사보고서(도립병원 옛터)"
+      },
+      "note": null
+    },
+    {
+      "fact_id": "f-19",
+      "text": "병원을 경호하던 이문규 순경이 공포감에 발포해 행인 2명이 중상을 입었다.",
+      "source": {
+        "type": "card",
+        "ref": "안내판 조사보고서(도립병원 옛터)"
+      },
+      "note": null
+    },
+    {
+      "fact_id": "f-20",
+      "text": "1947년 3월 10일 진상규명과 책임자 처벌을 촉구하는 사상 초유의 3·10 민관총파업이 일어났고, 이는 4·3 발발의 도화선이 되었다.",
+      "source": {
+        "type": "card",
+        "ref": "안내판 조사보고서"
+      },
+      "note": null
+    },
+    {
+      "fact_id": "f-21",
+      "text": "1989년 제주시민회관에서 시민사회단체들이 제1회 4·3추모제를 개최했으며, 이는 반세기 금기 속 첫 공개 위령 행사였다.",
+      "source": {
+        "type": "card",
+        "ref": "안내판 조사보고서(제주시민회관)"
+      },
+      "note": null
+    },
+    {
+      "fact_id": "f-22",
+      "text": "조사보고서 총론은 4·3의 도화선이 된 3·1절 발포사건이 일어난 관덕정에 그 역사적 사건에 대한 안내판이 세워져 있지 않고 조선시대 건축 사실만 기록되어 있다고 지적한다.",
+      "source": {
+        "type": "card",
+        "ref": "안내판 조사보고서 총론 (보고서 p.10~11, 조사일 2020-09-29)"
+      },
+      "note": "정보(안내판) 부재 자체가 검증된 사실 — forbidden_topics 아님"
+    },
+    {
+      "fact_id": "f-23",
+      "text": "현장 안내판 조사는 2020년 9월 29일에 이루어졌다.",
+      "source": {
+        "type": "card",
+        "ref": "안내판 조사보고서 (조사일 2020-09-29)"
+      },
+      "note": null
+    }
+  ],
+  "sources": [
+    {
+      "ref": "제주4·3평화재단, 『제주4·3사건일지』 / 『한눈에 보는 4·3』",
+      "used_for": "사건 기록 원문 — 1947년 3월 1일 발포와 사상자 기록 인용",
+      "used_for_en": "Original incident records — cited for the March 1, 1947 shooting and casualty figures",
+      "ref_en": "Jeju 4·3 Peace Foundation, Chronology of the Jeju 4·3 Incident / Jeju 4·3 at a Glance"
+    },
+    {
+      "ref": "(사)제주다크투어·제주4·3연구소, 「제주지역 다크투어 유적지 안내판 조사보고서」(개정판, 2020 현장조사) 제주시편",
+      "used_for": "유적지 개요·좌표·안내판 채록·도립병원/시민회관 서술",
+      "used_for_en": "Site overview, coordinates, transcription of on-site information signs, and descriptions of the former provincial hospital site and Jeju Citizens' Hall",
+      "ref_en": "Jeju Dark Tours & Jeju 4·3 Research Institute, Survey Report on Information Signs at Dark Tourism Heritage Sites in Jeju (revised edition, 2020 field survey), Jeju City volume"
+    },
+    {
+      "ref": "현장 안내판 — 관덕정 안내판 (보물 해설)",
+      "used_for": "건물 역사 인용 시 — 1448년 건립, 1924년 변형·2006년 원형 회복, 명칭 유래",
+      "used_for_en": "Cited for the building's history — its 1448 construction, the 1924 alteration and 2006 restoration, and the origin of its name",
+      "ref_en": "On-site information sign — Gwandeokjeong Pavilion sign (Treasure designation description)"
+    },
+    {
+      "ref": "올레길 × 4·3 유적지 코스별 안내",
+      "used_for": "올레 18코스 접점",
+      "used_for_en": "The intersection with Jeju Olle Trail Course 18",
+      "ref_en": "Jeju Olle Trail × Jeju 4·3 heritage site course guide"
+    }
+  ],
+  "citation_guide": [
+    {
+      "format": "제주4·3평화재단, 『제주4·3사건일지』 / 『한눈에 보는 4·3』",
+      "when": "사건 기록 원문"
+    },
+    {
+      "format": "(사)제주다크투어·제주4·3연구소, 「제주지역 다크투어 유적지 안내판 조사보고서」(개정판, 2020 현장조사) 제주시편",
+      "when": "유적지 개요·좌표·안내판 채록·도립병원/시민회관 서술"
+    },
+    {
+      "format": "현장 안내판 — 관덕정 안내판 (보물 해설)",
+      "when": "건물 역사 인용 시"
+    },
+    {
+      "format": "올레길 × 4·3 유적지 코스별 안내",
+      "when": "올레 18코스 접점"
+    }
+  ],
+  "verbatim_quotes": [
+    {
+      "id": "q-01",
+      "text": "응원경찰의 발포로 관덕정과 도립병원 앞에서 주민 6명 사망, 8명 중경상을 당하는 '3·1 사건' 발생",
+      "source": "제주4·3사건일지 (1947-03-01)",
+      "modification_allowed": false
+    },
+    {
+      "id": "q-02",
+      "text": "3·1절 기념대회를 제주북교에서 개최, 3만여 명 참가, 시위 후 경찰 발포로 6명 사망, 8명 중경상",
+      "source": "한눈에 보는 4·3 (1947-03-01)",
+      "modification_allowed": false
+    },
+    {
+      "id": "q-03",
+      "text": "보물 제322호, 소재지 : 제주시 삼도2동\n관덕정은 조선 세종 때인 1448년 안무사 신숙청이 병사들을 훈련 시키기 위해 세운 제주도의 대표적 건물로서, 제주목 관아의 일부를 이루고 있다. 건립 이후 그 원형을 유지하며 여러 차례 수리되어 오던 중 일제강점기인 1924년 일본인이 수리하면서 지붕처마가 2척 정도 잘려 변형되었으나 2006년 보수를 통해 원래의 모습을 다시 찾았다.\n'관덕'이란 명칭은 '활을 쏘는 것은 높고 훌륭한 덕을 쌓는 것이다.'라는 예기(禮記)의 내용에서 따온 것이다. 이는 '평소에 마음을 바르게 하고 훌륭한 덕을 쌓는다.'는 뜻이며 문무(文武)의 올바른 정신을 본받기 위해 지어진 이름이다.",
+      "source": "현장 안내판 G-1 「관덕정(Gwandeokjeong Pavilion)」 (보고서 p.10~11 채록, 원문 표기 그대로)",
+      "modification_allowed": false
+    },
+    {
+      "id": "q-04",
+      "text": "Gwandeokjeong Pavilion — Treasure No.322, Location : Samdo-2-dong, Jeju-si. Gwandeokjeong Pavilion was built in 1448 under the leadership of the local officer Sin Suk-cheong during the reign of King Sejong. The pavilion was part of the Jeju administrative complex and used as a military facility from which commanders gave orders. Its original form had been maintained until 1924, At the time the Japanese deformed the structure by shortening the eaves by two ft. during their repair work. But the pavilion was restored to its original status in 2006. The word Gwandeok comes from a Chinese classic on rites. The name emphasizes that you should try to train your body and mind every day in order to obtain virtue. It reflects our ancestors' endeavors to live a righteous live by upholding both the physical and mental virtues.",
+      "source": "현장 안내판 G-1 「관덕정(Gwandeokjeong Pavilion)」 영문 (보고서 p.10~11 채록, 원문 표기 그대로)",
+      "modification_allowed": false
+    },
+    {
+      "id": "q-05",
+      "text": "제주4·3의 도화선이 되었던 3·1절 발포사건이 일어난 관덕정에는 당시의 역사적 사건에 대해 안내판이 세워져 있지 않다. 조선시대 당시 관덕정의 건축 사실만 기록하고 있을 뿐이다.",
+      "source": "안내판 조사보고서 총론 G-2 (안내판 부재 기록)",
+      "modification_allowed": false
+    }
+  ],
+  "forbidden_topics": [
+    "자료 밖 통설 사용 금지: 관덕정에 관한 널리 알려진 다른 일화들(예: 무장대 지도자 시신 전시 등)은 이 카드의 자료에 없음 — AI가 학습으로 아는 이야기라도 카드에 없는 내용은 쓰지 말 것",
+    "어린아이의 생사: 기록은 \"말발굽에 치였지만 경찰은 조치 없이 가버림\"까지만 — 아이가 어떻게 됐는지는 자료에 없음. 채워 넣지 말 것",
+    "발포 위치 정확히: 사망 6명은 \"관덕정과 도립병원 앞\" — 전원 관덕정 앞으로 단정하지 말 것 (관덕정 앞 4명 즉사·병원 이송 2명 사망 — 도립병원 옛터 서술 기준)"
+  ],
+  "conflicts": [],
+  "precision_guardrails": [
+    {
+      "topic": "3·1사건 사망 6명의 발생 위치",
+      "rule": "사망 6명은 \"관덕정과 도립병원 앞\"으로 표기한다. 전원이 관덕정 앞에서 사망했다고 단정하지 않는다. 세부를 쓸 경우 도립병원 옛터 서술 기준으로 '관덕정 앞 총상자 중 4명 즉사, 2명은 병원에서 사망'으로 나누어 적는다."
+    },
+    {
+      "topic": "발포 사상자 구성(사망 6명 / 중경상 8명 / 2차 발포 행인 2명 중상)",
+      "rule": "사망 6명과 중경상 8명은 응원경찰 발포 기록이고, 행인 2명 중상은 도립병원에서 이문규 순경이 발포한 별개 서술이다. 두 수치를 합산하거나 하나의 사건으로 뭉뚱그려 서술하지 않는다."
+    },
+    {
+      "topic": "관덕정에 4·3 안내판이 없다는 서술의 시점",
+      "rule": "안내판 부재는 조사보고서 현장조사 시점(조사일 2020-09-29) 기준 기록이다. '지금도 없다'처럼 무시점으로 단정하지 말고 조사 시점을 함께 밝힌다."
+    },
+    {
+      "topic": "연계 지점(제주도립병원 옛터·제주시민회관)의 현재 상태",
+      "rule": "두 곳은 사건·행사가 있었던 자리이지만 현재 안내판·흔적이 없다고 카드에 명시돼 있다. 방문 가능한 현존 유적처럼 서술하지 않고 '옛터', '흔적 없음'을 함께 표기한다."
+    },
+    {
+      "topic": "3·1절 기념대회 참가 인원",
+      "rule": "카드 표기는 '3만여 명'이다. '정확히 3만 명'처럼 확정 수치로 바꾸지 않고 '3만여 명'을 그대로 쓴다."
+    },
+    {
+      "topic": "관덕정 건립 목적과 이후 용도",
+      "rule": "1448년 건립 목적은 '병사 훈련'이며, '관민의 회의 장소·죄인을 다스리는 곳' 등은 건립 이후의 용도다. 건립 목적과 이후 용도를 한 문장으로 뭉뚱그리지 않는다."
+    }
+  ],
+  "publication_flag": {
+    "internal_only": true,
+    "note": "출력물은 함께공 감수 전 외부 공개 금지 (내부용)"
+  }
+}

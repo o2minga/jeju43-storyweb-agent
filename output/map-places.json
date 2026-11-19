@@ -1,0 +1,187 @@
+[
+  {
+    "location_id": "goneuldong",
+    "name": {
+      "ko": "곤을동 옛터 (잃어버린 마을)",
+      "en": "Goneul-dong (The Lost Village)"
+    },
+    "coord": {
+      "lat": 33.521722,
+      "lng": 126.557375
+    },
+    "one_liner": {
+      "ko": "제주시 화북동 바닷가에는 지금도 집터와 돌담이 남아 있는 곤을동이라는 마을 터가 있습니다. 700년 넘게 사람이 살아온 이 마을은 왜 지금 '잃어버린 마을'이라고 불리게 되었을까요?",
+      "en": "On the coast of Hwabuk-dong, Jeju City, stands the site of a village called Goneul-dong, where house foundations and stone walls still remain today. Why is this village, lived in for over 700 years, now called 'the lost village'?"
+    },
+    "thumbnail": "goneuldong/assets/img-01.png",
+    "page_link": "goneuldong/05-assemble.html",
+    "timeline_events": [
+      {
+        "event_id": "tl-01",
+        "date": "1300",
+        "title": {
+          "ko": "설촌 첫 기록",
+          "en": ""
+        },
+        "description": {
+          "ko": "고려 충렬왕 26년, 곤을마을이 별도현에 속했다는 기록이 있음 — 700년이 넘는 유서 깊은 마을",
+          "en": ""
+        },
+        "source": "곤을동 표석(2003)"
+      },
+      {
+        "event_id": "tl-02",
+        "date": "1949-01-04",
+        "title": {
+          "ko": "곤을동 포위·학살·방화",
+          "en": ""
+        },
+        "description": {
+          "ko": "국방경비대 제2연대 1개 소대가 곤을동을 포위, 젊은 사람 10여 명을 바닷가로 끌고 가 학살, 안곤을·가운데곤을 불태움",
+          "en": ""
+        },
+        "source": "잃어버린 마을 안내판"
+      },
+      {
+        "event_id": "tl-03",
+        "date": "1949-01-05",
+        "title": {
+          "ko": "'영디밑' 학살·밧곤을 방화",
+          "en": ""
+        },
+        "description": {
+          "ko": "화북초등학교에 가뒀던 주민 일부를 '영디밑'에서 학살, 밧곤을 28가구도 불태움 — 이후 곤을동은 인적이 끊김",
+          "en": ""
+        },
+        "source": "잃어버린 마을 안내판"
+      },
+      {
+        "event_id": "tl-04",
+        "date": "1949-02-27",
+        "title": {
+          "ko": "화북리 사형 집행 (지역 맥락)",
+          "en": ""
+        },
+        "description": {
+          "ko": "같은 화북리 일대에서 군법회의 사형선고자 39명의 사형이 집행됨 — 정확한 위치는 기록에 없음",
+          "en": ""
+        },
+        "source": "제주4·3사건일지"
+      },
+      {
+        "event_id": "tl-05",
+        "date": "2003",
+        "title": {
+          "ko": "곤을동 표석 건립",
+          "en": ""
+        },
+        "description": {
+          "ko": "제주4·3사건진상규명및희생자명예회복실무위원회 위원장·제주도지사가 표석을 세움",
+          "en": ""
+        },
+        "source": "현장 안내판(곤을동 표석)"
+      },
+      {
+        "event_id": "tl-06",
+        "date": "2004",
+        "title": {
+          "ko": "4·3 해원 상생 거욱대 건립",
+          "en": ""
+        },
+        "description": {
+          "ko": "(사)한국민족예술인총연합 제주도지회가 마을을 기억하기 위한 거욱대를 세움",
+          "en": ""
+        },
+        "source": "현장 안내판(거욱대 비문)"
+      }
+    ]
+  },
+  {
+    "location_id": "neobeunsungi",
+    "name": {
+      "ko": "너븐숭이와 북촌 유적군 (북촌대학살)",
+      "en": ""
+    },
+    "coord": {
+      "lat": 33.545959,
+      "lng": 126.688749
+    },
+    "one_liner": {
+      "ko": "해마다 명절처럼, 이 마을 사람들은 같은 날 같은 시간에 제사를 지낸다고 합니다. 왜 이 북촌마을은 제사를 한 날 한 시에 지낼까요",
+      "en": ""
+    },
+    "thumbnail": "assets/neobeunsungi/img-01.png",
+    "page_link": "neobeunsungi/05-assemble.html"
+  },
+  {
+    "location_id": "gwandeokjeong",
+    "name": {
+      "ko": "관덕정 광장 — 1947년 3·1 발포사건 현장 (4·3의 도화선)",
+      "en": "Gwandeokjeong Square"
+    },
+    "coord": {
+      "lat": 33.5136572,
+      "lng": 126.521839
+    },
+    "one_liner": {
+      "ko": "제주시 원도심(옛 도심) 한복판, 지금도 사람들이 오가는 자리에 관덕정(觀德亭)이라는 오래된 목조 건물과 그 앞 광장이 있습니다. 관덕정은 1448년(조선 세종 30년) 안무사(安撫使, 지방을 다스리러 파견된 벼슬로 목사라고도 부름) 신숙청이 병사들을 훈련시킬 목적으로 세운 건물입니다. 건립된 뒤에는 관(관청)과 민(백성)이 함께 모이는 회의 장소, 죄인을 다스리는 곳 등으로도 쓰였습니다. 지금은 보물 제322호(국가가 지정해 보호하는 문화유산)로 지정되어 있고, 제주목 관아(조선시대 제주를 다스리던 관청 건물들)의 일부를 이루고 있습니다. '관덕'이라는 이름은 '활을 쏘는 것은 높고 훌륭한 덕을 쌓는 것이다'라는 예기(禮記, 옛 중국의 예법을 다룬 고전)의 구절에서 따온 것으로, 문무(文武, 학문과 무예)의 올바른 정신을 본받자는 뜻입니다. 그런데 이 평범해 보이는 광장은 제주 4·3을 이야기할 때 거의 언제나 가장 먼저 등장합니다. 왜일까요",
+      "en": "In Jeju City's old downtown, where people still pass through today, stands an old building and square called Gwandeokjeong. Why does this ordinary-looking square always come up when people talk about Jeju 4·3?"
+    },
+    "thumbnail": "gwandeokjeong/assets/img-01.png",
+    "page_link": "gwandeokjeong/05-assemble.html",
+    "timeline_events": [
+      {
+        "event_id": "tl-01",
+        "date": "1448",
+        "title": {
+          "ko": "관덕정 건립",
+          "en": ""
+        },
+        "description": {
+          "ko": "세종 30년, 병사 훈련 목적으로 관덕정이 세워짐",
+          "en": ""
+        },
+        "source": "현장 안내판·안내판 조사보고서"
+      },
+      {
+        "event_id": "tl-02",
+        "date": "1947-03-01",
+        "title": {
+          "ko": "3·1 사건 발생",
+          "en": ""
+        },
+        "description": {
+          "ko": "3·1절 기념대회 후 시위 중 경찰 발포로 주민 6명 사망, 8명 중경상",
+          "en": ""
+        },
+        "source": "제주4·3사건일지·한눈에 보는 4·3"
+      },
+      {
+        "event_id": "tl-03",
+        "date": "1947-03-10",
+        "title": {
+          "ko": "3·10 민관총파업",
+          "en": ""
+        },
+        "description": {
+          "ko": "진상규명과 책임자 처벌을 요구하는 총파업 — 4·3 발발의 도화선",
+          "en": ""
+        },
+        "source": "안내판 조사보고서"
+      },
+      {
+        "event_id": "tl-04",
+        "date": "1989",
+        "title": {
+          "ko": "제1회 4·3추모제",
+          "en": ""
+        },
+        "description": {
+          "ko": "제주시민회관에서 시민사회단체 주최로 첫 공개 위령 행사가 열림",
+          "en": ""
+        },
+        "source": "안내판 조사보고서(제주시민회관)"
+      }
+    ]
+  }
+]

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<script>
+  // 메인 화면(index.html)과 같은 localStorage 키를 공유 — 이 페이지의 토글 버튼과
+  // 메인 화면 토글이 서로 언어 설정을 이어받는다. 챗봇도 이 값을 읽어 같은 언어로 답한다.
+  try { if (localStorage.getItem("jeju43-lang") === "en") document.documentElement.lang = "en"; } catch (e) { /* 무시 */ }
+  function jeju43ToggleLang() {
+    try {
+      var cur = localStorage.getItem("jeju43-lang") === "en" ? "en" : "ko";
+      localStorage.setItem("jeju43-lang", cur === "en" ? "ko" : "en");
+    } catch (e) { /* 무시 */ }
+    location.reload();
+  }
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>관덕정 광장 — 1947년 3·1 발포사건 현장 (4·3의 도화선) — 제주 4·3 스토리</title>
+<meta name="internal-only" content="true">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><!-- design 파일 분리(spec.md 4.3) — 이 파일을 교체하면 전체 페이지 톤이 바뀐다 -->
+<link rel="stylesheet" href="../design/archive.css">
+</head>
+<body>
+<article class="story-page" data-location-id="gwandeokjeong">
+
+  <nav class="story-nav" aria-label="이동">
+    <a href="../index.html"><span aria-hidden="true">←</span> <span class="lang-ko-inline">지도로 돌아가기</span><span class="lang-en-inline" lang="en">Back to map</span></a>
+    <button type="button" class="lang-toggle-btn" onclick="jeju43ToggleLang()" id="langToggleBtn">EN</button>
+  </nav>
+  <script>(function () {
+    var isEn = document.documentElement.lang === "en";
+    var b = document.getElementById("langToggleBtn");
+    if (b) b.textContent = isEn ? "KO" : "EN";
+    if (isEn) document.title = "Gwandeokjeong Square — site of the March 1, 1947 shooting (the spark of Jeju 4·3) — Jeju 4·3 Story";
+  })();</script>
+
+  <header class="story-hero">
+  <figure class="ai-generated hero-figure" data-origin="ai">
+    <div class="hero-media">
+      <img src="assets/img-01.png" alt="빛바랜 세피아 톤의 오래된 한국 전통 목조 전각(기와 팔작지붕)과 그 앞의 텅 빈 마당. 짙은 구름이 낮게 깔린 흐린 하늘, 마당을 스쳐 지나가는 사람들의 흐릿한 움직임 잔상(얼굴 식별 불가), 위로 완만하게 올라간 처마와 어두운 목조 기둥. 낮은 채도의 다크 브라운·회색 중심, 오래된 기록사진 같은 질감">
+    </div>
+    <figcaption><span class="lang-ko-inline">빛바랜 세피아 톤의 오래된 한국 전통 목조 전각(기와 팔작지붕)과 그 앞의 텅 빈 마당. 짙은 구름이 낮게 깔린 흐린 하늘, 마당을 스쳐 지나가는 사람들의 흐릿한 움직임 잔상(얼굴 식별 불가), 위로 완만하게 올라간 처마와 어두운 목조 기둥. 낮은 채도의 다크 브라운·회색 중심, 오래된 기록사진 같은 질감 [연출]</span></figcaption>
+  </figure>
+  <div class="story-hero-overlay">
+      <span class="overline">JEJU 4·3 STORY</span>
+      <h1><span class="lang-ko-inline">관덕정 광장 — 1947년 3·1 발포사건 현장 (4·3의 도화선)</span><span class="lang-en-inline" lang="en">Gwandeokjeong Square — site of the March 1, 1947 shooting (the spark of Jeju 4·3)</span></h1>
+    </div>
+  </header>
+
+  <section class="story-intro" data-segment="intro">
+    <p class="lang-ko">제주시 원도심(옛 도심) 한복판, 지금도 사람들이 오가는 자리에 관덕정(觀德亭)이라는 오래된 목조 건물과 그 앞 광장이 있습니다. 관덕정은 <span class="fact" data-fact-id="f-10" data-source="현장 안내판·안내판 조사보고서" title="현장 안내판·안내판 조사보고서">1448년(조선 세종 30년) 안무사(安撫使, 지방을 다스리러 파견된 벼슬로 목사라고도 부름) 신숙청이 병사들을 훈련시킬 목적으로 세운 건물입니다</span>. <span class="fact" data-fact-id="f-10" data-source="현장 안내판·안내판 조사보고서" title="현장 안내판·안내판 조사보고서">건립된 뒤에는 관(관청)과 민(백성)이 함께 모이는 회의 장소, 죄인을 다스리는 곳 등으로도 쓰였습니다</span>. 지금은 <span class="fact" data-fact-id="f-13" data-source="현장 안내판 — 관덕정 안내판 (보물 해설)" title="현장 안내판 — 관덕정 안내판 (보물 해설)">보물 제322호(국가가 지정해 보호하는 문화유산)로 지정되어 있고, 제주목 관아(조선시대 제주를 다스리던 관청 건물들)의 일부를 이루고 있습니다</span>. <span class="fact" data-fact-id="f-12" data-source="현장 안내판 — 관덕정 안내판 (보물 해설)" title="현장 안내판 — 관덕정 안내판 (보물 해설)">'관덕'이라는 이름은 '활을 쏘는 것은 높고 훌륭한 덕을 쌓는 것이다'라는 예기(禮記, 옛 중국의 예법을 다룬 고전)의 구절에서 따온 것</span>으로, 문무(文武, 학문과 무예)의 올바른 정신을 본받자는 뜻입니다. 그런데 이 평범해 보이는 광장은 제주 4·3을 이야기할 때 거의 언제나 가장 먼저 등장합니다. 왜일까요?</p>
+    <p class="lang-en" lang="en">In the middle of Jeju City's old downtown, where people still pass by today, stands an old wooden building called Gwandeokjeong and the square in front of it. Gwandeokjeong was built in 1448 (the 30th year of King Sejong's reign in the Joseon dynasty) by Sin Suk-cheong, an anmusa (a court-appointed provincial official, also called a moksa), for the purpose of training soldiers. After it was built, it also came to be used as a place where officials and residents met together, as a place where offenders were dealt with, and for other purposes. Today it is designated Treasure No. 322 (a heritage item designated and protected by the state) and forms part of the Jeju Mok government office complex (the cluster of buildings from which Jeju was governed during the Joseon dynasty). The name Gwandeok comes from a line in the Yegi (the Book of Rites, an old Chinese classic on ritual and propriety) — 'to shoot an arrow is to build lofty and admirable virtue' — and expresses the wish to follow the true spirit of both learning and martial skill. And yet this ordinary-looking square is almost always the first place mentioned when people talk about Jeju 4·3. Why is that? <span class="src-en">[Source: On-site information sign — Gwandeokjeong Pavilion sign (Treasure designation description)]</span></p>
+  </section>
+
+  <div class="story-callout">
+    <span class="callout-label lang-ko-inline">⚡ 3초 요약</span>
+    <span class="callout-label lang-en-inline" lang="en">⚡ Quick Summary</span>
+    <p class="lang-ko">관덕정은 아주 오래전인 1448년에 지어진 건물이에요. 그런데 1947년 3월 1일, 이 광장 앞에서 일어난 일이 제주 4·3이 시작되는 첫 불씨가 되었답니다.</p>
+    <p class="lang-en" lang="en">Gwandeokjeong is a building built way back in 1448. But what happened in front of this square on March 1, 1947 became the very first spark of Jeju 4·3.</p>
+  </div>
+
+  <div class="glossary">
+    <div class="lang-ko">
+      <h4>📚 낱말풀이</h4>
+      <dl>
+        <dt>3·1절</dt><dd>1919년 일본으로부터 독립을 외쳤던 날을 기념하는 날이에요.</dd>
+        <dt>도립병원</dt><dd>제주도가 운영하던 병원이에요.</dd>
+        <dt>총파업</dt><dd>사람들이 다 함께 일을 멈추고 항의하는 것을 말해요.</dd>
+        <dt>진상 규명</dt><dd>무슨 일이 있었는지 정확하게 밝히는 것을 뜻해요.</dd>
+      </dl>
+    </div>
+    <div class="lang-en" lang="en">
+      <h4>📚 Word Bank</h4>
+      <dl>
+        <dt>March 1st Movement</dt><dd>A day marking Korea's 1919 declaration of independence from Japan.</dd>
+        <dt>Provincial hospital</dt><dd>A hospital that was run by Jeju Province.</dd>
+        <dt>General strike</dt><dd>When many people stop working together to protest.</dd>
+        <dt>Truth-finding</dt><dd>Finding out exactly what really happened.</dd>
+      </dl>
+    </div>
+  </div>
+
+  <section class="story-development" data-segment="development">
+    <p class="lang-ko"><span class="fact" data-fact-id="f-14" data-source="제주4·3사건일지·한눈에 보는 4·3·안내판 조사보고서" title="제주4·3사건일지·한눈에 보는 4·3·안내판 조사보고서">1947년 3월 1일, 관덕정에서 멀지 않은 북국민학교(당시의 초등학교)에서 3·1절 제28주년 기념대회가 열렸습니다. 3만여 명이 참가한 큰 행사였습니다</span>. 행사가 끝나고 참가자들은 동쪽과 서쪽으로 나뉘어 거리 시위를 벌였습니다.
+
+<span class="fact" data-fact-id="f-15" data-source="제주4·3사건일지·한눈에 보는 4·3·안내판 조사보고서" title="제주4·3사건일지·한눈에 보는 4·3·안내판 조사보고서">서쪽 행렬이 관덕정 앞을 지날 즈음, 어린아이 한 명이 기마경찰(말을 타고 근무하는 경찰)의 말발굽에 치였습니다. 그런데 경찰은 아무런 조치 없이 그대로 지나갔습니다</span>. <span class="fact" data-fact-id="f-20" data-source="안내판 조사보고서 · 카드 ⚠️주의 2 (어린아이의 생사 — 기록 없음)" title="안내판 조사보고서 · 카드 ⚠️주의 2 (어린아이의 생사 — 기록 없음)">그 아이가 그 뒤 어떻게 되었는지는 남아 있는 기록에 없습니다</span>. 기록이 거기서 멈추기 때문에, 이 이야기에서도 짐작으로 그 빈칸을 메우지 않습니다.
+
+이 광경을 본 군중이 격분해 항의했고, 그 과정에서 <span class="fact" data-fact-id="dev-4" data-source="제주4·3평화재단, 『제주4·3사건일지』 / 『한눈에 보는 4·3』 (1947-03-01)" title="제주4·3평화재단, 『제주4·3사건일지』 / 『한눈에 보는 4·3』 (1947-03-01)">응원경찰(다른 지역에서 지원 나온 경찰 병력)이 총을 쏘았습니다. 이 발포로 관덕정과 도립병원 앞에서 주민 6명이 숨지고 8명이 크고 작은 부상을 입었습니다</span>. 이 일을 '3·1사건'이라고 부릅니다. 여기서 한 가지 주의할 점이 있습니다. 숨진 6명이 모두 관덕정 앞에서 목숨을 잃은 것은 아닙니다. 도립병원 옛터에 대한 기록에 따르면, <span class="fact" data-fact-id="f-18" data-source="안내판 조사보고서(도립병원 옛터)" title="안내판 조사보고서(도립병원 옛터)">관덕정 앞에서 총에 맞은 사람들 가운데 4명은 그 자리에서 숨졌고 2명은 병원으로 옮겨진 뒤 숨졌습니다</span>.
+
+같은 날, 부상자들이 실려 간 제주도립병원에서는 2차 발포가 있었습니다. <span class="fact" data-fact-id="f-19" data-source="안내판 조사보고서(도립병원 옛터)" title="안내판 조사보고서(도립병원 옛터)">병원을 경호하던 이문규 순경이 공포감에 총을 쏘아 지나가던 행인 2명이 중상을 입었습니다</span>. 이 행인 2명은 앞의 '사망 6명·중경상 8명'과는 별개로 남아 있는 기록이므로, 두 수치를 합치거나 하나의 사건으로 뭉뚱그려 이해해서는 안 됩니다.
+
+그로부터 9일 뒤인 <span class="fact" data-fact-id="f-20" data-source="안내판 조사보고서" title="안내판 조사보고서">3월 10일, 사건의 진상규명(무슨 일이 왜 일어났는지 밝히는 것)과 책임자 처벌을 요구하며 사상 초유의 3·10 민관총파업이 일어났습니다</span>. 관공서에서 일하던 사람들과 민간인이 함께 일손을 놓고 항의한 파업이었습니다. <span class="fact" data-fact-id="f-20" data-source="안내판 조사보고서" title="안내판 조사보고서">이 총파업이 제주 4·3이 터지는 도화선이 되었습니다</span>. 3월 1일 오후의 한 장면이 어떻게 역사의 방아쇠가 되었는지, 그 연쇄가 이 광장에서 시작됐습니다.</p>
+    <p class="lang-en" lang="en">On March 1, 1947, a rally marking the 28th anniversary of the March 1st Independence Movement was held at Buk Elementary School, not far from Gwandeokjeong. It was a large gathering, attended by roughly 30,000 people. When the rally ended, participants split into eastern and western columns and marched through the streets.
+
+As the western column was passing in front of Gwandeokjeong, a young child was struck by the hooves of a mounted policeman's horse, and the police rode on without doing anything about it. What became of that child afterward does not appear in the surviving records. Because the record stops there, this story does not fill that blank with guesswork either.
+
+The crowd who saw this grew furious and protested, and in the course of it the reinforcement police (police units sent in from other regions) opened fire. The shooting killed 6 residents and left 8 with injuries ranging from serious to minor, in front of Gwandeokjeong and the provincial hospital. This is known as the 'March 1st Incident.' One point deserves care here: not all 6 of the dead died in front of Gwandeokjeong. According to the record on the former provincial hospital site, of those shot in front of Gwandeokjeong, 4 died on the spot and 2 died after being taken to the hospital.
+
+That same day, a second shooting took place at the Jeju Provincial Hospital where the wounded had been carried. Patrolman Lee Mun-gyu, who was guarding the hospital, fired his weapon out of fear and seriously wounded 2 passers-by. These 2 passers-by appear in the record separately from the '6 dead and 8 seriously or lightly injured' above, so the two sets of figures must not be added together or lumped into a single event.
+
+Nine days later, on March 10, an unprecedented general strike by both public officials and civilians broke out, demanding a full investigation into what had happened and why, and punishment for those responsible. People working in government offices and ordinary civilians alike put down their work in protest. That general strike became the spark that set off Jeju 4·3. How a single afternoon on March 1 came to pull the trigger on history — that chain of events began in this square.</p>
+  </section>
+
+  <div class="timeline">
+<div class="timeline-event" data-event-id="tl-01"><span class="lang-ko-inline"><strong>1448</strong> — 관덕정 건립: 세종 30년, 안무사(목사) 신숙청이 병사 훈련 목적으로 관덕정을 세움. 건립 이후에는 관민의 회의 장소, 죄인을 다스리는 곳 등으로도 쓰임</span><span class="lang-en-inline" lang="en"><strong>1448</strong> — Gwandeokjeong is built: In the 30th year of King Sejong's reign, the anmusa (moksa) Sin Suk-cheong builds Gwandeokjeong to train soldiers. After its construction it also serves as a meeting place for officials and residents and a place where offenders are dealt with</span></div>
+<div class="timeline-event" data-event-id="tl-02"><span class="lang-ko-inline"><strong>1924</strong> — 일제기 수리로 지붕처마 변형: 일제강점기에 일본인이 수리하면서 지붕처마가 2척 정도 잘려 원형이 변형됨</span><span class="lang-en-inline" lang="en"><strong>1924</strong> — Eaves altered in a colonial-era repair: During Japanese colonial rule, a Japanese repair shortens the roof eaves by about two cheok, altering the original form</span></div>
+<div class="timeline-event" data-event-id="tl-03"><span class="lang-ko-inline"><strong>1947-03-01</strong> — 3·1사건 — 관덕정 앞 발포: 북국민학교에서 3·1절 제28주년 기념대회 개최(3만여 명 참가) 후 참가자들이 동·서로 나뉘어 시위. 서쪽 행렬이 관덕정 앞을 지날 즈음 어린아이가 기마경찰의 말발굽에 치였으나 경찰은 조치 없이 지나감 → 격분한 군중의 항의 → 응원경찰의 발포로 관덕정과 도립병원 앞에서 주민 6명 사망, 8명 중경상</span><span class="lang-en-inline" lang="en"><strong>1947-03-01</strong> — The March 1st Incident — the shooting at Gwandeokjeong: After a rally for the 28th anniversary of the March 1st Movement at Buk Elementary School (roughly 30,000 attending), marchers split into eastern and western columns. As the western column passed Gwandeokjeong, a child was struck by a mounted policeman's horse and the police rode on without acting; the enraged crowd protested, and reinforcement police opened fire, killing 6 residents and seriously or lightly injuring 8 in front of Gwandeokjeong and the provincial hospital</span></div>
+<div class="timeline-event" data-event-id="tl-04"><span class="lang-ko-inline"><strong>1947-03-01</strong> — 같은 날 — 도립병원 2차 발포: 부상자들이 실려간 도립병원에서 2차 발포. 관덕정 앞 총상자 중 4명 즉사, 2명은 병원에서 사망. 병원을 경호하던 이문규 순경이 공포감에 발포해 행인 2명이 중상(앞의 사망 6명·중경상 8명과는 별개 기록)</span><span class="lang-en-inline" lang="en"><strong>1947-03-01</strong> — Same day — the second shooting at the provincial hospital: A second shooting at the provincial hospital where the wounded had been taken. Of those shot in front of Gwandeokjeong, 4 died on the spot and 2 died at the hospital. Patrolman Lee Mun-gyu, guarding the hospital, fired out of fear and seriously wounded 2 passers-by (recorded separately from the 6 dead and 8 injured above)</span></div>
+<div class="timeline-event" data-event-id="tl-05"><span class="lang-ko-inline"><strong>1947-03-10</strong> — 3·10 민관총파업: 진상규명과 책임자 처벌을 촉구하는 사상 초유의 민관총파업 — 4·3 발발의 도화선이 됨</span><span class="lang-en-inline" lang="en"><strong>1947-03-10</strong> — The March 10 general strike: An unprecedented general strike by officials and civilians demanding a full investigation and punishment of those responsible — the spark that set off Jeju 4·3</span></div>
+<div class="timeline-event" data-event-id="tl-06"><span class="lang-ko-inline"><strong>1989</strong> — 제1회 4·3추모제: 제주시민회관에서 시민사회단체들이 제1회 4·3추모제를 개최 — 반세기 금기 속 첫 공개 위령 행사</span><span class="lang-en-inline" lang="en"><strong>1989</strong> — The first Jeju 4·3 memorial ceremony: Civic groups hold the first Jeju 4·3 memorial ceremony at Jeju Citizens' Hall — the first public memorial service after half a century of silence</span></div>
+<div class="timeline-event" data-event-id="tl-07"><span class="lang-ko-inline"><strong>2006</strong> — 보수로 원형 회복: 2006년 보수를 통해 1924년에 변형됐던 관덕정이 원래의 모습을 다시 찾음</span><span class="lang-en-inline" lang="en"><strong>2006</strong> — Restored to its original form: A 2006 restoration returns Gwandeokjeong, altered in 1924, to its original form</span></div>
+<div class="timeline-event" data-event-id="tl-08"><span class="lang-ko-inline"><strong>2020-09-29</strong> — 안내판 현장조사 — 4·3 안내판 부재 확인: 안내판 조사보고서의 현장조사일. 이 시점 기준으로 관덕정에는 조선시대 건축 해설 안내판만 있고 3·1절 발포사건에 대한 안내판은 세워져 있지 않음이 기록됨</span><span class="lang-en-inline" lang="en"><strong>2020-09-29</strong> — Field survey of the signs — absence of a 4·3 sign confirmed: The field survey date for the information-sign survey report. As of this date, the report records that Gwandeokjeong carried only a sign explaining its Joseon-era architecture, with no sign about the March 1st shooting incident</span></div>
+</div>
+
+  <section class="story-closing" data-segment="closing">
+    <p class="lang-ko">그런데 정작 그 현장에는 이 일을 알려 주는 안내판이 없습니다. <span class="fact" data-fact-id="f-22" data-source="안내판 조사보고서 총론 (보고서 p.10~11, 조사일 2020-09-29)" title="안내판 조사보고서 총론 (보고서 p.10~11, 조사일 2020-09-29)">2020년 9월 29일 현장조사 당시 관덕정에 서 있던 안내판은 조선시대 건축물로서의 관덕정만 설명할 뿐</span>, 그 앞마당에서 있었던 1947년의 일에 대해서는 한 줄도 적혀 있지 않았습니다. 조사보고서 총론도 바로 이 점을 지적합니다. 4·3의 도화선이 된 자리에 4·3이 적혀 있지 않다는 것입니다. 그 이후에 달라진 점이 있는지는 이 자료에 기록돼 있지 않습니다.
+
+관덕정에서 걸어 닿는 거리에는 이 이야기와 이어지는 두 곳이 더 있습니다. 부상자들이 실려 가 2차 발포가 일어난 <span class="fact" data-fact-id="f-07" data-source="안내판 조사보고서(도립병원 옛터)" title="안내판 조사보고서(도립병원 옛터)">제주도립병원 옛터(제주시 삼도이동 154)는 지금 그 흔적이 남아 있지 않습니다</span>. <span class="fact" data-fact-id="f-21" data-source="안내판 조사보고서(제주시민회관)" title="안내판 조사보고서(제주시민회관)">1989년 시민사회단체들이 반세기 동안 이어진 금기를 깨고 제1회 4·3추모제를 연 제주시민회관(제주시 이도이동)</span>도 마찬가지로 그 일을 알려 주는 표시가 없습니다. 두 곳 모두 지금 가서 볼 수 있는 유적이라기보다, '무슨 일이 있었던 자리'로 좌표만 남아 있는 옛터입니다.
+
+건물 자체도 시간을 겪었습니다. <span class="fact" data-fact-id="f-13" data-source="현장 안내판 — 관덕정 안내판 (보물 해설)" title="현장 안내판 — 관덕정 안내판 (보물 해설)">1924년 일제강점기에 일본인이 수리하면서 지붕처마가 2척(척은 옛날에 쓰던 길이 단위) 정도 잘려 변형되었다가, 2006년 보수를 통해 원래 모습을 되찾았습니다</span>. 조선의 훈련장이자 회의 장소였고, 1947년의 광장이었고, 오늘은 보물로 지정된 문화유산인 자리. 그 겹겹의 시간 가운데 가장 설명이 적은 시간이 바로 1947년입니다. 이 페이지는 안내판이 아직 말하지 않은 그 빈자리를 대신 채웁니다.</p>
+    <p class="lang-en" lang="en">And yet at the site itself there is no information sign telling visitors about this. At the time of the field survey on September 29, 2020, the sign standing at Gwandeokjeong explained only the pavilion as a Joseon-era structure, and not a single line described what happened in its forecourt in 1947. The survey report's overview points to exactly this: at the place where the spark of 4·3 was struck, 4·3 is not written down. Whether anything has changed since then is not recorded in this material.
+
+Within walking distance of Gwandeokjeong are two more places tied to this story. The former site of Jeju Provincial Hospital (154 Samdo 2-dong, Jeju City), where the wounded were carried and the second shooting occurred, retains no trace of it today. Jeju Citizens' Hall (Ido 2-dong, Jeju City), where civic groups broke half a century of silence to hold the first Jeju 4·3 memorial ceremony in 1989, likewise carries no marker recording that event. Neither is a standing site you can go and see; each survives as a former site, a set of coordinates for something that once happened there.
+
+The building too has passed through time. In 1924, under Japanese colonial rule, a Japanese repair effort shortened and altered the roof eaves by about two cheok (cheok being an old unit of length), and a 2006 restoration returned the pavilion to its original form. A Joseon training ground and meeting place; the square of 1947; today a nationally designated Treasure. Of all these layered stretches of time, the one with the least explanation on site is 1947. This page fills in that blank the sign has not yet spoken. <span class="src-en">[Source: On-site information sign — Gwandeokjeong Pavilion sign (Treasure designation description)]</span></p>
+  </section>
+
+  <section class="visuals">
+<figure class="ai-generated" data-origin="ai">
+  <img src="assets/img-02.png" alt="오늘의 관덕정 광장 전경, 맑은 낮, 평범한 시민들이 무심히 오가는 모습(얼굴 식별 불가), 건물 한쪽에 안내판이 조용히 서 있는 모습, 담담하고 일상적인 원도심 풍경, 자연광, 중간 채도">
+  <figcaption><span class="lang-ko-inline">오늘의 관덕정 광장 전경, 맑은 낮, 평범한 시민들이 무심히 오가는 모습(얼굴 식별 불가), 건물 한쪽에 안내판이 조용히 서 있는 모습, 담담하고 일상적인 원도심 풍경, 자연광, 중간 채도 [연출]</span></figcaption>
+</figure>
+<figure class="ai-generated" data-origin="ai">
+  <img src="assets/img-03.png" alt="원도심 골목을 따라 이어지는 세 지점을 나란히 보여 주는 담백한 다큐멘터리 톤의 3분할 이미지 — ① 광장, ② 지금은 흔적이 없는 병원 옛터 자리(평범한 거리와 현대 건물), ③ 시민회관 건물. 인물은 없거나 실루엣만, 저채도 회색·베이지 계열">
+  <figcaption><span class="lang-ko-inline">원도심 골목을 따라 이어지는 세 지점을 나란히 보여 주는 담백한 다큐멘터리 톤의 3분할 이미지 — ① 광장, ② 지금은 흔적이 없는 병원 옛터 자리(평범한 거리와 현대 건물), ③ 시민회관 건물. 인물은 없거나 실루엣만, 저채도 회색·베이지 계열 [연출]</span></figcaption>
+</figure>
+</section>
+
+  <section class="audio-player">
+  <audio id="narrationAudio" controls src="audio/narration-ko.wav"></audio>
+  <audio id="bgmAudio" class="bgm" src="audio/bgm.wav" loop style="display:none"></audio>
+  <p class="audio-note">
+    <span class="lang-ko-inline">낭독: AI TTS (관리자가 직접 지정한 오디오 파일) · 배경음악: 자체 생성 BGM (관리자가 직접 지정한 오디오 파일)(낭독 대비 음량 25%)</span>
+    <span class="lang-en-inline" lang="en">Narration: AI TTS (audio file manually provided by an administrator) · BGM: self-generated BGM (audio file manually provided by an administrator) (25% volume relative to narration)</span>
+  </p>
+  <script>
+    (function () {
+      var narration = document.getElementById("narrationAudio");
+      var bgm = document.getElementById("bgmAudio");
+      if (!narration || !bgm) return;
+      bgm.volume = 0.25;
+      narration.addEventListener("play", function () { bgm.play().catch(function () {}); });
+      narration.addEventListener("pause", function () { bgm.pause(); });
+      narration.addEventListener("ended", function () { bgm.pause(); bgm.currentTime = 0; });
+
+      // 낭독 자막 하이라이트 — 04-audio.json의 sync_timeline을 그대로 쓴다.
+      var SYNC_TIMELINE = [
+        { id: "intro", start: 0.0, end: 30.7 },
+        { id: "development", start: 30.7, end: 93.6 },
+        { id: "closing", start: 93.6, end: Infinity }
+      ];
+      var segmentEls = {};
+      SYNC_TIMELINE.forEach(function (seg) {
+        segmentEls[seg.id] = document.querySelector('[data-segment="' + seg.id + '"]');
+      });
+      function updateHighlight() {
+        var t = narration.currentTime;
+        SYNC_TIMELINE.forEach(function (seg) {
+          var el = segmentEls[seg.id];
+          if (el) el.classList.toggle("narration-active", t >= seg.start && t < seg.end);
+        });
+      }
+      function clearHighlight() {
+        SYNC_TIMELINE.forEach(function (seg) {
+          if (segmentEls[seg.id]) segmentEls[seg.id].classList.remove("narration-active");
+        });
+      }
+      narration.addEventListener("timeupdate", updateHighlight);
+      narration.addEventListener("seeked", updateHighlight);
+      narration.addEventListener("ended", clearHighlight);
+    })();
+  </script>
+</section>
+
+  <section class="quiz-section">
+    <h3><span class="lang-ko-inline">🌼 이야기 확인 퀴즈</span><span class="lang-en-inline" lang="en">🌼 Story Check Quiz</span></h3>
+    <div class="quiz-q" data-answer="a">
+      <p class="q-text"><span class="lang-ko-inline">Q1. 관덕정은 언제, 무엇을 위해 지어졌을까요?</span><span class="lang-en-inline" lang="en">Q1. When and for what purpose was Gwandeokjeong built?</span></p>
+      <div class="choices">
+        <button class="choice" data-choice="a"><span class="lang-ko-inline">1448년, 병사들을 훈련시키기 위해</span><span class="lang-en-inline" lang="en">In 1448, to train soldiers</span></button>
+        <button class="choice" data-choice="b"><span class="lang-ko-inline">1919년, 독립운동을 기념하기 위해</span><span class="lang-en-inline" lang="en">In 1919, to commemorate the independence movement</span></button>
+        <button class="choice" data-choice="c"><span class="lang-ko-inline">1947년, 시민들이 모일 광장을 만들기 위해</span><span class="lang-en-inline" lang="en">In 1947, to create a square for citizens to gather</span></button>
+      </div>
+      <p class="explain"><span class="lang-ko-inline">정답은 A! 1448년(조선 세종 30년)에 안무사 신숙청이 병사들을 훈련시킬 목적으로 세웠어요. 회의 장소나 죄인을 다스리는 곳으로 쓰인 건 건립된 뒤의 일이에요.</span><span class="lang-en-inline" lang="en">The answer is A! It was built in 1448 (the 30th year of King Sejong's reign) by the anmusa Sin Suk-cheong for the purpose of training soldiers. Its use as a meeting place or a place where offenders were dealt with came after it was built.</span></p>
+    </div>
+    <div class="quiz-q" data-answer="b">
+      <p class="q-text"><span class="lang-ko-inline">Q2. 1947년 3월 1일, 시위 행렬이 관덕정 앞을 지날 때 무엇이 발단이 되었나요?</span><span class="lang-en-inline" lang="en">Q2. On March 1, 1947, what set things off as the march passed in front of Gwandeokjeong?</span></p>
+      <div class="choices">
+        <button class="choice" data-choice="a"><span class="lang-ko-inline">행사장이 무너졌어요</span><span class="lang-en-inline" lang="en">The rally venue collapsed</span></button>
+        <button class="choice" data-choice="b"><span class="lang-ko-inline">어린아이가 기마경찰의 말발굽에 치였는데 경찰이 조치 없이 지나갔어요</span><span class="lang-en-inline" lang="en">A child was struck by a mounted policeman's horse and the police rode on without doing anything</span></button>
+        <button class="choice" data-choice="c"><span class="lang-ko-inline">관덕정 건물에 불이 났어요</span><span class="lang-en-inline" lang="en">The Gwandeokjeong building caught fire</span></button>
+      </div>
+      <p class="explain"><span class="lang-ko-inline">정답은 B! 이 광경을 본 군중이 격분해 항의했고, 그 과정에서 응원경찰의 발포로 이어졌어요. 다만 그 아이가 그 뒤 어떻게 되었는지는 남아 있는 기록에 없어요.</span><span class="lang-en-inline" lang="en">The answer is B! The crowd who saw it grew furious and protested, and in the course of that the reinforcement police opened fire. What became of that child afterward, however, does not appear in the surviving records.</span></p>
+    </div>
+    <div class="quiz-q" data-answer="b">
+      <p class="q-text"><span class="lang-ko-inline">Q3. 3·1사건으로 숨진 주민 6명은 어디에서 목숨을 잃었나요?</span><span class="lang-en-inline" lang="en">Q3. Where did the 6 residents killed in the March 1st Incident die?</span></p>
+      <div class="choices">
+        <button class="choice" data-choice="a"><span class="lang-ko-inline">모두 관덕정 앞에서요</span><span class="lang-en-inline" lang="en">All of them in front of Gwandeokjeong</span></button>
+        <button class="choice" data-choice="b"><span class="lang-ko-inline">관덕정과 도립병원 앞에서요 — 관덕정 앞 총상자 중 4명은 그 자리에서, 2명은 병원으로 옮겨진 뒤 숨졌어요</span><span class="lang-en-inline" lang="en">In front of Gwandeokjeong and the provincial hospital — of those shot in front of Gwandeokjeong, 4 died on the spot and 2 died after being taken to the hospital</span></button>
+        <button class="choice" data-choice="c"><span class="lang-ko-inline">모두 북국민학교 행사장에서요</span><span class="lang-en-inline" lang="en">All of them at the rally at Buk Elementary School</span></button>
+      </div>
+      <p class="explain"><span class="lang-ko-inline">정답은 B! 기록은 '관덕정과 도립병원 앞'이라고 적고 있어요. 한 곳으로 뭉뚱그리지 않고 두 장소를 나란히 적는 것이 정확한 표현이에요.</span><span class="lang-en-inline" lang="en">The answer is B! The record says 'in front of Gwandeokjeong and the provincial hospital.' Naming both places rather than collapsing them into one is the accurate way to put it.</span></p>
+    </div>
+    <div class="quiz-q" data-answer="a">
+      <p class="q-text"><span class="lang-ko-inline">Q4. 3·1사건 뒤인 1947년 3월 10일에는 어떤 일이 있었나요?</span><span class="lang-en-inline" lang="en">Q4. What happened on March 10, 1947, after the March 1st Incident?</span></p>
+      <div class="choices">
+        <button class="choice" data-choice="a"><span class="lang-ko-inline">사상 초유의 3·10 민관총파업이 일어났어요</span><span class="lang-en-inline" lang="en">An unprecedented general strike by officials and civilians broke out</span></button>
+        <button class="choice" data-choice="b"><span class="lang-ko-inline">관덕정 지붕처마가 잘려 변형됐어요</span><span class="lang-en-inline" lang="en">The eaves of Gwandeokjeong were shortened and altered</span></button>
+        <button class="choice" data-choice="c"><span class="lang-ko-inline">제1회 4·3추모제가 열렸어요</span><span class="lang-en-inline" lang="en">The first Jeju 4·3 memorial ceremony was held</span></button>
+      </div>
+      <p class="explain"><span class="lang-ko-inline">정답은 A! 진상규명과 책임자 처벌을 요구한 3·10 민관총파업이 제주 4·3이 터지는 도화선이 되었어요. 지붕처마 변형은 1924년, 제1회 4·3추모제는 1989년 제주시민회관에서 있었던 일이에요.</span><span class="lang-en-inline" lang="en">The answer is A! The March 10 general strike, demanding a full investigation and punishment of those responsible, became the spark that set off Jeju 4·3. The alteration of the eaves happened in 1924, and the first Jeju 4·3 memorial ceremony was held in 1989 at Jeju Citizens' Hall.</span></p>
+    </div>
+    <div class="quiz-q" data-answer="b">
+      <p class="q-text"><span class="lang-ko-inline">Q5. 안내판 조사보고서의 현장조사(2020년 9월 29일) 당시, 관덕정에 서 있던 안내판은 무엇을 설명하고 있었나요?</span><span class="lang-en-inline" lang="en">Q5. At the time of the field survey for the sign report (September 29, 2020), what did the sign standing at Gwandeokjeong explain?</span></p>
+      <div class="choices">
+        <button class="choice" data-choice="a"><span class="lang-ko-inline">3·1절 발포사건과 4·3의 관계를 자세히 설명하고 있었어요</span><span class="lang-en-inline" lang="en">It explained in detail the March 1st shooting and its link to 4·3</span></button>
+        <button class="choice" data-choice="b"><span class="lang-ko-inline">조선시대 건축물로서의 관덕정만 설명하고, 4·3 관련 내용은 없었어요</span><span class="lang-en-inline" lang="en">It explained only the pavilion as a Joseon-era structure, with nothing about 4·3</span></button>
+        <button class="choice" data-choice="c"><span class="lang-ko-inline">안내판이 아예 하나도 없었어요</span><span class="lang-en-inline" lang="en">There was no sign at all</span></button>
+      </div>
+      <p class="explain"><span class="lang-ko-inline">정답은 B! 조사보고서 총론도 4·3의 도화선이 된 자리에 4·3이 적혀 있지 않다고 지적했어요. 그래서 이 페이지가 안내판이 아직 말하지 않은 그 빈자리를 대신 채웁니다.</span><span class="lang-en-inline" lang="en">The answer is B! The report's overview also points out that at the place where the spark of 4·3 was struck, 4·3 is not written down. That is why this page fills in the blank the sign has not yet spoken.</span></p>
+    </div>
+  </section>
+
+  <footer class="sources">
+<ul>
+<li data-source-ref="안내판 조사보고서"><span class="lang-ko-inline">안내판 조사보고서</span><span class="lang-en-inline" lang="en">안내판 조사보고서</span></li>
+<li data-source-ref="안내판 조사보고서 · 카드 ⚠️주의 2 (어린아이의 생사 — 기록 없음)"><span class="lang-ko-inline">안내판 조사보고서 · 카드 ⚠️주의 2 (어린아이의 생사 — 기록 없음)</span><span class="lang-en-inline" lang="en">안내판 조사보고서 · 카드 ⚠️주의 2 (어린아이의 생사 — 기록 없음)</span></li>
+<li data-source-ref="안내판 조사보고서 총론 (보고서 p.10~11, 조사일 2020-09-29)"><span class="lang-ko-inline">안내판 조사보고서 총론 (보고서 p.10~11, 조사일 2020-09-29)</span><span class="lang-en-inline" lang="en">안내판 조사보고서 총론 (보고서 p.10~11, 조사일 2020-09-29)</span></li>
+<li data-source-ref="안내판 조사보고서(도립병원 옛터)"><span class="lang-ko-inline">안내판 조사보고서(도립병원 옛터)</span><span class="lang-en-inline" lang="en">안내판 조사보고서(도립병원 옛터)</span></li>
+<li data-source-ref="안내판 조사보고서(제주시민회관)"><span class="lang-ko-inline">안내판 조사보고서(제주시민회관)</span><span class="lang-en-inline" lang="en">안내판 조사보고서(제주시민회관)</span></li>
+<li data-source-ref="제주4·3사건일지·한눈에 보는 4·3·안내판 조사보고서"><span class="lang-ko-inline">제주4·3사건일지·한눈에 보는 4·3·안내판 조사보고서</span><span class="lang-en-inline" lang="en">제주4·3사건일지·한눈에 보는 4·3·안내판 조사보고서</span></li>
+<li data-source-ref="제주4·3평화재단, 『제주4·3사건일지』 / 『한눈에 보는 4·3』 (1947-03-01)"><span class="lang-ko-inline">제주4·3평화재단, 『제주4·3사건일지』 / 『한눈에 보는 4·3』 (1947-03-01)</span><span class="lang-en-inline" lang="en">제주4·3평화재단, 『제주4·3사건일지』 / 『한눈에 보는 4·3』 (1947-03-01)</span></li>
+<li data-source-ref="현장 안내판 — 관덕정 안내판 (보물 해설)"><span class="lang-ko-inline">건물 역사 인용 시 — 1448년 건립, 1924년 변형·2006년 원형 회복, 명칭 유래</span><span class="lang-en-inline" lang="en">Cited for the building's history — its 1448 construction, the 1924 alteration and 2006 restoration, and the origin of its name</span></li>
+<li data-source-ref="현장 안내판·안내판 조사보고서"><span class="lang-ko-inline">현장 안내판·안내판 조사보고서</span><span class="lang-en-inline" lang="en">현장 안내판·안내판 조사보고서</span></li>
+</ul>
+</footer>
+
+  <div id="chatbot-modal" data-kb-source="07"></div>
+  <script src="chatbot-modal.js"></script>
+
+  <script>
+    (function () {
+      // 이야기 확인 퀴즈 — 정답/오답 표시 후 설명 노출, 임의로 다시 풀 수 없게 잠금
+      document.querySelectorAll(".quiz-q").forEach(function (q) {
+        var answer = q.dataset.answer;
+        var buttons = q.querySelectorAll("button.choice");
+        var explain = q.querySelector(".explain");
+        buttons.forEach(function (choiceBtn) {
+          choiceBtn.addEventListener("click", function () {
+            if (q.dataset.answered) return;
+            q.dataset.answered = "1";
+            buttons.forEach(function (b) {
+              if (b.dataset.choice === answer) b.classList.add("correct");
+              else if (b === choiceBtn) b.classList.add("incorrect");
+              b.disabled = true;
+            });
+            if (explain) explain.classList.add("show");
+          });
+        });
+      });
+    })();
+  </script>
+
+</article>
+</body>
+</html>

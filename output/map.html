@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>기억의 길을 걷다 — 제주 4·3 스토리 지도</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<style>
+/* truth.html과 같은 토큰을 그대로 다시 선언 — 두 상세 페이지가 같은 톤앤매너를 쓰도록. */
+:root {
+  --ink: #3A322D;
+  --body-text: #4A443F;
+  --card-bg: #F4EFEA;
+  --page-bg: #FBF7F2;
+  --line: #E3D8C9;
+  --accent: #E05353;
+  --accent-deep: #b83f3f;
+  --muted: #B9A6A6;
+  --bg-photo: url('assets/KakaoTalk_20260813_142854308_03.png');
+  --fz-base: 16px;
+}
+
+html { font-size: calc(var(--fz-base) * var(--fz, 1)); scroll-behavior: smooth; }
+
+html, body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Pretendard Variable', system-ui, Roboto, sans-serif;
+  background: var(--page-bg);
+  color: var(--body-text);
+  line-height: 1.65;
+}
+
+.wrap { max-width: 1180px; margin: 0 auto; padding: 0 20px; }
+
+h1, h2, h3 { font-family: 'Pretendard Variable', sans-serif; color: var(--ink); word-break: keep-all; }
+
+/* 상단 고정 헤더 */
+.top-bar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 14px 20px; background: rgba(58, 50, 45, 0.55); backdrop-filter: blur(8px);
+  color: #fff; box-sizing: border-box;
+}
+.top-bar-left { display: flex; align-items: center; gap: 14px; min-width: 0; flex-wrap: wrap; }
+.back-link { color: #fff; text-decoration: none; font-size: 0.88rem; font-weight: 600; white-space: nowrap; }
+.back-link:hover { text-decoration: underline; }
+.breadcrumb { font-size: 0.8rem; color: rgba(255, 255, 255, 0.75); white-space: nowrap; }
+.breadcrumb a { color: rgba(255, 255, 255, 0.75); text-decoration: none; }
+.breadcrumb a:hover { color: #fff; }
+.top-bar-right { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
+.top-bar-right button {
+  border: 1px solid rgba(255, 255, 255, 0.5); background: rgba(255, 255, 255, 0.08); color: #fff;
+  border-radius: 20px; padding: 5px 10px; font-size: 0.78rem; cursor: pointer; font-weight: 600;
+}
+.top-bar-right button:hover { background: rgba(255, 255, 255, 0.25); }
+#langToggle { border-radius: 14px; }
+
+/* 히어로 */
+.hero {
+  min-height: 46vh; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; padding: 130px 20px 56px; box-sizing: border-box;
+  background-image: linear-gradient(180deg, rgba(28, 22, 18, 0.5) 0%, rgba(28, 22, 18, 0.75) 100%), var(--bg-photo);
+  background-size: cover; background-position: center; background-repeat: no-repeat;
+}
+.badge { display: inline-block; border: 1px solid #fff; color: #fff; padding: 5px 14px; border-radius: 20px; font-size: 0.82rem; margin-bottom: 18px; }
+.hero h1 { color: #fff; font-size: 2.3rem; margin: 0 0 14px; text-shadow: 0 2px 16px rgba(0, 0, 0, 0.45); }
+.hero .lead { color: rgba(255, 255, 255, 0.9); max-width: 600px; margin: 0 auto; font-size: 1.02rem; }
+
+section.content { padding: 50px 0; }
+.section-kicker { color: var(--accent); font-weight: 700; letter-spacing: 0.08em; font-size: 0.82rem; text-transform: uppercase; margin-bottom: 6px; }
+.section-title { font-size: 1.5rem; margin: 0 0 10px; }
+.section-lead { color: var(--body-text); max-width: 680px; margin: 0 0 28px; }
+
+/* 카테고리 필터 탭 */
+.filter-group { margin-bottom: 14px; }
+.filter-group-label { font-size: 0.78rem; color: var(--body-text); opacity: 0.75; margin-bottom: 8px; font-weight: 700; }
+.filter-tabs { display: flex; flex-wrap: wrap; gap: 8px; }
+.filter-tab {
+  border: 1px solid var(--line); background: var(--card-bg); color: var(--ink);
+  padding: 7px 14px; border-radius: 20px; font-size: 0.85rem; cursor: pointer; font-family: inherit;
+}
+.filter-tab:hover { border-color: var(--accent); }
+.filter-tab.active { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 700; }
+
+/* 지도 + 카드 리스트 2열 */
+.explore-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 22px; height: 560px; margin-top: 30px; }
+#siteMap { width: 100%; height: 100%; border-radius: 12px; border: 1px solid var(--line); }
+.card-list { overflow-y: auto; display: flex; flex-direction: column; gap: 14px; padding-right: 4px; }
+
+.site-card {
+  display: flex; gap: 14px; background: var(--card-bg); border-radius: 12px; padding: 14px;
+  box-shadow: 0 4px 14px rgba(58, 50, 45, 0.08); border: 2px solid transparent; cursor: pointer; scroll-margin-top: 12px;
+}
+.site-card.active { border-color: var(--accent); }
+.site-card .thumb {
+  flex-shrink: 0; width: 88px; height: 88px; border-radius: 10px; overflow: hidden; background: #e6dccb;
+  display: flex; align-items: center; justify-content: center;
+}
+.site-card .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.site-card .thumb .draft-icon { color: var(--muted); font-size: 1.6rem; }
+.site-card .info { flex: 1; min-width: 0; }
+.site-card .info h3 { font-size: 1rem; margin: 0 0 4px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.site-card .address { font-size: 0.78rem; color: var(--body-text); opacity: 0.85; margin-bottom: 6px; }
+.site-card .tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 6px; }
+.site-card .tag { font-size: 0.72rem; color: var(--accent-deep); background: rgba(224, 83, 83, 0.1); border-radius: 10px; padding: 1px 8px; }
+.site-card .blurb { font-size: 0.85rem; margin: 0 0 8px; }
+.site-card .cta { font-size: 0.82rem; color: var(--accent); text-decoration: none; font-weight: 700; }
+.site-card .cta:hover { text-decoration: underline; }
+.site-card .cta.disabled { color: var(--muted); pointer-events: none; }
+.draft-badge {
+  display: inline-block; font-size: 0.66rem; font-weight: 700; padding: 1px 7px; border-radius: 9px;
+  background: var(--line); color: var(--body-text);
+}
+.empty-note { padding: 20px; color: var(--body-text); text-align: center; font-size: 0.88rem; }
+
+/* Leaflet 커스텀 핀 */
+.jeju-pin { filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.35)); }
+.leaflet-popup-content { margin: 10px 12px; font-size: 0.85rem; line-height: 1.4; color: var(--ink); }
+.leaflet-popup-content img { width: 100%; max-width: 180px; height: auto; display: block; margin-bottom: 6px; border-radius: 6px; }
+.leaflet-popup-content a { color: var(--accent); font-weight: 700; text-decoration: none; }
+
+/* 하단 네비게이션 */
+.bottom-nav { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; padding: 10px 0 90px; }
+.bottom-nav a {
+  display: inline-block; border: 1px solid var(--accent); color: var(--accent-deep); background: var(--card-bg);
+  padding: 12px 24px; border-radius: 30px; text-decoration: none; font-weight: 700; font-size: 0.92rem;
+}
+.bottom-nav a:hover { background: var(--accent); color: #fff; }
+
+/* 우측 하단 플로팅 챗봇 버튼 */
+.chatbot-fab {
+  position: fixed; right: 20px; bottom: 20px; z-index: 1500; display: flex; align-items: center; gap: 8px;
+  background: var(--ink); color: #fff; border: none; border-radius: 30px; padding: 10px 18px 10px 12px;
+  cursor: pointer; box-shadow: 0 8px 22px rgba(0, 0, 0, 0.3); font-size: 0.88rem; font-weight: 700;
+}
+.chatbot-fab:hover { background: #4a4038; }
+.chatbot-panel {
+  position: fixed; right: 20px; bottom: 78px; z-index: 1500; width: 260px; background: var(--card-bg);
+  border-radius: 12px; padding: 16px 18px; box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25); display: none;
+  font-size: 0.85rem; color: var(--ink);
+}
+.chatbot-panel.show { display: block; }
+.chatbot-panel .close-panel { position: absolute; top: 8px; right: 10px; border: none; background: none; color: var(--body-text); font-size: 1rem; cursor: pointer; }
+
+@media (max-width: 900px) {
+  .explore-grid { grid-template-columns: 1fr; height: auto; }
+  #siteMap { height: 320px; }
+}
+@media (max-width: 760px) {
+  .hero { padding: 110px 16px 44px; }
+  .hero h1 { font-size: 1.8rem; }
+  .breadcrumb { display: none; }
+}
+</style>
+</head>
+<body>
+
+<header class="top-bar">
+  <div class="top-bar-left">
+    <a class="back-link" href="index.html" id="backLink">← 메인으로 돌아가기</a>
+    <nav class="breadcrumb" aria-label="현재 위치" id="breadcrumb"><a href="index.html">홈</a> &gt; <span id="breadcrumbCurrent">기억의 길을 걷다</span></nav>
+  </div>
+  <div class="top-bar-right">
+    <button id="fzMinus" type="button" title="글자 작게" aria-label="글자 작게">A-</button>
+    <button id="fzPlus" type="button" title="글자 크게" aria-label="글자 크게">A+</button>
+    <button id="langToggle" type="button" title="언어 전환" aria-label="언어 전환">EN</button>
+  </div>
+</header>
+
+<section class="hero">
+  <span class="badge" id="heroBadge">제주 4·3 78주년</span>
+  <h1 id="heroTitle">기억의 길을 걷다</h1>
+  <p class="lead" id="heroLead">지도가 안내하는 길을 따라, 4·3의 역사가 새겨진 제주 유적지의 발자취를 따라갑니다.</p>
+</section>
+
+<section class="content">
+  <div class="wrap">
+    <div class="filter-group">
+      <div class="filter-group-label" id="regionFilterLabel">권역별</div>
+      <div class="filter-tabs" id="regionTabs"></div>
+    </div>
+    <div class="filter-group">
+      <div class="filter-group-label" id="themeFilterLabel">테마별</div>
+      <div class="filter-tabs" id="themeTabs"></div>
+    </div>
+
+    <div class="explore-grid">
+      <div id="siteMap"></div>
+      <div class="card-list" id="cardList"></div>
+    </div>
+    <p class="map-note" id="mapNote" style="color:var(--body-text);opacity:0.75;font-size:0.78em;margin-top:10px;">지도 데이터 © OpenStreetMap 기여자 · 지도 표시 라이브러리: Leaflet</p>
+  </div>
+</section>
+
+<div class="bottom-nav">
+  <a href="truth.html" id="navTruth">제주 4·3의 진실 보러가기</a>
+  <a href="voices.html" id="navVoices">증언과 오디오 들으러 가기</a>
+</div>
+
+<button class="chatbot-fab" id="chatbotFab" type="button" aria-haspopup="true" aria-expanded="false">
+  <svg width="22" height="22" viewBox="0 0 100 100" aria-hidden="true">
+    <g>
+      <ellipse cx="50" cy="20" rx="16" ry="22" fill="#e0607a"/>
+      <ellipse cx="50" cy="20" rx="16" ry="22" fill="#e0607a" transform="rotate(60 50 50)"/>
+      <ellipse cx="50" cy="20" rx="16" ry="22" fill="#e0607a" transform="rotate(120 50 50)"/>
+      <ellipse cx="50" cy="20" rx="16" ry="22" fill="#e0607a" transform="rotate(180 50 50)"/>
+      <ellipse cx="50" cy="20" rx="16" ry="22" fill="#e0607a" transform="rotate(240 50 50)"/>
+      <ellipse cx="50" cy="20" rx="16" ry="22" fill="#e0607a" transform="rotate(300 50 50)"/>
+      <circle cx="50" cy="50" r="16" fill="#f6c94d"/>
+    </g>
+  </svg>
+  <span id="chatbotFabLabel">4·3 AI 챗봇</span>
+</button>
+<div class="chatbot-panel" id="chatbotPanel" role="dialog" aria-label="4·3 AI 챗봇">
+  <button class="close-panel" id="chatbotClose" type="button" aria-label="닫기">✕</button>
+  <p id="chatbotPanelText" style="margin:0;">이 페이지의 AI 챗봇은 아직 준비 중입니다. 장소별 상세 페이지에서 먼저 만나보실 수 있어요.</p>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+(function () {
+  "use strict";
+
+  // 검증된 3곳(관덕정·곤을동·너븐숭이)은 map-places.json/index.html과 같은 실제 좌표·썸네일·상세페이지를 그대로 쓴다.
+  // 평화공원·섯알오름 학살터는 아직 01-verify를 거친 카드가 없어 verified:false로 두고, 상세페이지 링크 없이
+  // "카드 준비 중"으로만 표시한다 — 위치·한줄소개 이상의 사실을 지어내지 않는다.
+  var SITES = [
+    {
+      id: "gwandeokjeong", verified: true, region: "jeju-si", themes: ["suppression"],
+      name: { ko: "관덕정 광장", en: "Gwandeokjeong Square" },
+      address: { ko: "제주시 삼도2동", en: "Samdo 2-dong, Jeju-si" },
+      tags: { ko: ["#수용진압유적", "#제주시"], en: ["#Suppression", "#JejuCity"] },
+      blurb: { ko: "1947년 3·1절 기마경찰 발포 사건의 현장", en: "Site of the March 1, 1947 mounted-police shooting incident" },
+      lat: 33.5136572, lng: 126.521839,
+      thumbnail: "gwandeokjeong/assets/img-01.png", pageLink: "gwandeokjeong/05-assemble.html"
+    },
+    {
+      id: "goneuldong", verified: true, region: "jeju-si", themes: ["lost-village"],
+      name: { ko: "곤을동 잃어버린 마을", en: "Goneul-dong (The Lost Village)" },
+      address: { ko: "제주시 화북동", en: "Hwabuk-dong, Jeju-si" },
+      tags: { ko: ["#잃어버린마을", "#제주시"], en: ["#LostVillage", "#JejuCity"] },
+      blurb: { ko: "초토화 작전으로 사라진 바닷가 마을", en: "A coastal village lost during the scorched-earth operations" },
+      lat: 33.521722, lng: 126.557375,
+      thumbnail: "goneuldong/assets/img-01.png", pageLink: "goneuldong/05-assemble.html"
+    },
+    {
+      id: "neobeunsungi", verified: true, region: "jeju-si", themes: ["memorial", "massacre"],
+      name: { ko: "너븐숭이 4·3 기념관", en: "Neobeunsungi 4·3 Memorial Hall" },
+      address: { ko: "제주시 조천읍 북촌리", en: "Bukchon-ri, Jocheon-eup, Jeju-si" },
+      tags: { ko: ["#기념관추모공원", "#학살희생터", "#제주시"], en: ["#Memorial", "#MassacreSite", "#JejuCity"] },
+      blurb: { ko: "최대 민간인 희생지이자 애기무덤이 있는 곳", en: "The site of the largest civilian massacre, with the \"baby graves\"" },
+      lat: 33.545959, lng: 126.688749,
+      thumbnail: "neobeunsungi/assets/img-01.png", pageLink: "neobeunsungi/05-assemble.html"
+    },
+    {
+      id: "peace-park", verified: false, region: "jeju-si", themes: ["memorial"],
+      name: { ko: "제주 4·3 평화공원", en: "Jeju 4·3 Peace Park" },
+      address: { ko: "제주시 봉개동", en: "Bonggae-dong, Jeju-si" },
+      tags: { ko: ["#기념관추모공원", "#제주시"], en: ["#Memorial", "#JejuCity"] },
+      blurb: { ko: "위령탑·평화기념관·행방불명자 표석이 있는 추모공원", en: "A memorial park with a monument, memorial hall, and markers for the missing" },
+      lat: 33.499, lng: 126.556,
+      thumbnail: null, pageLink: null
+    },
+    {
+      id: "seotalloreum", verified: false, region: "seogwipo-si", themes: ["massacre"],
+      name: { ko: "섯알오름 학살터", en: "Seotalloreum Massacre Site" },
+      address: { ko: "서귀포시 대정읍", en: "Daejeong-eup, Seogwipo-si" },
+      tags: { ko: ["#학살희생터", "#서귀포시"], en: ["#MassacreSite", "#Seogwipo"] },
+      blurb: { ko: "백조일손지묘와 예비검속 희생 현장", en: "Linked to the Baekjoilson tomb and preventive-detention killings" },
+      lat: 33.2109, lng: 126.2514,
+      thumbnail: null, pageLink: null
+    }
+  ];
+
+  var I18N = {
+    ko: {
+      docTitle: "기억의 길을 걷다 — 제주 4·3 스토리 지도",
+      backLink: "← 메인으로 돌아가기", breadcrumbHome: "홈", breadcrumbCurrent: "기억의 길을 걷다",
+      fzMinus: "글자 작게", fzPlus: "글자 크게", langToggleTitle: "언어 전환",
+      heroBadge: "제주 4·3 78주년",
+      heroTitle: "기억의 길을 걷다",
+      heroLead: "지도가 안내하는 길을 따라, 4·3의 역사가 새겨진 제주 유적지의 발자취를 따라갑니다.",
+      regionFilterLabel: "권역별", themeFilterLabel: "테마별",
+      regionAll: "전체 보기",
+      regions: { "jeju-si": "제주시", "seogwipo-si": "서귀포시", "midmountain": "중산간" },
+      themeAll: "전체 보기",
+      themes: { "lost-village": "잃어버린 마을", "memorial": "기념관/추모공원", "massacre": "학살/희생터", "suppression": "수용/진압 유적" },
+      mapNote: "지도 데이터 © OpenStreetMap 기여자 · 지도 표시 라이브러리: Leaflet",
+      emptyNote: "이 조건에 맞는 유적지가 아직 없습니다.",
+      viewStory: "상세 이야기 보기 →",
+      draftCta: "카드 준비 중",
+      draftBadge: "카드 준비 중",
+      navTruth: "제주 4·3의 진실 보러가기", navVoices: "증언과 오디오 들으러 가기",
+      chatbotFabLabel: "4·3 AI 챗봇",
+      chatbotPanelText: "이 페이지의 AI 챗봇은 아직 준비 중입니다. 장소별 상세 페이지에서 먼저 만나보실 수 있어요."
+    },
+    en: {
+      docTitle: "Walking the Path of Memory — Jeju 4·3 Story Map",
+      backLink: "← Back to Main", breadcrumbHome: "Home", breadcrumbCurrent: "Walking the Path of Memory",
+      fzMinus: "Smaller text", fzPlus: "Larger text", langToggleTitle: "Switch language",
+      heroBadge: "Jeju 4·3, 78th Anniversary",
+      heroTitle: "Walking the Path of Memory",
+      heroLead: "Follow the map's guided paths to trace the historical sites of Jeju where the story of 4·3 is etched.",
+      regionFilterLabel: "By Region", themeFilterLabel: "By Theme",
+      regionAll: "All",
+      regions: { "jeju-si": "Jeju City", "seogwipo-si": "Seogwipo City", "midmountain": "Mid-mountain" },
+      themeAll: "All",
+      themes: { "lost-village": "Lost Village", "memorial": "Memorial", "massacre": "Massacre Site", "suppression": "Suppression Site" },
+      mapNote: "Map data © OpenStreetMap contributors · Map library: Leaflet",
+      emptyNote: "No sites match this filter yet.",
+      viewStory: "View the full story →",
+      draftCta: "Page in progress",
+      draftBadge: "Page in progress",
+      navTruth: "See the Truth of Jeju 4·3", navVoices: "Listen to Voices & Audio",
+      chatbotFabLabel: "Jeju 4·3 AI Chatbot",
+      chatbotPanelText: "The AI chatbot for this page is still being prepared. You can already try it on individual place pages."
+    }
+  };
+
+  var lang = "ko";
+  try { if (localStorage.getItem("jeju43-lang") === "en") lang = "en"; } catch (e) { /* 무시 */ }
+  function t(key) { return I18N[lang][key]; }
+  function pick(field) { return field[lang] || field.ko; }
+
+  var regionFilter = "all";
+  var themeFilter = "all";
+  var activeId = null;
+  var map = null;
+  var markers = {};
+
+  function getFilteredSites() {
+    return SITES.filter(function (s) {
+      if (regionFilter !== "all" && s.region !== regionFilter) return false;
+      if (themeFilter !== "all" && s.themes.indexOf(themeFilter) === -1) return false;
+      return true;
+    });
+  }
+
+  function renderFilterTabs() {
+    var regionTabs = document.getElementById("regionTabs");
+    var themeTabs = document.getElementById("themeTabs");
+    regionTabs.innerHTML = "";
+    themeTabs.innerHTML = "";
+
+    function makeTab(label, isActive, onClick) {
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "filter-tab" + (isActive ? " active" : "");
+      btn.textContent = label;
+      btn.addEventListener("click", onClick);
+      return btn;
+    }
+
+    regionTabs.appendChild(makeTab(t("regionAll"), regionFilter === "all", function () { regionFilter = "all"; renderAll(); }));
+    Object.keys(t("regions")).forEach(function (key) {
+      regionTabs.appendChild(makeTab(t("regions")[key], regionFilter === key, function () { regionFilter = key; renderAll(); }));
+    });
+
+    themeTabs.appendChild(makeTab(t("themeAll"), themeFilter === "all", function () { themeFilter = "all"; renderAll(); }));
+    Object.keys(t("themes")).forEach(function (key) {
+      themeTabs.appendChild(makeTab(t("themes")[key], themeFilter === key, function () { themeFilter = key; renderAll(); }));
+    });
+  }
+
+  function siteCardHtml(s) {
+    var thumbHtml = s.thumbnail
+      ? '<img src="' + s.thumbnail + '" alt="">'
+      : '<span class="draft-icon">🏞️</span>';
+    var tagsHtml = pick(s.tags).map(function (tag) { return '<span class="tag">' + tag + "</span>"; }).join("");
+    var ctaHtml = s.pageLink
+      ? '<a class="cta" href="' + s.pageLink + '">' + t("viewStory") + "</a>"
+      : '<span class="cta disabled">' + t("draftCta") + "</span>";
+    var draftBadgeHtml = s.verified ? "" : ' <span class="draft-badge">' + t("draftBadge") + "</span>";
+    return (
+      '<div class="thumb">' + thumbHtml + "</div>" +
+      '<div class="info">' +
+      "<h3>" + pick(s.name) + draftBadgeHtml + "</h3>" +
+      '<div class="address">' + pick(s.address) + "</div>" +
+      '<div class="tags">' + tagsHtml + "</div>" +
+      '<p class="blurb">' + pick(s.blurb) + "</p>" +
+      ctaHtml +
+      "</div>"
+    );
+  }
+
+  function renderCardList() {
+    var el = document.getElementById("cardList");
+    el.innerHTML = "";
+    var list = getFilteredSites();
+    if (!list.length) {
+      el.insertAdjacentHTML("beforeend", '<p class="empty-note">' + t("emptyNote") + "</p>");
+      return;
+    }
+    list.forEach(function (s) {
+      var card = document.createElement("div");
+      card.className = "site-card" + (s.id === activeId ? " active" : "");
+      card.dataset.id = s.id;
+      card.innerHTML = siteCardHtml(s);
+      card.addEventListener("click", function (e) {
+        if (e.target.closest("a.cta")) return;
+        focusSite(s.id);
+      });
+      el.appendChild(card);
+    });
+  }
+
+  function popupHtml(s) {
+    var html = "";
+    if (s.thumbnail) html += '<img src="' + s.thumbnail + '" alt="">';
+    html += "<div><strong>" + pick(s.name) + "</strong></div>";
+    html += "<div>" + pick(s.blurb) + "</div>";
+    if (s.pageLink) html += '<div style="margin-top:4px;"><a href="' + s.pageLink + '">' + t("viewStory") + "</a></div>";
+    else html += '<div style="margin-top:4px;color:#B9A6A6;">' + t("draftCta") + "</div>";
+    return html;
+  }
+
+  function createPinIcon(s) {
+    var fill = s.verified ? "#E05353" : "#B9A6A6";
+    var html =
+      '<svg width="28" height="36" viewBox="0 0 28 36">' +
+      '<path d="M14 0C6.3 0 0 6.3 0 14c0 9.8 14 22 14 22s14-12.2 14-22C28 6.3 21.7 0 14 0z" fill="' + fill + '"/>' +
+      '<circle cx="14" cy="14" r="5.5" fill="#fff"/>' +
+      "</svg>";
+    return L.divIcon({ className: "jeju-pin", html: html, iconSize: [28, 36], iconAnchor: [14, 36], popupAnchor: [0, -32] });
+  }
+
+  function refreshMap() {
+    if (!map) return;
+    var visibleIds = {};
+    getFilteredSites().forEach(function (s) { visibleIds[s.id] = true; });
+    Object.keys(markers).forEach(function (id) {
+      var item = markers[id];
+      var shouldShow = !!visibleIds[id];
+      var onMap = map.hasLayer(item.marker);
+      if (shouldShow && !onMap) item.marker.addTo(map);
+      if (!shouldShow && onMap) map.removeLayer(item.marker);
+      item.marker.setPopupContent(popupHtml(item.site));
+    });
+  }
+
+  function focusSite(id) {
+    activeId = id;
+    var item = markers[id];
+    if (item && map) {
+      map.flyTo([item.site.lat, item.site.lng], 14, { duration: 0.6 });
+      item.marker.openPopup();
+    }
+    renderCardList();
+    var cardEl = document.querySelector('.site-card[data-id="' + id + '"]');
+    if (cardEl) cardEl.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  }
+
+  function applyStaticText() {
+    document.title = t("docTitle");
+    document.documentElement.lang = lang;
+    document.getElementById("backLink").textContent = t("backLink");
+    document.getElementById("breadcrumbCurrent").textContent = t("breadcrumbCurrent");
+    document.querySelector("#breadcrumb a").textContent = t("breadcrumbHome");
+    document.getElementById("fzMinus").title = t("fzMinus");
+    document.getElementById("fzMinus").setAttribute("aria-label", t("fzMinus"));
+    document.getElementById("fzPlus").title = t("fzPlus");
+    document.getElementById("fzPlus").setAttribute("aria-label", t("fzPlus"));
+    var langBtn = document.getElementById("langToggle");
+    langBtn.title = t("langToggleTitle");
+    langBtn.setAttribute("aria-label", t("langToggleTitle"));
+    langBtn.textContent = lang === "ko" ? "EN" : "KO";
+    document.getElementById("heroBadge").textContent = t("heroBadge");
+    document.getElementById("heroTitle").textContent = t("heroTitle");
+    document.getElementById("heroLead").textContent = t("heroLead");
+    document.getElementById("regionFilterLabel").textContent = t("regionFilterLabel");
+    document.getElementById("themeFilterLabel").textContent = t("themeFilterLabel");
+    document.getElementById("mapNote").textContent = t("mapNote");
+    document.getElementById("navTruth").textContent = t("navTruth");
+    document.getElementById("navVoices").textContent = t("navVoices");
+    document.getElementById("chatbotFabLabel").textContent = t("chatbotFabLabel");
+    document.getElementById("chatbotPanelText").textContent = t("chatbotPanelText");
+  }
+
+  function renderAll() {
+    applyStaticText();
+    renderFilterTabs();
+    renderCardList();
+    refreshMap();
+  }
+
+  document.getElementById("langToggle").addEventListener("click", function () {
+    lang = lang === "ko" ? "en" : "ko";
+    try { localStorage.setItem("jeju43-lang", lang); } catch (e) { /* 무시 */ }
+    renderAll();
+  });
+
+  var FZ_MIN = 0.9, FZ_MAX = 1.3, FZ_STEP = 0.1;
+  var fz = 1;
+  function applyFz() { document.documentElement.style.setProperty("--fz", fz.toFixed(2)); }
+  document.getElementById("fzMinus").addEventListener("click", function () {
+    fz = Math.max(FZ_MIN, +(fz - FZ_STEP).toFixed(2)); applyFz();
+  });
+  document.getElementById("fzPlus").addEventListener("click", function () {
+    fz = Math.min(FZ_MAX, +(fz + FZ_STEP).toFixed(2)); applyFz();
+  });
+
+  var chatbotFab = document.getElementById("chatbotFab");
+  var chatbotPanel = document.getElementById("chatbotPanel");
+  chatbotFab.addEventListener("click", function () {
+    var showing = chatbotPanel.classList.toggle("show");
+    chatbotFab.setAttribute("aria-expanded", String(showing));
+  });
+  document.getElementById("chatbotClose").addEventListener("click", function () {
+    chatbotPanel.classList.remove("show");
+    chatbotFab.setAttribute("aria-expanded", "false");
+  });
+
+  function initMap() {
+    if (!window.L) { return setTimeout(initMap, 50); }
+    map = L.map("siteMap", { zoomControl: false }).setView([33.4, 126.55], 10);
+    L.control.zoom({ position: "topleft" }).addTo(map);
+    L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
+      maxZoom: 20, subdomains: "abcd",
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions" target="_blank" rel="noopener">CARTO</a>'
+    }).addTo(map);
+
+    var bounds = [];
+    SITES.forEach(function (s) {
+      var marker = L.marker([s.lat, s.lng], { icon: createPinIcon(s) });
+      marker.bindPopup(popupHtml(s), { maxWidth: 220 });
+      marker.on("click", function () { focusSite(s.id); });
+      markers[s.id] = { marker: marker, site: s };
+      bounds.push([s.lat, s.lng]);
+    });
+    if (bounds.length) map.fitBounds(bounds, { padding: [30, 30] });
+    renderAll();
+  }
+
+  applyStaticText();
+  renderFilterTabs();
+  renderCardList();
+  initMap();
+})();
+</script>
+</body>
+</html>

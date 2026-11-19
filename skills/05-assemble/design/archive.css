@@ -1,0 +1,294 @@
+/* 05-assemble 스토리 페이지 design 파일 — "아카이브(기록보관소)" 톤에서 아이들도 눈에 확
+   들어오게 볼 수 있는 "그림책처럼 읽는 아카이브" 톤으로 업데이트.
+   index.html·06-map과 같은 팔레트를 공유한다. 이 파일 교체만으로 전체 톤이 바뀐다(spec.md 4.3).
+   05가 만드는 태그·속성 구조(fact/timeline-event/ai-generated/sources 등, spec.md 5장)는 그대로 두고
+   시각 표현만 여기서 결정한다 — 08-review가 의존하는 마크업 계약에는 손대지 않는다. */
+
+@import url('https://fonts.googleapis.com/css2?family=Gothic+A1:wght@700;800;900&display=swap');
+
+:root {
+  --ink: #2c2620;
+  --ink-soft: #6b6357;
+  --paper: #fbf6e8;
+  --paper-card: #fffaf0;
+  --line: #e6dab9;
+  --accent: #e2572b;
+  --accent-deep: #a83e1c;
+  --accent2: #2f8f8a;
+  --accent2-deep: #1f6b66;
+  --highlight: #ffe066;
+  --good: #2f9e63;
+  --bad: #d94f4f;
+}
+
+body {
+  font-family: 'Pretendard Variable', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+  color: var(--ink);
+  background: var(--paper);
+  background-image: radial-gradient(rgba(0, 0, 0, 0.035) 1px, transparent 1px);
+  background-size: 14px 14px;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 24px;
+  line-height: 1.85;
+  font-size: 1.06rem;
+}
+
+/* 상단 내비 — 지도 인덱스로 돌아가는 버튼. 스크롤해도 항상 눌리도록 fixed */
+.story-nav { position: fixed; top: 16px; left: 16px; z-index: 20; display: flex; align-items: center; }
+.story-nav a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 16px;
+  border-radius: 999px;
+  background: rgba(27, 23, 18, 0.62);
+  color: #fff;
+  font-size: 0.85rem;
+  text-decoration: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+.story-nav a:hover { background: rgba(27, 23, 18, 0.82); }
+
+a { color: var(--accent-deep); }
+
+h1 { font-family: 'Gothic A1', 'Pretendard Variable', sans-serif; font-weight: 800; font-size: 1.9em; border-bottom: none; padding-bottom: 0; }
+
+/* 출처 있는 사실 문장 — 형광펜으로 그은 듯한 하이라이트 + title(=data-source) 네이티브 툴팁으로
+   "이건 근거가 있는 이야기야"라는 신호를 아이들 눈에도 확 띄게 준다 */
+.fact {
+  background-image: linear-gradient(180deg, transparent 58%, var(--highlight) 58%, var(--highlight) 92%, transparent 92%);
+  border-bottom: none;
+  border-radius: 2px;
+  cursor: help;
+  font-weight: 700;
+  padding: 0 1px;
+}
+
+figure.ai-generated { margin: 18px 0; position: relative; }
+figure img { max-width: 100%; display: block; background: var(--paper-card); border: 2px solid var(--line); border-radius: 14px; box-shadow: 0 3px 0 var(--line); }
+figure figcaption { font-size: 0.85em; color: var(--ink-soft); margin-top: 6px; }
+
+/* AI 연출 배지 — figure.ai-generated 위에 순수 CSS로 얹는다(마크업 변경 없음, figcaption의 [연출] 문구는 그대로 유지) */
+figure.ai-generated::before {
+  content: "🎨 연출";
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 2;
+  background: #ffb703;
+  color: #2c2620;
+  font-size: 0.76rem;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 999px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+}
+html[lang="en"] figure.ai-generated::before { content: "🎨 Staged"; }
+
+/* 다국어 지원 — <html lang="ko"|"en">에 따라 두 언어 블록을 토글한다(토글 버튼: jeju43ToggleLang()).
+   block류(p/div 등)는 lang-ko/lang-en, 흐름 안에 끼는 inline류(span 등)는 -inline 짝을 쓴다. */
+.lang-en, .lang-en-inline { display: none; }
+html[lang="en"] .lang-ko, html[lang="en"] .lang-ko-inline { display: none; }
+html[lang="en"] .lang-en { display: block; }
+html[lang="en"] .lang-en-inline { display: inline; }
+
+.quote-translation { margin-top: 10px; padding-top: 10px; border-top: 1px dashed var(--line); font-style: italic; color: var(--ink-soft); }
+.src-en { font-size: 0.82em; color: var(--ink-soft); }
+
+.lang-toggle-btn {
+  margin-left: 8px;
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 14px;
+  border-radius: 999px;
+  background: rgba(27, 23, 18, 0.62);
+  color: #fff;
+  font-size: 0.85rem;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  font-family: inherit;
+}
+.lang-toggle-btn:hover { background: rgba(27, 23, 18, 0.82); }
+
+/* 페이지 맨 위 히어로 — 첫 번째 ai-generated figure를 그대로 재사용해 큼직하게 보여준다.
+   figure/figcaption 내용은 손대지 않고, 이미지 위에 제목을 얹는 오버레이만 추가한다. */
+.story-hero {
+  position: relative;
+  margin: -24px -24px 28px;
+}
+.story-hero .hero-figure { margin: 0; }
+.story-hero .hero-media { position: relative; height: 280px; overflow: hidden; }
+.story-hero .hero-media img { width: 100%; height: 100%; object-fit: cover; display: block; border: none; border-radius: 0; box-shadow: none; }
+.story-hero .hero-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0.82) 100%);
+}
+.story-hero .hero-figure figcaption { padding: 8px 24px 0; margin: 0; }
+.story-hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 20px;
+  right: 20px;
+  height: 280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-bottom: 16px;
+  z-index: 3;
+}
+.story-hero-overlay .overline {
+  display: inline-block;
+  font-family: 'Gothic A1', sans-serif;
+  font-weight: 800;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  color: #fff;
+  background: var(--accent);
+  padding: 5px 14px;
+  border-radius: 999px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  width: fit-content;
+}
+.story-hero h1 {
+  margin: 0;
+  border-bottom: none;
+  padding-bottom: 0;
+  font-size: 2.05em;
+  color: #fff;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.75);
+}
+
+/* 이야기 문단(들어가며/전개/맺음) — 각각을 카드처럼 나눠서 아이들이 한 덩어리씩 읽어나가게 한다 */
+[data-segment] {
+  background: var(--paper-card);
+  border: 2px solid var(--line);
+  border-radius: 18px;
+  padding: 20px 22px;
+  margin: 20px 0;
+  box-shadow: 0 3px 0 var(--line);
+  transition: box-shadow 0.3s, border-color 0.3s;
+}
+[data-segment].narration-active { border-color: var(--accent); box-shadow: 0 0 0 4px rgba(226, 87, 43, 0.18), 0 3px 0 var(--accent); }
+[data-segment]::before {
+  display: block;
+  font-family: 'Gothic A1', sans-serif;
+  font-weight: 800;
+  font-size: 0.92rem;
+  color: var(--accent-deep);
+  background: rgba(226, 87, 43, 0.12);
+  width: fit-content;
+  padding: 5px 14px;
+  border-radius: 999px;
+  margin-bottom: 12px;
+}
+.story-intro::before { content: "📖 무슨 이야기일까요?"; }
+.story-development::before { content: "🕰️ 그날, 무슨 일이 있었을까요?"; }
+.story-closing::before { content: "💭 지금은 어떨까요?"; }
+html[lang="en"] .story-intro::before { content: "📖 What's this story about?"; }
+html[lang="en"] .story-development::before { content: "🕰️ What happened that day?"; }
+html[lang="en"] .story-closing::before { content: "💭 What about today?"; }
+
+/* 10초 요약 콜아웃 — 본문 읽기 전에 핵심만 먼저 짚어주는 상자(05-assemble 마크업 계약과 무관한 추가 요소) */
+.story-callout {
+  background: linear-gradient(135deg, #fff6e0, #ffe4cf);
+  border: 3px dashed var(--accent);
+  border-radius: 18px;
+  padding: 18px 20px;
+  margin: 20px 0;
+}
+.story-callout .callout-label {
+  display: block;
+  font-family: 'Gothic A1', sans-serif;
+  font-weight: 800;
+  color: var(--accent-deep);
+  font-size: 0.95rem;
+  margin-bottom: 8px;
+}
+.story-callout p { margin: 0; font-weight: 700; font-size: 1.05em; }
+
+/* 낱말풀이 — 어려운 용어를 쉬운 말로 풀어주는 상자(공통 규칙 2) */
+.glossary {
+  background: #fff;
+  border: 2px solid var(--accent2);
+  border-radius: 16px;
+  padding: 16px 20px;
+  margin: 20px 0;
+}
+.glossary h4 { margin: 0 0 10px; font-family: 'Gothic A1', sans-serif; font-weight: 800; color: var(--accent2-deep); font-size: 1.02rem; }
+.glossary dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 8px 14px; }
+.glossary dt { font-weight: 800; color: var(--ink); white-space: nowrap; }
+.glossary dd { margin: 0; color: var(--ink-soft); }
+
+/* 세로 타임라인 — 점 마커 + 날짜 알약 배지로 흐름이 한눈에, 색으로도 확 들어오게 */
+.timeline { border-left: 3px solid var(--line); padding-left: 20px; margin: 24px 0; }
+.timeline-event { position: relative; margin-bottom: 16px; font-size: 0.98em; }
+.timeline-event::before {
+  content: "";
+  position: absolute;
+  left: -26px;
+  top: 4px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 3px solid var(--paper);
+  box-shadow: 0 0 0 3px rgba(226, 87, 43, 0.2);
+}
+.timeline-event strong {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-family: 'Gothic A1', sans-serif;
+  font-weight: 800;
+  padding: 3px 12px;
+  border-radius: 999px;
+  margin-right: 8px;
+  font-size: 0.88em;
+}
+
+.audio-player audio { width: 100%; }
+.audio-player { background: var(--paper-card); border: 2px solid var(--line); border-radius: 16px; padding: 14px 18px; margin: 20px 0; }
+.audio-note { font-size: 0.8em; color: var(--ink-soft); }
+footer.sources { margin-top: 32px; border-top: 1px solid var(--line); padding-top: 12px; font-size: 0.85em; color: var(--ink-soft); }
+
+/* 안내판끼리 수치가 다른 경우를 병기하는 콜아웃(공통 규칙 5) */
+.conflict-box { border: 2px solid var(--accent); border-radius: 14px; padding: 16px 18px; margin: 20px 0; background: var(--paper-card); }
+.conflict-box h4 { margin: 0 0 10px 0; font-size: 0.95em; color: var(--accent-deep); }
+.conflict-box table { width: 100%; border-collapse: collapse; font-size: 0.85em; }
+.conflict-box th, .conflict-box td { border-bottom: 1px solid var(--line); padding: 6px 8px; text-align: left; }
+.conflict-box th { color: var(--ink); }
+.conflict-box td { color: var(--ink-soft); }
+.conflict-box p { font-size: 0.82em; color: var(--ink-soft); margin: 10px 0 0; }
+
+blockquote.verbatim { border-left: 4px solid var(--accent); background: var(--paper-card); border-radius: 0 14px 14px 0; padding: 14px 18px; margin: 20px 0; font-size: 0.94em; color: var(--ink); }
+blockquote.verbatim cite { display: block; margin-top: 8px; font-size: 0.8em; color: var(--ink-soft); font-style: normal; }
+
+/* 이야기 확인 퀴즈 — 카드 전체를 게임처럼, 버튼은 크고 누르기 쉽게 */
+.quiz-section { margin: 30px 0; padding: 22px; border: 3px solid var(--accent2); border-radius: 20px; background: linear-gradient(180deg, #fff, var(--paper-card)); box-shadow: 0 5px 0 var(--accent2); }
+.quiz-section h3 { margin: 0 0 16px 0; font-family: 'Gothic A1', sans-serif; font-weight: 800; font-size: 1.25em; color: var(--accent2-deep); }
+.quiz-q { margin-bottom: 20px; }
+.quiz-q:last-child { margin-bottom: 0; }
+.quiz-q .q-text { font-weight: 700; margin-bottom: 10px; font-size: 1.02em; }
+.quiz-q .choices { display: flex; flex-direction: column; gap: 8px; }
+.quiz-q button.choice {
+  text-align: left;
+  padding: 12px 16px;
+  border: 2px solid var(--line);
+  background: #fff;
+  color: var(--ink);
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 0.98em;
+  font-weight: 600;
+  transition: transform 0.15s, border-color 0.15s, box-shadow 0.15s;
+}
+.quiz-q button.choice:hover:not(:disabled) { border-color: var(--accent2); transform: translateY(-2px); box-shadow: 0 3px 0 var(--line); }
+.quiz-q button.choice.correct { border-color: var(--good); background: rgba(47, 158, 99, 0.14); color: #1f7a4d; }
+.quiz-q button.choice.incorrect { border-color: var(--bad); background: rgba(217, 79, 79, 0.14); color: #b23a3a; }
+.quiz-q .explain { display: none; margin-top: 10px; padding: 10px 14px; background: rgba(47, 143, 138, 0.1); border-radius: 12px; font-size: 0.88em; color: var(--ink); }
+.quiz-q .explain.show { display: block; }

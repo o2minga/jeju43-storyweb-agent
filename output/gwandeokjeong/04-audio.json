@@ -1,0 +1,46 @@
+{
+  "location_id": "gwandeokjeong",
+  "narration": {
+    "lang": "ko",
+    "path": "output/gwandeokjeong/audio/narration-ko.wav",
+    "source": "AI TTS (관리자가 직접 지정한 오디오 파일)",
+    "is_ai_generated": true,
+    "tone": "차분·객관",
+    "en": null
+  },
+  "bgm": {
+    "path": "output/gwandeokjeong/audio/bgm.wav",
+    "license": "self-generated",
+    "source": "자체 생성 BGM (관리자가 직접 지정한 오디오 파일)",
+    "volume_relative_to_narration": 0.25
+  },
+  "pronunciation_dict": [],
+  "sync_timeline": [
+    {
+      "segment_id": "intro",
+      "start_sec": 0.0,
+      "end_sec": 30.7,
+      "text_ref": "story.intro.ko"
+    },
+    {
+      "segment_id": "development",
+      "start_sec": 30.7,
+      "end_sec": 93.6,
+      "text_ref": "story.development.ko"
+    },
+    {
+      "segment_id": "closing",
+      "start_sec": 93.6,
+      "end_sec": 141.5,
+      "text_ref": "story.closing.ko"
+    }
+  ],
+  "web_asset_package": {
+    "player_block": "audio",
+    "files": [
+      "output/gwandeokjeong/audio/narration-ko.wav",
+      "output/gwandeokjeong/audio/bgm.wav"
+    ],
+    "notes": "05-assemble 오디오 플레이어 블록에 즉시 연동"
+  }
+}

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<script>
+  // 메인 화면(index.html)과 같은 localStorage 키를 공유 — 이 페이지의 토글 버튼과
+  // 메인 화면 토글이 서로 언어 설정을 이어받는다. 챗봇도 이 값을 읽어 같은 언어로 답한다.
+  try { if (localStorage.getItem("jeju43-lang") === "en") document.documentElement.lang = "en"; } catch (e) { /* 무시 */ }
+  function jeju43ToggleLang() {
+    try {
+      var cur = localStorage.getItem("jeju43-lang") === "en" ? "en" : "ko";
+      localStorage.setItem("jeju43-lang", cur === "en" ? "ko" : "en");
+    } catch (e) { /* 무시 */ }
+    location.reload();
+  }
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>곤을동 옛터 (잃어버린 마을) — 제주 4·3 스토리</title>
+<meta name="internal-only" content="true">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><!-- design 파일 분리(spec.md 4.3) — 이 파일을 교체하면 전체 페이지 톤이 바뀐다 -->
+<link rel="stylesheet" href="../design/archive.css">
+</head>
+<body>
+<article class="story-page" data-location-id="goneuldong">
+
+  <nav class="story-nav" aria-label="이동">
+    <a href="../index.html"><span aria-hidden="true">←</span> <span class="lang-ko-inline">지도로 돌아가기</span><span class="lang-en-inline" lang="en">Back to map</span></a>
+    <button type="button" class="lang-toggle-btn" onclick="jeju43ToggleLang()" id="langToggleBtn">EN</button>
+  </nav>
+  <script>(function () {
+    var isEn = document.documentElement.lang === "en";
+    var b = document.getElementById("langToggleBtn");
+    if (b) b.textContent = isEn ? "KO" : "EN";
+    if (isEn) document.title = "Goneul-dong (The Lost Village) — Jeju 4·3 Story";
+  })();</script>
+
+  <header class="story-hero">
+    <figure class="ai-generated hero-figure" data-origin="ai">
+      <div class="hero-media">
+        <img src="assets/img-01.png" alt="제주 해안가에 남은 낮고 오래된 돌담들의 흔적, 흐리고 낮은 잿빛 하늘, 인물 없음">
+      </div>
+      <figcaption>
+        <span class="lang-ko-inline">제주 해안가에 남은 낮고 오래된 돌담들의 흔적, 흐리고 낮은 잿빛 하늘 [연출]</span>
+        <span class="lang-en-inline" lang="en">Traces of old, low stone walls remaining on the Jeju coastline, a low overcast gray sky [Staged]</span>
+      </figcaption>
+    </figure>
+    <div class="story-hero-overlay">
+      <span class="overline">JEJU 4·3 STORY</span>
+      <h1><span class="lang-ko-inline">곤을동 옛터 (잃어버린 마을)</span><span class="lang-en-inline" lang="en">Goneul-dong (The Lost Village)</span></h1>
+    </div>
+  </header>
+
+  <section class="story-intro" data-segment="intro">
+    <p class="lang-ko">제주시 화북동 바닷가에는 지금도 집터와 돌담이 남아 있는 곤을동이라는 마을 터가 있습니다. 700년 넘게 사람이 살아온 이 마을은 왜 지금 '잃어버린 마을'이라고 불리게 되었을까요?</p>
+    <p class="lang-en" lang="en">On the coast of Hwabuk-dong, Jeju City, stands the site of a village called Goneul-dong, where house foundations and stone walls still remain today. Why is this village, lived in for over 700 years, now called "the lost village"?</p>
+  </section>
+
+  <section class="story-development" data-segment="development">
+    <p class="lang-ko">곤을동은 화북천이 바다와 만나는 자리에 있던 마을로, 고려 시대 기록에도 이름이 나올 만큼 700년이 넘는 오래된 마을이었습니다. 4·3이 일어나기 전에는 화북천의 두 지류를 사이에 두고 <span class="fact" data-fact-id="f-04" data-source="현장 안내판(잃어버린 마을 안내판·곤을동 표석·거욱대 비문)" title="현장 안내판(잃어버린 마을 안내판·곤을동 표석·거욱대 비문)">안곤을·가운데곤을·밧곤을이라는 세 개의 작은 동네로 나뉘어 있었습니다</span>.</p>
+
+    <div class="conflict-box lang-ko" data-conflict-ids="c-01,c-02,c-03">
+      <h4>⚖️ 기록마다 다릅니다</h4>
+      <table>
+        <tr><th></th><th>잃어버린 마을 안내판</th><th>곤을동 표석 (2003)</th></tr>
+        <tr><td>마을 규모</td><td>67가구 (22+17+28)</td><td>43호</td></tr>
+        <tr><td>희생자</td><td>젊은 사람 10여 명 외</td><td>24명</td></tr>
+        <tr><td>1월 4일 시각</td><td>오후 3~4시경</td><td>아침 9시경</td></tr>
+      </table>
+      <p>같은 자리에 서 있는 두 안내판의 기록이 서로 다릅니다. 이 페이지는 잃어버린 마을 안내판을 기준으로 서술했으며, 확정 수치는 정부 진상조사보고서 대조 후 갱신될 수 있습니다.</p>
+    </div>
+
+    <p class="lang-ko"><span class="fact" data-fact-id="f-05" data-source="현장 안내판(잃어버린 마을 안내판·곤을동 표석·거욱대 비문)" title="현장 안내판(잃어버린 마을 안내판·곤을동 표석·거욱대 비문)">1949년 1월 4일 오후 3~4시경, 국방경비대 제2연대의 한 소대가 곤을동을 포위해 주민들을 모두 모이게 한 뒤 젊은 사람 10여 명을 바닷가로 끌고 가 학살하고, 안곤을과 가운데곤을의 집들을 모두 불태웠습니다</span>. 다음 날인 1월 5일에는 <span class="fact" data-fact-id="f-06" data-source="현장 안내판(잃어버린 마을 안내판·곤을동 표석·거욱대 비문)" title="현장 안내판(잃어버린 마을 안내판·곤을동 표석·거욱대 비문)">인근 화북초등학교에 가둬두었던 주민 일부를 '영디밑'이라는 바닷가에서 학살하고, 남아 있던 밧곤을의 집들도 모두 불태웠습니다. 그 뒤로 곤을동은 인적이 끊겼습니다</span>. 이렇게 이틀 사이에 <span class="fact" data-fact-id="f-07" data-source="현장 안내판(잃어버린 마을 안내판·곤을동 표석·거욱대 비문)" title="현장 안내판(잃어버린 마을 안내판·곤을동 표석·거욱대 비문)">최소 10여 명의 주민이 목숨을 잃고 마을 전체가 전소되었으며, 끝내 복구되지 못해 '잃어버린 마을'이 되었습니다</span>.</p>
+
+    <blockquote class="verbatim">
+      "토벌대, 제주읍 화북리 곤을동 주민을 이틀에 걸쳐 집단총살"
+      <cite>— 제주4·3평화재단, 『제주4·3사건일지』 1949년 1월 4일자 기록 (원문 그대로)</cite>
+      <p class="lang-en quote-translation" lang="en">"Suppression forces carried out a mass shooting of Goneul-dong residents in Hwabuk-ri, Jeju town, over two days."<br><cite>— Jeju 4·3 Peace Foundation, <i>Jeju 4·3 Incident Chronicle</i>, entry for January 4, 1949 (translated; Korean original quoted above)</cite></p>
+    </blockquote>
+
+    <p class="lang-en" lang="en">Goneul-dong was a village at the point where Hwabuk Stream meets the sea — old enough to appear in Goryeo-era records, making it more than 700 years old. Before 4·3, it was divided by two branches of the stream into three small hamlets: Angoneul, Gaundegoneul, and Batgoneul <span class="src-en">[Source: on-site information boards — Lost Village board, Goneul-dong monument, Stone Tower inscription]</span>.</p>
+    <div class="conflict-box lang-en" lang="en" data-conflict-ids="c-01,c-02,c-03">
+      <h4>⚖️ The records disagree</h4>
+      <table>
+        <tr><th></th><th>"Lost Village" board</th><th>Goneul-dong monument (2003)</th></tr>
+        <tr><td>Village size</td><td>67 households (22+17+28)</td><td>43 households</td></tr>
+        <tr><td>Victims</td><td>~10 young people (others unspecified)</td><td>24 people</td></tr>
+        <tr><td>Time on Jan 4</td><td>around 3–4 p.m.</td><td>around 9 a.m.</td></tr>
+      </table>
+      <p>Two information boards standing at the same site record different figures. This page follows the "Lost Village" board, and the confirmed numbers may be updated once cross-checked against the government's official truth-finding report.</p>
+    </div>
+    <p class="lang-en" lang="en">Around 3–4 p.m. on January 4, 1949, one platoon of the 2nd Regiment of the National Defense Constabulary surrounded Goneul-dong, gathered all the villagers, took about 10 young people to the coast and killed them, and burned down every house in Angoneul and Gaundegoneul. The next day, January 5, some residents who had been detained at nearby Hwabuk Elementary School were killed at a coastal spot called Yeondimit, and the remaining houses of Batgoneul were also burned down — after that, Goneul-dong was left uninhabited <span class="src-en">[Source: on-site information boards]</span>. Over these two days, at least around 10 residents lost their lives and the entire village burned down, and it was never rebuilt, becoming "the lost village" <span class="src-en">[Source: on-site information boards]</span>.</p>
+    <p class="lang-en" lang="en">Two months later, on February 27, 1949, 39 people who had been sentenced to death by military tribunal were executed in the same Hwabuk-ri area <span class="src-en">[Source: Jeju 4·3 Incident Chronicle]</span> — the exact spot is not recorded, but it shows that this area's pain continued even after the village itself had vanished.</p>
+  </section>
+
+  <div class="timeline">
+<div class="timeline-event" data-event-id="tl-01"><span class="lang-ko-inline"><strong>1300</strong> — 설촌 첫 기록: 고려 충렬왕 26년, 곤을마을이 별도현에 속했다는 기록 — 700년 넘는 유서 깊은 마을</span><span class="lang-en-inline" lang="en"><strong>1300</strong> — First record of settlement: Goryeo-era records show Goneul Village belonged to Byeoldo-hyeon in the 26th year of King Chungnyeol's reign — a village with over 700 years of history</span></div>
+<div class="timeline-event" data-event-id="tl-02"><span class="lang-ko-inline"><strong>1949-01-04</strong> — 곤을동 포위·학살·방화: 국방경비대 제2연대 1개 소대가 곤을동을 포위, 젊은 사람 10여 명을 바닷가로 끌고 가 학살, 안곤을·가운데곤을 불태움</span><span class="lang-en-inline" lang="en"><strong>1949-01-04</strong> — Goneul-dong surrounded, massacred, and burned: A platoon of the 2nd Regiment surrounded Goneul-dong, killed about 10 young people taken to the coast, and burned Angoneul and Gaundegoneul</span></div>
+<div class="timeline-event" data-event-id="tl-03"><span class="lang-ko-inline"><strong>1949-01-05</strong> — '영디밑' 학살·밧곤을 방화: 화북초등학교에 가뒀던 주민 일부를 학살, 밧곤을 28가구도 불태움 — 이후 곤을동은 인적이 끊김</span><span class="lang-en-inline" lang="en"><strong>1949-01-05</strong> — "Yeondimit" massacre, Batgoneul burned: Residents detained at Hwabuk Elementary were killed at "Yeondimit"; Batgoneul's 28 households were also burned — Goneul-dong has been uninhabited since</span></div>
+<div class="timeline-event" data-event-id="tl-04"><span class="lang-ko-inline"><strong>1949-02-27</strong> — 화북리 사형 집행(지역 맥락): 같은 화북리 일대에서 군법회의 사형선고자 39명의 사형이 집행됨 — 정확한 위치는 기록에 없음</span><span class="lang-en-inline" lang="en"><strong>1949-02-27</strong> — Hwabuk-ri executions (regional context): 39 people sentenced to death by military tribunal were executed in the same Hwabuk-ri area — the exact location is not recorded</span></div>
+<div class="timeline-event" data-event-id="tl-05"><span class="lang-ko-inline"><strong>2003</strong> — 곤을동 표석 건립: 제주4·3사건진상규명및희생자명예회복실무위원회 위원장·제주도지사가 표석을 세움</span><span class="lang-en-inline" lang="en"><strong>2003</strong> — Goneul-dong monument erected: The chair of the Jeju 4·3 truth-finding task force and the Governor of Jeju erected the monument</span></div>
+<div class="timeline-event" data-event-id="tl-06"><span class="lang-ko-inline"><strong>2004</strong> — 4·3 해원 상생 거욱대 건립: (사)한국민족예술인총연합 제주도지회가 마을을 기억하기 위한 거욱대를 세움</span><span class="lang-en-inline" lang="en"><strong>2004</strong> — "4·3 Reconciliation Stone Tower" erected: The Jeju branch of the Korean National Federation of Artistic and Cultural Organizations built it to remember the village</span></div>
+</div>
+
+  <section class="story-closing" data-segment="closing">
+    <p class="lang-ko">지금 곤을동 터에는 <span class="fact" data-fact-id="f-03" data-source="안내판 조사보고서" title="안내판 조사보고서">'잃어버린 마을' 안내판과 곤을동 표석, 그리고 2004년에 세워진 '4·3 해원 상생 거욱대'가 마을을 기억하고 있습니다</span>. 집은 사라졌지만 집터와 올레(집과 마을길을 잇는 작은 길)는 여전히 남아 있어, <span class="fact" data-fact-id="f-10" data-source="올레길 × 4·3 유적지 코스별 안내" title="올레길 × 4·3 유적지 코스별 안내">이곳을 지나는 올레 18코스를 걷는 사람들에게 조용히 그날의 이야기를 전하고 있습니다</span>.</p>
+    <p class="lang-en" lang="en">Today, at the site of Goneul-dong, the "Lost Village" information board, the Goneul-dong monument, and the "4·3 Reconciliation Stone Tower" built in 2004 keep the village's memory alive <span class="src-en">[Source: information-board survey report]</span>. The houses are gone, but the house foundations and olle (the small paths linking homes and village roads) remain, quietly telling the story of that day to those who walk Olle Trail Course 18 through here <span class="src-en">[Source: Olle Trail × 4·3 heritage site course guide]</span>.</p>
+  </section>
+
+  <section class="visuals">
+<figure class="ai-generated" data-origin="ai">
+  <img src="assets/img-02.png" alt="해안가에 조용히 서 있는 돌탑(거욱대) 실루엣, 저녁 어스름, 인물 없음">
+  <figcaption>
+    <span class="lang-ko-inline">해안가에 조용히 서 있는 돌탑(거욱대) 실루엣, 저녁 어스름 [연출]</span>
+    <span class="lang-en-inline" lang="en">Silhouette of a stone tower ("geoukdae") standing quietly on the coast, evening dusk [Staged]</span>
+  </figcaption>
+</figure>
+</section>
+
+  <section class="audio-player">
+  <audio id="narrationAudio" controls src="audio/narration-ko.wav"></audio>
+  <audio id="bgmAudio" class="bgm" src="audio/bgm.wav" loop style="display:none"></audio>
+  <p class="audio-note">
+    <span class="lang-ko-inline">낭독: AI TTS (Microsoft Heami Desktop, ko-KR, Windows SAPI 오프라인 합성) · 배경음악: 자체 생성 앰비언트 패드 (numpy 합성, 로열티 프리 — 관덕정 페이지와 동일 트랙)(낭독 대비 음량 25%)</span>
+    <span class="lang-en-inline" lang="en">Narration: AI TTS (Microsoft Heami Desktop, ko-KR, offline synthesis via Windows SAPI — Korean only) · BGM: self-generated ambient pad (synthesized with numpy, royalty-free — same track as the Gwandeokjeong page) (25% volume relative to narration)</span>
+  </p>
+  <script>
+    (function () {
+      var narration = document.getElementById("narrationAudio");
+      var bgm = document.getElementById("bgmAudio");
+      if (!narration || !bgm) return;
+      bgm.volume = 0.25;
+      narration.addEventListener("play", function () { bgm.play().catch(function () {}); });
+      narration.addEventListener("pause", function () { bgm.pause(); });
+      narration.addEventListener("ended", function () { bgm.pause(); bgm.currentTime = 0; });
+
+      // 낭독 자막 하이라이트 — 04-audio.json의 sync_timeline 그대로(마지막 구간은 실제 재생
+      // 길이가 문서화된 값보다 약간 길어도 끝까지 강조되도록 넉넉하게 열어둔다).
+      var SYNC_TIMELINE = [
+        { id: "intro", start: 0, end: 18 },
+        { id: "development", start: 18, end: 178 },
+        { id: "closing", start: 178, end: Infinity }
+      ];
+      var segmentEls = {};
+      SYNC_TIMELINE.forEach(function (seg) {
+        segmentEls[seg.id] = document.querySelector('[data-segment="' + seg.id + '"]');
+      });
+      function updateHighlight() {
+        var t = narration.currentTime;
+        SYNC_TIMELINE.forEach(function (seg) {
+          var el = segmentEls[seg.id];
+          if (el) el.classList.toggle("narration-active", t >= seg.start && t < seg.end);
+        });
+      }
+      function clearHighlight() {
+        SYNC_TIMELINE.forEach(function (seg) {
+          if (segmentEls[seg.id]) segmentEls[seg.id].classList.remove("narration-active");
+        });
+      }
+      narration.addEventListener("timeupdate", updateHighlight);
+      narration.addEventListener("seeked", updateHighlight);
+      narration.addEventListener("ended", clearHighlight);
+    })();
+  </script>
+</section>
+
+  <section class="quiz-section">
+    <h3><span class="lang-ko-inline">🌼 이야기 확인 퀴즈</span><span class="lang-en-inline" lang="en">🌼 Story Check Quiz</span></h3>
+    <div class="quiz-q" data-answer="b">
+      <p class="q-text"><span class="lang-ko-inline">Q1. 곤을동은 왜 '잃어버린 마을'이라고 불릴까요?</span><span class="lang-en-inline" lang="en">Q1. Why is Goneul-dong called "the lost village"?</span></p>
+      <div class="choices">
+        <button class="choice" data-choice="a"><span class="lang-ko-inline">사람들이 새 도시로 이사를 가서</span><span class="lang-en-inline" lang="en">Residents moved away to a new city</span></button>
+        <button class="choice" data-choice="b"><span class="lang-ko-inline">4·3 때 마을이 불타 없어진 뒤 끝내 복구되지 못해서</span><span class="lang-en-inline" lang="en">It was burned down during 4·3 and never rebuilt</span></button>
+        <button class="choice" data-choice="c"><span class="lang-ko-inline">지도에서 이름이 빠져서</span><span class="lang-en-inline" lang="en">Its name was left off the map</span></button>
+      </div>
+      <p class="explain"><span class="lang-ko-inline">정답은 B! 1949년 두 차례에 걸쳐 마을이 불태워진 뒤 다시 세워지지 못했어요.</span><span class="lang-en-inline" lang="en">The answer is B! The village was burned down twice in 1949 and was never rebuilt.</span></p>
+    </div>
+    <div class="quiz-q" data-answer="b">
+      <p class="q-text"><span class="lang-ko-inline">Q2. 4·3 이전 곤을동은 몇 개의 작은 동네(뜸)로 나뉘어 있었을까요?</span><span class="lang-en-inline" lang="en">Q2. Before 4·3, how many small hamlets was Goneul-dong divided into?</span></p>
+      <div class="choices">
+        <button class="choice" data-choice="a"><span class="lang-ko-inline">2개</span><span class="lang-en-inline" lang="en">2</span></button>
+        <button class="choice" data-choice="b"><span class="lang-ko-inline">3개</span><span class="lang-en-inline" lang="en">3</span></button>
+        <button class="choice" data-choice="c"><span class="lang-ko-inline">5개</span><span class="lang-en-inline" lang="en">5</span></button>
+      </div>
+      <p class="explain"><span class="lang-ko-inline">정답은 3개! 안곤을·가운데곤을·밧곤을로 나뉘어 있었어요.</span><span class="lang-en-inline" lang="en">The answer is 3! It was divided into Angoneul, Gaundegoneul, and Batgoneul.</span></p>
+    </div>
+    <div class="quiz-q" data-answer="b">
+      <p class="q-text"><span class="lang-ko-inline">Q3. 곤을동의 가구 수는 안내판과 표석에 똑같이 적혀 있을까요?</span><span class="lang-en-inline" lang="en">Q3. Do the information board and the monument record the same number of households?</span></p>
+      <div class="choices">
+        <button class="choice" data-choice="a"><span class="lang-ko-inline">네, 똑같아요</span><span class="lang-en-inline" lang="en">Yes, they match</span></button>
+        <button class="choice" data-choice="b"><span class="lang-ko-inline">아니요, 기록마다 다르게 적혀 있어요</span><span class="lang-en-inline" lang="en">No, the records differ</span></button>
+        <button class="choice" data-choice="c"><span class="lang-ko-inline">아무 기록도 없어요</span><span class="lang-en-inline" lang="en">Neither one records it</span></button>
+      </div>
+      <p class="explain"><span class="lang-ko-inline">정답은 B! 안내판은 67가구, 표석은 43호로 다르게 적혀 있어서, 이 페이지는 두 기록을 모두 보여줘요.</span><span class="lang-en-inline" lang="en">The answer is B! The board records 67 households, the monument records 43 — this page shows both.</span></p>
+    </div>
+  </section>
+
+
+
+  <div id="chatbot-modal" data-kb-source="07"></div>
+  <script src="chatbot-modal.js"></script>
+
+  <script>
+    (function () {
+      // 이야기 확인 퀴즈 — 정답/오답 표시 후 설명 노출, 임의로 다시 풀 수 없게 잠금
+      document.querySelectorAll(".quiz-q").forEach(function (q) {
+        var answer = q.dataset.answer;
+        var buttons = q.querySelectorAll("button.choice");
+        var explain = q.querySelector(".explain");
+        buttons.forEach(function (choiceBtn) {
+          choiceBtn.addEventListener("click", function () {
+            if (q.dataset.answered) return;
+            q.dataset.answered = "1";
+            buttons.forEach(function (b) {
+              if (b.dataset.choice === answer) b.classList.add("correct");
+              else if (b === choiceBtn) b.classList.add("incorrect");
+              b.disabled = true;
+            });
+            if (explain) explain.classList.add("show");
+          });
+        });
+      });
+    })();
+  </script>
+
+</article>
+</body>
+</html>

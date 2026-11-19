@@ -1,0 +1,51 @@
+{
+  "location_id": "neobeunsungi",
+  "narration": {
+    "lang": "ko",
+    "path": "output/neobeunsungi/audio/narration-ko.wav",
+    "source": "AI TTS (Microsoft Heami Desktop, ko-KR, Windows SAPI 오프라인 합성)",
+    "is_ai_generated": true,
+    "tone": "차분·객관",
+    "en": null
+  },
+  "bgm": {
+    "path": "output/neobeunsungi/audio/bgm.wav",
+    "license": "self-generated",
+    "source": "자체 생성 앰비언트 패드 (numpy 합성, 로열티 프리)",
+    "volume_relative_to_narration": 0.25
+  },
+  "pronunciation_dict": [
+    {
+      "term": "1978",
+      "reading": "천구백칠십팔"
+    }
+  ],
+  "sync_timeline": [
+    {
+      "segment_id": "intro",
+      "start_sec": 0.0,
+      "end_sec": 46.0,
+      "text_ref": "story.intro.ko"
+    },
+    {
+      "segment_id": "development",
+      "start_sec": 46.0,
+      "end_sec": 210.2,
+      "text_ref": "story.development.ko"
+    },
+    {
+      "segment_id": "closing",
+      "start_sec": 210.2,
+      "end_sec": 280.7,
+      "text_ref": "story.closing.ko"
+    }
+  ],
+  "web_asset_package": {
+    "player_block": "audio",
+    "files": [
+      "output/neobeunsungi/audio/narration-ko.wav",
+      "output/neobeunsungi/audio/bgm.wav"
+    ],
+    "notes": "05-assemble 오디오 플레이어 블록에 즉시 연동"
+  }
+}

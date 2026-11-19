@@ -1,0 +1,28 @@
+{
+  "location_id": "goneuldong",
+  "narration": {
+    "lang": "ko",
+    "path": "output/goneuldong/audio/narration-ko.wav",
+    "source": "AI TTS (Microsoft Heami Desktop, ko-KR, Windows SAPI 오프라인 합성)",
+    "is_ai_generated": true,
+    "tone": "차분·객관",
+    "en": null
+  },
+  "bgm": {
+    "path": "output/goneuldong/audio/bgm.wav",
+    "license": "self-generated",
+    "source": "자체 생성 앰비언트 패드 (numpy 합성, 로열티 프리 — gwandeokjeong과 동일 트랙 재사용)",
+    "volume_relative_to_narration": 0.25
+  },
+  "pronunciation_dict": [],
+  "sync_timeline": [
+    { "segment_id": "intro", "start_sec": 0.0, "end_sec": 18.0, "text_ref": "story.intro.ko" },
+    { "segment_id": "development", "start_sec": 18.0, "end_sec": 178.0, "text_ref": "story.development.ko" },
+    { "segment_id": "closing", "start_sec": 178.0, "end_sec": 195.7, "text_ref": "story.closing.ko" }
+  ],
+  "web_asset_package": {
+    "player_block": "audio",
+    "files": ["output/goneuldong/audio/narration-ko.wav", "output/goneuldong/audio/bgm.wav"],
+    "notes": "05-assemble 오디오 플레이어 블록에 즉시 연동. pronunciation_dict는 카드에 별도 발음 지침이 없어 비워둠(임의로 지어내지 않음)."
+  }
+}

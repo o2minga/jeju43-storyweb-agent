@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>목소리와 기록 — 제주 4·3 스토리 지도</title>
+<style>
+/* truth.html / map.html과 같은 토큰 — 상세 페이지 3종이 같은 톤앤매너를 쓰도록. */
+:root {
+  --ink: #3A322D;
+  --body-text: #4A443F;
+  --card-bg: #F4EFEA;
+  --page-bg: #FBF7F2;
+  --line: #E3D8C9;
+  --accent: #E05353;
+  --accent-deep: #b83f3f;
+  --muted: #B9A6A6;
+  --bg-photo: url('assets/KakaoTalk_20260813_142854308_03.png');
+  --fz-base: 16px;
+}
+
+html { font-size: calc(var(--fz-base) * var(--fz, 1)); scroll-behavior: smooth; }
+
+html, body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Pretendard Variable', system-ui, Roboto, sans-serif;
+  background: var(--page-bg);
+  color: var(--body-text);
+  line-height: 1.65;
+}
+
+.wrap { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+h1, h2, h3 { font-family: 'Pretendard Variable', sans-serif; color: var(--ink); word-break: keep-all; }
+
+/* 상단 고정 헤더 */
+.top-bar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 14px 20px; background: rgba(58, 50, 45, 0.55); backdrop-filter: blur(8px);
+  color: #fff; box-sizing: border-box;
+}
+.top-bar-left { display: flex; align-items: center; gap: 14px; min-width: 0; flex-wrap: wrap; }
+.back-link { color: #fff; text-decoration: none; font-size: 0.88rem; font-weight: 600; white-space: nowrap; }
+.back-link:hover { text-decoration: underline; }
+.breadcrumb { font-size: 0.8rem; color: rgba(255, 255, 255, 0.75); white-space: nowrap; }
+.breadcrumb a { color: rgba(255, 255, 255, 0.75); text-decoration: none; }
+.breadcrumb a:hover { color: #fff; }
+.top-bar-right { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
+.top-bar-right button {
+  border: 1px solid rgba(255, 255, 255, 0.5); background: rgba(255, 255, 255, 0.08); color: #fff;
+  border-radius: 20px; padding: 5px 10px; font-size: 0.78rem; cursor: pointer; font-weight: 600;
+}
+.top-bar-right button:hover { background: rgba(255, 255, 255, 0.25); }
+#langToggle { border-radius: 14px; }
+
+/* 히어로 */
+.hero {
+  min-height: 46vh; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; padding: 130px 20px 56px; box-sizing: border-box;
+  background-image: linear-gradient(180deg, rgba(28, 22, 18, 0.5) 0%, rgba(28, 22, 18, 0.75) 100%), var(--bg-photo);
+  background-size: cover; background-position: center; background-repeat: no-repeat;
+}
+.badge { display: inline-block; border: 1px solid #fff; color: #fff; padding: 5px 14px; border-radius: 20px; font-size: 0.82rem; margin-bottom: 18px; }
+.hero h1 { color: #fff; font-size: 2.3rem; margin: 0 0 14px; text-shadow: 0 2px 16px rgba(0, 0, 0, 0.45); }
+.hero .lead { color: rgba(255, 255, 255, 0.9); max-width: 620px; margin: 0 auto; font-size: 1.02rem; }
+
+section.content { padding: 50px 0; }
+.section-kicker { color: var(--accent); font-weight: 700; letter-spacing: 0.08em; font-size: 0.82rem; text-transform: uppercase; margin-bottom: 6px; }
+.section-title { font-size: 1.5rem; margin: 0 0 10px; }
+.section-lead { color: var(--body-text); max-width: 680px; margin: 0 0 24px; }
+
+/* 이 아카이브는 실제 증언이 준비되기 전까지, 화면 예시를 위한 콘텐츠임을 알리는 배너 */
+.sample-banner {
+  background: rgba(224, 83, 83, 0.12);
+  border: 1px solid rgba(224, 83, 83, 0.35);
+  color: var(--accent-deep);
+  border-radius: 12px;
+  padding: 12px 18px;
+  font-size: 0.85rem;
+  margin: 0 0 30px;
+}
+
+/* 대표 오디오 플레이어 카드 */
+.player-card { background: var(--card-bg); border-radius: 12px; padding: 24px 26px; box-shadow: 0 8px 22px rgba(58, 50, 45, 0.1); }
+.player-kicker { color: var(--accent); font-weight: 700; font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+.player-title { font-size: 1.15rem; margin: 0 0 14px; }
+.player-quote {
+  font-family: 'Pretendard Variable', sans-serif;
+  font-size: 1.02rem;
+  color: var(--ink);
+  border-left: 3px solid var(--accent);
+  padding-left: 14px;
+  margin: 0 0 20px;
+}
+.player-controls { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.play-btn {
+  flex-shrink: 0; width: 46px; height: 46px; border-radius: 50%; border: none; background: var(--accent);
+  color: #fff; font-size: 1.1rem; cursor: pointer; display: flex; align-items: center; justify-content: center;
+}
+.play-btn:hover { background: var(--accent-deep); }
+.progress-track { flex: 1; min-width: 140px; height: 6px; border-radius: 4px; background: var(--line); position: relative; cursor: pointer; }
+.progress-fill { position: absolute; left: 0; top: 0; bottom: 0; width: 0%; border-radius: 4px; background: var(--accent); }
+.time-label { font-size: 0.8rem; color: var(--body-text); white-space: nowrap; min-width: 76px; text-align: right; }
+.volume-control { display: flex; align-items: center; gap: 6px; }
+.volume-control input[type="range"] { width: 70px; accent-color: var(--accent); }
+.player-notice { margin-top: 14px; font-size: 0.82rem; color: var(--accent-deep); display: none; }
+.player-notice.show { display: block; }
+
+/* 검색 & 필터 */
+.search-bar { margin-bottom: 18px; }
+.search-bar input[type="search"] {
+  width: 100%; box-sizing: border-box; padding: 11px 16px; border-radius: 24px; border: 1px solid var(--line);
+  background: var(--card-bg); color: var(--ink); font-size: 0.95rem; font-family: inherit;
+}
+.search-bar input[type="search"]::placeholder { color: var(--muted); }
+.search-bar input[type="search"]:focus { outline: none; border-color: var(--accent); }
+.filter-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 30px; }
+.filter-tab {
+  border: 1px solid var(--line); background: var(--card-bg); color: var(--ink);
+  padding: 7px 14px; border-radius: 20px; font-size: 0.85rem; cursor: pointer; font-family: inherit;
+}
+.filter-tab:hover { border-color: var(--accent); }
+.filter-tab.active { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 700; }
+
+/* 증언 카드 그리드 */
+.testimony-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+.testimony-card { background: var(--card-bg); border-radius: 12px; padding: 20px 22px; display: flex; flex-direction: column; }
+.testimony-card h3 { font-size: 1.04rem; margin: 0 0 6px; }
+.testimony-meta { font-size: 0.8rem; color: var(--body-text); opacity: 0.85; margin-bottom: 8px; }
+.testimony-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+.testimony-tags .tag { font-size: 0.72rem; color: var(--accent-deep); background: rgba(224, 83, 83, 0.1); border-radius: 10px; padding: 1px 8px; }
+.testimony-summary { font-size: 0.88rem; margin: 0 0 16px; flex: 1; }
+.testimony-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+.testimony-actions button {
+  border: 1px solid var(--accent); background: none; color: var(--accent-deep);
+  padding: 7px 14px; border-radius: 20px; font-size: 0.8rem; cursor: pointer; font-family: inherit; font-weight: 700;
+}
+.testimony-actions button:hover { background: var(--accent); color: #fff; }
+.testimony-actions button.ghost { border-color: var(--line); color: var(--ink); }
+.testimony-actions button.ghost:hover { background: var(--line); color: var(--ink); }
+.empty-note { padding: 30px 20px; color: var(--body-text); text-align: center; font-size: 0.88rem; grid-column: 1 / -1; }
+
+/* 녹취록 모달 */
+.modal-overlay {
+  position: fixed; inset: 0; background: rgba(28, 22, 18, 0.55); z-index: 2000; display: none;
+  align-items: center; justify-content: center; padding: 20px;
+}
+.modal-overlay.show { display: flex; }
+.modal-box {
+  background: var(--card-bg); border-radius: 12px; max-width: 560px; width: 100%; max-height: 80vh;
+  overflow-y: auto; padding: 26px 28px; position: relative;
+}
+.modal-box .modal-close {
+  position: absolute; top: 14px; right: 16px; border: none; background: none; color: var(--body-text);
+  font-size: 1.2rem; cursor: pointer;
+}
+.modal-box .modal-sample-tag {
+  display: inline-block; font-size: 0.7rem; font-weight: 700; color: var(--accent-deep);
+  background: rgba(224, 83, 83, 0.12); border-radius: 10px; padding: 2px 9px; margin-bottom: 10px;
+}
+.modal-box h3 { margin: 0 0 4px; font-size: 1.1rem; }
+.modal-box .modal-meta { font-size: 0.8rem; color: var(--body-text); opacity: 0.85; margin-bottom: 16px; }
+.modal-box .modal-transcript { font-size: 0.92rem; white-space: pre-line; }
+
+/* 하단 네비게이션 */
+.bottom-nav { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; padding: 10px 0 90px; }
+.bottom-nav a {
+  display: inline-block; border: 1px solid var(--accent); color: var(--accent-deep); background: var(--card-bg);
+  padding: 12px 24px; border-radius: 30px; text-decoration: none; font-weight: 700; font-size: 0.92rem;
+}
+.bottom-nav a:hover { background: var(--accent); color: #fff; }
+
+/* 우측 하단 플로팅 챗봇 버튼 */
+.chatbot-fab {
+  position: fixed; right: 20px; bottom: 20px; z-index: 1500; display: flex; align-items: center; gap: 8px;
+  background: var(--ink); color: #fff; border: none; border-radius: 30px; padding: 10px 18px 10px 12px;
+  cursor: pointer; box-shadow: 0 8px 22px rgba(0, 0, 0, 0.3); font-size: 0.88rem; font-weight: 700;
+}
+.chatbot-fab:hover { background: #4a4038; }
+.chatbot-panel {
+  position: fixed; right: 20px; bottom: 78px; z-index: 1500; width: 260px; background: var(--card-bg);
+  border-radius: 12px; padding: 16px 18px; box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25); display: none;
+  font-size: 0.85rem; color: var(--ink);
+}
+.chatbot-panel.show { display: block; }
+.chatbot-panel .close-panel { position: absolute; top: 8px; right: 10px; border: none; background: none; color: var(--body-text); font-size: 1rem; cursor: pointer; }
+
+@media (max-width: 760px) {
+  .testimony-grid { grid-template-columns: 1fr; }
+  .hero { padding: 110px 16px 44px; }
+  .hero h1 { font-size: 1.8rem; }
+  .breadcrumb { display: none; }
+}
+</style>
+</head>
+<body>
+
+<header class="top-bar">
+  <div class="top-bar-left">
+    <a class="back-link" href="index.html" id="backLink">← 메인으로 돌아가기</a>
+    <nav class="breadcrumb" aria-label="현재 위치" id="breadcrumb"><a href="index.html">홈</a> &gt; <span id="breadcrumbCurrent">목소리와 기록</span></nav>
+  </div>
+  <div class="top-bar-right">
+    <button id="fzMinus" type="button" title="글자 작게" aria-label="글자 작게">A-</button>
+    <button id="fzPlus" type="button" title="글자 크게" aria-label="글자 크게">A+</button>
+    <button id="langToggle" type="button" title="언어 전환" aria-label="언어 전환">EN</button>
+  </div>
+</header>
+
+<section class="hero">
+  <span class="badge" id="heroBadge">제주 4·3 78주년</span>
+  <h1 id="heroTitle">목소리와 기록</h1>
+  <p class="lead" id="heroLead">생존 희생자와 유족들의 생생한 목소리, 그날의 기억을 오디오와 구술 기록으로 들려드립니다.</p>
+</section>
+
+<section class="content">
+  <div class="wrap">
+    <p class="sample-banner" id="sampleBanner">이 아카이브는 아직 준비 중입니다. 아래 오디오·증언은 화면 구성을 보여주기 위한 예시 콘텐츠이며, 실제 증언이나 음성 기록이 아닙니다. 실제 자료가 검증되면 이 자리에 채워질 예정입니다.</p>
+
+    <div class="player-card">
+      <div class="player-kicker" id="playerKicker">FEATURED</div>
+      <h2 class="player-title" id="playerTitle">북촌리 애기무덤에 얽힌 이야기 (증언자: 북촌리 주민 · 예시)</h2>
+      <p class="player-quote" id="playerQuote">"그날 마을 전체에 불이 나고... 아이들을 품에 안고 밭담 뒤로 숨었던 기억이 아직도 선합니다."</p>
+      <div class="player-controls">
+        <button class="play-btn" id="playBtn" type="button" aria-label="재생">▶</button>
+        <div class="progress-track" id="progressTrack"><div class="progress-fill" id="progressFill"></div></div>
+        <span class="time-label" id="timeLabel">0:00 / 0:00</span>
+        <div class="volume-control">
+          <span aria-hidden="true">🔈</span>
+          <input type="range" id="volumeSlider" min="0" max="100" value="80" aria-label="음량">
+        </div>
+      </div>
+      <p class="player-notice" id="playerNotice">실제 음성 파일은 아직 준비 중입니다. 자료가 검증되면 이 자리에서 바로 들으실 수 있어요.</p>
+    </div>
+  </div>
+</section>
+
+<section class="content" style="padding-top:0;">
+  <div class="wrap">
+    <p class="section-kicker" id="archiveKicker">ARCHIVE</p>
+    <h2 class="section-title" id="archiveTitle">증언 아카이브</h2>
+    <p class="section-lead" id="archiveLead">증언자 성함, 유적지명, 키워드로 찾아보세요.</p>
+    <div class="search-bar"><input type="search" id="testimonySearch" aria-label="증언 검색"></div>
+    <div class="filter-tabs" id="filterTabs"></div>
+    <div class="testimony-grid" id="testimonyGrid"></div>
+  </div>
+</section>
+
+<div class="bottom-nav">
+  <a href="gallery.html" id="navGallery">미디어 갤러리 보러가기</a>
+  <a href="map.html" id="navMap">지도로 유적지 탐방하기</a>
+</div>
+
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal-box">
+    <button class="modal-close" id="modalClose" type="button" aria-label="닫기">✕</button>
+    <div class="modal-sample-tag" id="modalSampleTag">예시 콘텐츠 · 실제 증언 아님</div>
+    <h3 id="modalTitle"></h3>
+    <div class="modal-meta" id="modalMeta"></div>
+    <div class="modal-transcript" id="modalTranscript"></div>
+  </div>
+</div>
+
+<button class="chatbot-fab" id="chatbotFab" type="button" aria-haspopup="true" aria-expanded="false">
+  <svg width="22" height="22" viewBox="0 0 100 100" aria-hidden="true">
+    <g>
+      <ellipse cx="50" cy="20" rx="16" ry="22" fill="#e0607a"/>
+      <ellipse cx="50" cy="20" rx="16" ry="22" fill="#e0607a" transform="rotate(60 50 50)"/>
+      <ellipse cx="50" cy="20" rx="16" ry="22" fill="#e0607a" transform="rotate(120 50 50)"/>
+      <ellipse cx="50" cy="20" rx="16" ry="22" fill="#e0607a" transform="rotate(180 50 50)"/>
+      <ellipse cx="50" cy="20" rx="16" ry="22" fill="#e0607a" transform="rotate(240 50 50)"/>
+      <ellipse cx="50" cy="20" rx="16" ry="22" fill="#e0607a" transform="rotate(300 50 50)"/>
+      <circle cx="50" cy="50" r="16" fill="#f6c94d"/>
+    </g>
+  </svg>
+  <span id="chatbotFabLabel">4·3 AI 챗봇</span>
+</button>
+<div class="chatbot-panel" id="chatbotPanel" role="dialog" aria-label="4·3 AI 챗봇">
+  <button class="close-panel" id="chatbotClose" type="button" aria-label="닫기">✕</button>
+  <p id="chatbotPanelText" style="margin:0;">이 페이지의 AI 챗봇은 아직 준비 중입니다. 장소별 상세 페이지에서 먼저 만나보실 수 있어요.</p>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  // 아래 4건은 실제 증언·구술 채록이 아니라, 카드 그리드/필터/모달 UI를 보여주기 위한 예시 콘텐츠다.
+  // 진짜 증언은 반드시 사람이 채록·검증한 뒤 출처와 함께 이 자리에 올라가야 한다(지어내기 금지 원칙).
+  var TESTIMONIES = [
+    {
+      id: "goneuldong-1", category: "survivor",
+      title: { ko: "불타버린 고향, 곤을동의 기억", en: "A Burned Hometown: Memories of Goneul-dong" },
+      person: { ko: "김OO 어르신 · 사건 당시 12세 (예시)", en: "Mr./Ms. Kim O.O. · age 12 at the time (sample)" },
+      tags: { ko: ["#곤을동", "#잃어버린마을"], en: ["#Goneuldong", "#LostVillage"] },
+      summary: { ko: "바닷가 마을이 하루아침에 불타 사라지던 그날을 떠올리는 구술 예시입니다.", en: "A sample account recalling the day a coastal village burned and disappeared." },
+      transcript: { ko: "이것은 화면 구성을 보여주기 위한 예시 녹취록입니다. 실제 증언이 검증되면 이 자리에 실제 채록 전문이 올라갑니다.", en: "This is a sample transcript for layout purposes only. The verified real transcript will replace this text." }
+    },
+    {
+      id: "seotalloreum-1", category: "family",
+      title: { ko: "섯알오름의 통곡, 그날의 아침", en: "Weeping at Seotalloreum, That Morning" },
+      person: { ko: "이OO 유족 (예시)", en: "Ms./Mr. Lee O.O., bereaved family (sample)" },
+      tags: { ko: ["#섯알오름", "#백조일손"], en: ["#Seotalloreum", "#Baekjoilson"] },
+      summary: { ko: "백조일손 유족의 구술을 상상한 예시 요약으로, 실제 채록 내용이 아닙니다.", en: "A sample summary imagining a bereaved family's account — not an actual recorded testimony." },
+      transcript: { ko: "이것은 화면 구성을 보여주기 위한 예시 녹취록입니다. 실제 증언이 검증되면 이 자리에 실제 채록 전문이 올라갑니다.", en: "This is a sample transcript for layout purposes only. The verified real transcript will replace this text." }
+    },
+    {
+      id: "neobeunsungi-1", category: "family",
+      title: { ko: "너븐숭이 애기무덤을 바라보며", en: "Looking at the Neobeunsungi Baby Graves" },
+      person: { ko: "박OO 유족 (예시)", en: "Ms./Mr. Park O.O., bereaved family (sample)" },
+      tags: { ko: ["#너븐숭이43기념관", "#북촌리"], en: ["#Neobeunsungi", "#Bukchonri"] },
+      summary: { ko: "북촌 사건 당시 아동 희생자 유족의 구술을 상상한 예시 요약입니다.", en: "A sample summary imagining an account from a family of a child victim of the Bukchon incident." },
+      transcript: { ko: "이것은 화면 구성을 보여주기 위한 예시 녹취록입니다. 실제 증언이 검증되면 이 자리에 실제 채록 전문이 올라갑니다.", en: "This is a sample transcript for layout purposes only. The verified real transcript will replace this text." }
+    },
+    {
+      id: "peace-park-guide", category: "guide",
+      title: { ko: "제주 4·3 평화공원 오디오 도슨트", en: "Jeju 4·3 Peace Park Audio Guide" },
+      person: { ko: "평화기념관 전시 해설 (예시)", en: "Peace Memorial Hall exhibition guide (sample)" },
+      tags: { ko: ["#평화공원", "#오디오가이드"], en: ["#PeacePark", "#AudioGuide"] },
+      summary: { ko: "평화박물관 핵심 전시를 소개하는 현장 가이드 형식의 예시 요약입니다.", en: "A sample on-site guide summary introducing the peace museum's core exhibits." },
+      transcript: { ko: "이것은 화면 구성을 보여주기 위한 예시 녹취록입니다. 실제 도슨트 음성이 준비되면 이 자리에 실제 대본이 올라갑니다.", en: "This is a sample transcript for layout purposes only. The real docent script will replace this text once ready." }
+    }
+  ];
+
+  var I18N = {
+    ko: {
+      docTitle: "목소리와 기록 — 제주 4·3 스토리 지도",
+      backLink: "← 메인으로 돌아가기", breadcrumbHome: "홈", breadcrumbCurrent: "목소리와 기록",
+      fzMinus: "글자 작게", fzPlus: "글자 크게", langToggleTitle: "언어 전환",
+      heroBadge: "제주 4·3 78주년",
+      heroTitle: "목소리와 기록",
+      heroLead: "생존 희생자와 유족들의 생생한 목소리, 그날의 기억을 오디오와 구술 기록으로 들려드립니다.",
+      sampleBanner: "이 아카이브는 아직 준비 중입니다. 아래 오디오·증언은 화면 구성을 보여주기 위한 예시 콘텐츠이며, 실제 증언이나 음성 기록이 아닙니다. 실제 자료가 검증되면 이 자리에 채워질 예정입니다.",
+      playerKicker: "FEATURED",
+      playerTitle: "북촌리 애기무덤에 얽힌 이야기 (증언자: 북촌리 주민 · 예시)",
+      playerQuote: "\"그날 마을 전체에 불이 나고... 아이들을 품에 안고 밭담 뒤로 숨었던 기억이 아직도 선합니다.\"",
+      playerNotice: "실제 음성 파일은 아직 준비 중입니다. 자료가 검증되면 이 자리에서 바로 들으실 수 있어요.",
+      archiveKicker: "ARCHIVE", archiveTitle: "증언 아카이브",
+      archiveLead: "증언자 성함, 유적지명, 키워드로 찾아보세요.",
+      searchPlaceholder: "증언자 성함, 유적지명, 키워드로 검색",
+      filterAll: "전체 보기",
+      filters: { survivor: "생존 희생자 증언", family: "유족 구술", guide: "현장 오디오 가이드", poetry: "음악·시 낭송" },
+      emptyNote: "이 조건에 맞는 증언이 아직 없습니다.",
+      listenBtn: "▶ 오디오 듣기", readBtn: "전문(녹취록) 읽기",
+      modalSampleTag: "예시 콘텐츠 · 실제 증언 아님",
+      navGallery: "미디어 갤러리 보러가기", navMap: "지도로 유적지 탐방하기",
+      chatbotFabLabel: "4·3 AI 챗봇",
+      chatbotPanelText: "이 페이지의 AI 챗봇은 아직 준비 중입니다. 장소별 상세 페이지에서 먼저 만나보실 수 있어요."
+    },
+    en: {
+      docTitle: "Voices & Records — Jeju 4·3 Story Map",
+      backLink: "← Back to Main", breadcrumbHome: "Home", breadcrumbCurrent: "Voices & Records",
+      fzMinus: "Smaller text", fzPlus: "Larger text", langToggleTitle: "Switch language",
+      heroBadge: "Jeju 4·3, 78th Anniversary",
+      heroTitle: "Voices & Records",
+      heroLead: "Hear the living voices of survivors and bereaved families — memories of that day, kept in audio and oral records.",
+      sampleBanner: "This archive is still being built. The audio and testimonies below are sample content shown only to preview the page layout, and are not real testimonies or recordings. Verified material will replace them here.",
+      playerKicker: "FEATURED",
+      playerTitle: "A Story Tied to the Bukchon Baby Graves (Speaker: a Bukchon-ri resident · sample)",
+      playerQuote: "\"That day the whole village caught fire... I still remember clearly holding the children close and hiding behind the stone field walls.\"",
+      playerNotice: "The real audio file is still being prepared. You'll be able to listen right here once it's verified.",
+      archiveKicker: "ARCHIVE", archiveTitle: "Testimony Archive",
+      archiveLead: "Search by speaker's name, site name, or keyword.",
+      searchPlaceholder: "Search by speaker's name, site name, or keyword",
+      filterAll: "All",
+      filters: { survivor: "Survivor Testimony", family: "Family Accounts", guide: "On-site Audio Guide", poetry: "Music & Poetry Readings" },
+      emptyNote: "No testimonies match this filter yet.",
+      listenBtn: "▶ Listen", readBtn: "Read full transcript",
+      modalSampleTag: "Sample content · not a real testimony",
+      navGallery: "See the Media Gallery", navMap: "Explore the Sites on the Map",
+      chatbotFabLabel: "Jeju 4·3 AI Chatbot",
+      chatbotPanelText: "The AI chatbot for this page is still being prepared. You can already try it on individual place pages."
+    }
+  };
+
+  var lang = "ko";
+  try { if (localStorage.getItem("jeju43-lang") === "en") lang = "en"; } catch (e) { /* 무시 */ }
+  function t(key) { return I18N[lang][key]; }
+  function pick(field) { return field[lang] || field.ko; }
+
+  var categoryFilter = "all";
+  var searchQuery = "";
+
+  function getFilteredTestimonies() {
+    var q = searchQuery.trim().toLowerCase();
+    return TESTIMONIES.filter(function (item) {
+      if (categoryFilter !== "all" && item.category !== categoryFilter) return false;
+      if (!q) return true;
+      var haystack = (pick(item.title) + " " + pick(item.person) + " " + pick(item.tags).join(" ")).toLowerCase();
+      return haystack.indexOf(q) !== -1;
+    });
+  }
+
+  function renderFilterTabs() {
+    var el = document.getElementById("filterTabs");
+    el.innerHTML = "";
+    function makeTab(key, label) {
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "filter-tab" + (categoryFilter === key ? " active" : "");
+      btn.textContent = label;
+      btn.addEventListener("click", function () { categoryFilter = key; renderAll(); });
+      return btn;
+    }
+    el.appendChild(makeTab("all", t("filterAll")));
+    Object.keys(t("filters")).forEach(function (key) {
+      el.appendChild(makeTab(key, t("filters")[key]));
+    });
+  }
+
+  function renderTestimonyGrid() {
+    var el = document.getElementById("testimonyGrid");
+    el.innerHTML = "";
+    var list = getFilteredTestimonies();
+    if (!list.length) {
+      el.insertAdjacentHTML("beforeend", '<p class="empty-note">' + t("emptyNote") + "</p>");
+      return;
+    }
+    list.forEach(function (item) {
+      var card = document.createElement("div");
+      card.className = "testimony-card";
+      var tagsHtml = pick(item.tags).map(function (tag) { return '<span class="tag">' + tag + "</span>"; }).join("");
+      card.innerHTML =
+        "<h3>" + pick(item.title) + "</h3>" +
+        '<div class="testimony-meta">' + pick(item.person) + "</div>" +
+        '<div class="testimony-tags">' + tagsHtml + "</div>" +
+        '<p class="testimony-summary">' + pick(item.summary) + "</p>" +
+        '<div class="testimony-actions">' +
+        '<button type="button" class="listen-btn">' + t("listenBtn") + "</button>" +
+        '<button type="button" class="ghost read-btn">' + t("readBtn") + "</button>" +
+        "</div>";
+      card.querySelector(".listen-btn").addEventListener("click", function () { showPlayerNotice(); });
+      card.querySelector(".read-btn").addEventListener("click", function () { openModal(item); });
+      el.appendChild(card);
+    });
+  }
+
+  var modalOverlay = document.getElementById("modalOverlay");
+  function openModal(item) {
+    document.getElementById("modalSampleTag").textContent = t("modalSampleTag");
+    document.getElementById("modalTitle").textContent = pick(item.title);
+    document.getElementById("modalMeta").textContent = pick(item.person) + " · " + pick(item.tags).join(" ");
+    document.getElementById("modalTranscript").textContent = pick(item.transcript);
+    modalOverlay.classList.add("show");
+  }
+  function closeModal() { modalOverlay.classList.remove("show"); }
+  document.getElementById("modalClose").addEventListener("click", closeModal);
+  modalOverlay.addEventListener("click", function (e) { if (e.target === modalOverlay) closeModal(); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeModal(); });
+
+  var playerNoticeEl = document.getElementById("playerNotice");
+  var playerNoticeTimer = null;
+  function showPlayerNotice() {
+    playerNoticeEl.classList.add("show");
+    clearTimeout(playerNoticeTimer);
+    playerNoticeTimer = setTimeout(function () { playerNoticeEl.classList.remove("show"); }, 4000);
+  }
+  document.getElementById("playBtn").addEventListener("click", showPlayerNotice);
+  document.getElementById("progressTrack").addEventListener("click", showPlayerNotice);
+  document.getElementById("volumeSlider").addEventListener("input", showPlayerNotice);
+
+  document.getElementById("testimonySearch").addEventListener("input", function (e) {
+    searchQuery = e.target.value;
+    renderTestimonyGrid();
+  });
+
+  function applyStaticText() {
+    document.title = t("docTitle");
+    document.documentElement.lang = lang;
+    document.getElementById("backLink").textContent = t("backLink");
+    document.getElementById("breadcrumbCurrent").textContent = t("breadcrumbCurrent");
+    document.querySelector("#breadcrumb a").textContent = t("breadcrumbHome");
+    document.getElementById("fzMinus").title = t("fzMinus");
+    document.getElementById("fzMinus").setAttribute("aria-label", t("fzMinus"));
+    document.getElementById("fzPlus").title = t("fzPlus");
+    document.getElementById("fzPlus").setAttribute("aria-label", t("fzPlus"));
+    var langBtn = document.getElementById("langToggle");
+    langBtn.title = t("langToggleTitle");
+    langBtn.setAttribute("aria-label", t("langToggleTitle"));
+    langBtn.textContent = lang === "ko" ? "EN" : "KO";
+    document.getElementById("heroBadge").textContent = t("heroBadge");
+    document.getElementById("heroTitle").textContent = t("heroTitle");
+    document.getElementById("heroLead").textContent = t("heroLead");
+    document.getElementById("sampleBanner").textContent = t("sampleBanner");
+    document.getElementById("playerKicker").textContent = t("playerKicker");
+    document.getElementById("playerTitle").textContent = t("playerTitle");
+    document.getElementById("playerQuote").textContent = t("playerQuote");
+    document.getElementById("playerNotice").textContent = t("playerNotice");
+    document.getElementById("archiveKicker").textContent = t("archiveKicker");
+    document.getElementById("archiveTitle").textContent = t("archiveTitle");
+    document.getElementById("archiveLead").textContent = t("archiveLead");
+    document.getElementById("testimonySearch").setAttribute("placeholder", t("searchPlaceholder"));
+    document.getElementById("navGallery").textContent = t("navGallery");
+    document.getElementById("navMap").textContent = t("navMap");
+    document.getElementById("chatbotFabLabel").textContent = t("chatbotFabLabel");
+    document.getElementById("chatbotPanelText").textContent = t("chatbotPanelText");
+  }
+
+  function renderAll() {
+    applyStaticText();
+    renderFilterTabs();
+    renderTestimonyGrid();
+  }
+
+  document.getElementById("langToggle").addEventListener("click", function () {
+    lang = lang === "ko" ? "en" : "ko";
+    try { localStorage.setItem("jeju43-lang", lang); } catch (e) { /* 무시 */ }
+    renderAll();
+  });
+
+  var FZ_MIN = 0.9, FZ_MAX = 1.3, FZ_STEP = 0.1;
+  var fz = 1;
+  function applyFz() { document.documentElement.style.setProperty("--fz", fz.toFixed(2)); }
+  document.getElementById("fzMinus").addEventListener("click", function () {
+    fz = Math.max(FZ_MIN, +(fz - FZ_STEP).toFixed(2)); applyFz();
+  });
+  document.getElementById("fzPlus").addEventListener("click", function () {
+    fz = Math.min(FZ_MAX, +(fz + FZ_STEP).toFixed(2)); applyFz();
+  });
+
+  var chatbotFab = document.getElementById("chatbotFab");
+  var chatbotPanel = document.getElementById("chatbotPanel");
+  chatbotFab.addEventListener("click", function () {
+    var showing = chatbotPanel.classList.toggle("show");
+    chatbotFab.setAttribute("aria-expanded", String(showing));
+  });
+  document.getElementById("chatbotClose").addEventListener("click", function () {
+    chatbotPanel.classList.remove("show");
+    chatbotFab.setAttribute("aria-expanded", "false");
+  });
+
+  renderAll();
+})();
+</script>
+</body>
+</html>

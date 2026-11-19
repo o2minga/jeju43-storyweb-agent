@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>추모의 마음 — 제주 4·3 스토리 지도</title>
+<style>
+/* truth.html / map.html / voices.html / gallery.html과 같은 토큰 — 상세 페이지 전체 톤앤매너 통일. */
+:root {
+  --ink: #3A322D;
+  --body-text: #4A443F;
+  --card-bg: #F4EFEA;
+  --page-bg: #FBF7F2;
+  --line: #E3D8C9;
+  --accent: #E05353;
+  --accent-deep: #b83f3f;
+  --muted: #B9A6A6;
+  --bg-photo: url('assets/KakaoTalk_20260813_142854308_03.png');
+  --fz-base: 16px;
+}
+
+html { font-size: calc(var(--fz-base) * var(--fz, 1)); scroll-behavior: smooth; }
+
+html, body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Pretendard Variable', system-ui, Roboto, sans-serif;
+  background: var(--page-bg);
+  color: var(--body-text);
+  line-height: 1.65;
+}
+
+.wrap { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+h1, h2, h3 { font-family: 'Pretendard Variable', sans-serif; color: var(--ink); word-break: keep-all; }
+
+/* 상단 고정 헤더 */
+.top-bar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 14px 20px; background: rgba(58, 50, 45, 0.55); backdrop-filter: blur(8px);
+  color: #fff; box-sizing: border-box;
+}
+.top-bar-left { display: flex; align-items: center; gap: 14px; min-width: 0; flex-wrap: wrap; }
+.back-link { color: #fff; text-decoration: none; font-size: 0.88rem; font-weight: 600; white-space: nowrap; }
+.back-link:hover { text-decoration: underline; }
+.breadcrumb { font-size: 0.8rem; color: rgba(255, 255, 255, 0.75); white-space: nowrap; }
+.breadcrumb a { color: rgba(255, 255, 255, 0.75); text-decoration: none; }
+.breadcrumb a:hover { color: #fff; }
+.top-bar-right { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
+.top-bar-right button {
+  border: 1px solid rgba(255, 255, 255, 0.5); background: rgba(255, 255, 255, 0.08); color: #fff;
+  border-radius: 20px; padding: 5px 10px; font-size: 0.78rem; cursor: pointer; font-weight: 600;
+}
+.top-bar-right button:hover { background: rgba(255, 255, 255, 0.25); }
+#langToggle { border-radius: 14px; }
+
+/* 히어로 */
+.hero {
+  min-height: 46vh; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; padding: 130px 20px 56px; box-sizing: border-box;
+  background-image: linear-gradient(180deg, rgba(28, 22, 18, 0.5) 0%, rgba(28, 22, 18, 0.75) 100%), var(--bg-photo);
+  background-size: cover; background-position: center; background-repeat: no-repeat;
+}
+.badge { display: inline-block; border: 1px solid #fff; color: #fff; padding: 5px 14px; border-radius: 20px; font-size: 0.82rem; margin-bottom: 18px; }
+.hero h1 { color: #fff; font-size: 2.3rem; margin: 0 0 14px; text-shadow: 0 2px 16px rgba(0, 0, 0, 0.45); }
+.hero .lead { color: rgba(255, 255, 255, 0.9); max-width: 620px; margin: 0 auto; font-size: 1.02rem; }
+
+section.content { padding: 46px 0; }
+.section-kicker { color: var(--accent); font-weight: 700; letter-spacing: 0.08em; font-size: 0.82rem; text-transform: uppercase; margin-bottom: 6px; }
+.section-title { font-size: 1.4rem; margin: 0 0 10px; }
+
+/* 헌화 존 */
+.tribute-zone { background: var(--card-bg); border-radius: 12px; padding: 32px 26px; text-align: center; }
+.tribute-count { font-family: 'Pretendard Variable', sans-serif; font-size: 1.5rem; color: var(--accent-deep); margin-bottom: 4px; }
+.tribute-count .num { font-weight: 700; }
+.tribute-note { font-size: 0.76rem; color: var(--body-text); opacity: 0.7; margin-bottom: 22px; }
+.altar { position: relative; height: 64px; margin-bottom: 18px; display: flex; align-items: flex-end; justify-content: center; }
+.altar-base { width: 140px; height: 10px; border-radius: 6px; background: var(--line); }
+.falling-flower { position: absolute; bottom: 8px; font-size: 1.4rem; opacity: 0; pointer-events: none; }
+.falling-flower.drop { animation: flowerDrop 0.9s ease forwards; }
+@keyframes flowerDrop {
+  0% { opacity: 0; transform: translateY(-46px) scale(0.6) rotate(-15deg); }
+  60% { opacity: 1; transform: translateY(0) scale(1.05) rotate(6deg); }
+  100% { opacity: 1; transform: translateY(0) scale(1) rotate(0deg); }
+}
+.tribute-btn {
+  border: none; background: var(--accent); color: #fff; font-size: 1.02rem; font-weight: 700;
+  padding: 14px 30px; border-radius: 30px; cursor: pointer; box-shadow: 0 10px 24px rgba(224, 83, 83, 0.32);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.tribute-btn:hover { transform: translateY(-2px); box-shadow: 0 14px 28px rgba(224, 83, 83, 0.42); }
+.tribute-btn:active { transform: translateY(0) scale(0.98); }
+
+/* 작성 폼 카드 */
+.form-card { background: var(--card-bg); border-radius: 12px; padding: 26px 28px; margin-top: 40px; }
+.form-row { margin-bottom: 16px; }
+.form-row label { display: block; font-size: 0.82rem; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
+.form-row input[type="text"], .form-row textarea {
+  width: 100%; box-sizing: border-box; border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px;
+  font-family: inherit; font-size: 0.92rem; color: var(--ink); background: #fff;
+}
+.form-row input[type="text"]:focus, .form-row textarea:focus { outline: none; border-color: var(--accent); }
+.form-row textarea { resize: vertical; min-height: 80px; }
+.char-count { text-align: right; font-size: 0.76rem; color: var(--body-text); opacity: 0.75; margin-top: 4px; }
+.char-count.limit { color: var(--accent-deep); font-weight: 700; }
+.submit-btn {
+  border: none; background: var(--accent); color: #fff; font-weight: 700; font-size: 0.92rem;
+  padding: 11px 24px; border-radius: 24px; cursor: pointer;
+}
+.submit-btn:hover { background: var(--accent-deep); }
+.submit-btn:disabled { background: var(--muted); cursor: not-allowed; }
+.form-error { color: var(--accent-deep); font-size: 0.8rem; margin-top: 8px; display: none; }
+.form-error.show { display: block; }
+.local-note { font-size: 0.76rem; color: var(--body-text); opacity: 0.7; margin-top: 10px; }
+
+/* 방명록 그리드 */
+.guestbook-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 34px; }
+.memorial-card { background: var(--card-bg); border-radius: 12px; padding: 18px 20px; display: flex; flex-direction: column; }
+.memorial-card .flower-icon { font-size: 1.3rem; margin-bottom: 8px; }
+.memorial-card .msg { font-size: 0.92rem; color: var(--ink); margin: 0 0 14px; flex: 1; word-break: break-word; }
+.memorial-card .card-footer { display: flex; align-items: center; justify-content: space-between; font-size: 0.78rem; color: var(--body-text); opacity: 0.85; }
+.memorial-card .author-line { display: flex; flex-direction: column; }
+.like-btn { border: none; background: none; cursor: pointer; font-size: 0.88rem; color: var(--body-text); display: flex; align-items: center; gap: 4px; }
+.like-btn.liked { color: var(--accent-deep); }
+
+/* 하단 네비게이션 */
+.bottom-nav { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; padding: 46px 0 90px; }
+.bottom-nav a {
+  display: inline-block; border: 1px solid var(--accent); color: var(--accent-deep); background: var(--card-bg);
+  padding: 12px 24px; border-radius: 30px; text-decoration: none; font-weight: 700; font-size: 0.92rem;
+}
+.bottom-nav a:hover { background: var(--accent); color: #fff; }
+
+/* 우측 하단 플로팅 챗봇 버튼 */
+.chatbot-fab {
+  position: fixed; right: 20px; bottom: 20px; z-index: 1500; display: flex; align-items: center; gap: 8px;
+  background: var(--ink); color: #fff; border: none; border-radius: 30px; padding: 10px 18px 10px 12px;
+  cursor: pointer; box-shadow: 0 8px 22px rgba(0, 0, 0, 0.3); font-size: 0.88rem; font-weight: 700;
+}
+.chatbot-fab:hover { background: #4a4038; }
+.chatbot-panel {
+  position: fixed; right: 20px; bottom: 78px; z-index: 1500; width: 260px; background: var(--card-bg);
+  border-radius: 12px; padding: 16px 18px; box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25); display: none;
+  font-size: 0.85rem; color: var(--ink);
+}
+.chatbot-panel.show { display: block; }
+.chatbot-panel .close-panel { position: absolute; top: 8px; right: 10px; border: none; background: none; color: var(--body-text); font-size: 1rem; cursor: pointer; }
+
+@media (max-width: 900px) {
+  .guestbook-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  .guestbook-grid { grid-template-columns: 1fr; }
+  .hero { padding: 110px 16px 44px; }
+  .hero h1 { font-size: 1.8rem; }
+  .breadcrumb { display: none; }
+}
+</style>
+</head>
+<body>
+
+<header class="top-bar">
+  <div class="top-bar-left">
+    <a class="back-link" href="index.html" id="backLink">← 메인으로 돌아가기</a>
+    <nav class="breadcrumb" aria-label="현재 위치" id="breadcrumb"><a href="index.html">홈</a> &gt; <span id="breadcrumbCurrent">추모의 마음</span></nav>
+  </div>
+  <div class="top-bar-right">
+    <button id="fzMinus" type="button" title="글자 작게" aria-label="글자 작게">A-</button>
+    <button id="fzPlus" type="button" title="글자 크게" aria-label="글자 크게">A+</button>
+    <button id="langToggle" type="button" title="언어 전환" aria-label="언어 전환">EN</button>
+  </div>
+</header>
+
+<section class="hero">
+  <span class="badge" id="heroBadge">제주 4·3 78주년</span>
+  <h1 id="heroTitle">추모의 마음</h1>
+  <p class="lead" id="heroLead">78년의 세월을 넘어, 희생자분들의 넋을 기리며 한 송이 동백꽃과 따뜻한 추모의 한 줄을 남겨주세요.</p>
+</section>
+
+<section class="content">
+  <div class="wrap">
+    <div class="tribute-zone">
+      <div class="tribute-count" id="tributeCount"></div>
+      <p class="tribute-note" id="tributeNote">이 브라우저에 기록된 누적 헌화 수입니다.</p>
+      <div class="altar">
+        <span class="falling-flower" id="fallingFlower">🌸</span>
+        <div class="altar-base"></div>
+      </div>
+      <button class="tribute-btn" id="tributeBtn" type="button">🌸 <span id="tributeBtnLabel">한 송이 동백꽃 헌화하기</span></button>
+    </div>
+
+    <div class="form-card">
+      <h2 class="section-title" id="formTitle">추모의 글 남기기</h2>
+      <form id="memorialForm">
+        <div class="form-row">
+          <label for="authorInput" id="authorLabel">작성자 이름 / 닉네임</label>
+          <input type="text" id="authorInput" maxlength="30" required>
+        </div>
+        <div class="form-row">
+          <label for="messageInput" id="messageLabel">추모 메시지 (최대 100자)</label>
+          <textarea id="messageInput" maxlength="100" required></textarea>
+          <div class="char-count" id="charCount">0 / 100</div>
+        </div>
+        <button type="submit" class="submit-btn" id="submitBtn">추모의 글 남기기</button>
+        <p class="form-error" id="formError">이름과 메시지를 모두 입력해 주세요.</p>
+        <p class="form-error" id="formNetworkError">글을 저장하지 못했습니다. 잠시 후 다시 시도해 주세요.</p>
+      </form>
+    </div>
+
+    <p class="local-note" id="guestbookStatus" style="display:none;"></p>
+    <div class="guestbook-grid" id="guestbookGrid"></div>
+  </div>
+</section>
+
+<div class="bottom-nav">
+  <a href="peace.html" id="navPeace">평화와 상생 보러가기</a>
+  <a href="map.html" id="navMap">지도로 유적지 탐방하기</a>
+</div>
+
+<button class="chatbot-fab" id="chatbotFab" type="button" aria-haspopup="true" aria-expanded="false">
+  <svg width="22" height="22" viewBox="0 0 100 100" aria-hidden="true">
+    <g>
+      <ellipse cx="50" cy="20" rx="16" ry="22" fill="#e0607a"/>
+      <ellipse cx="50" cy="20" rx="16" ry="22" fill="#e0607a" transform="rotate(60 50 50)"/>
+      <ellipse cx="50" cy="20" rx="16" ry="22" fill="#e0607a" transform="rotate(120 50 50)"/>
+      <ellipse cx="50" cy="20" rx="16" ry="22" fill="#e0607a" transform="rotate(180 50 50)"/>
+      <ellipse cx="50" cy="20" rx="16" ry="22" fill="#e0607a" transform="rotate(240 50 50)"/>
+      <ellipse cx="50" cy="20" rx="16" ry="22" fill="#e0607a" transform="rotate(300 50 50)"/>
+      <circle cx="50" cy="50" r="16" fill="#f6c94d"/>
+    </g>
+  </svg>
+  <span id="chatbotFabLabel">4·3 AI 챗봇</span>
+</button>
+<div class="chatbot-panel" id="chatbotPanel" role="dialog" aria-label="4·3 AI 챗봇">
+  <button class="close-panel" id="chatbotClose" type="button" aria-label="닫기">✕</button>
+  <p id="chatbotPanelText" style="margin:0;">이 페이지의 AI 챗봇은 아직 준비 중입니다. 장소별 상세 페이지에서 먼저 만나보실 수 있어요.</p>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script>
+(function () {
+  "use strict";
+
+  // Supabase의 anon(publishable) key는 RLS로 보호되는 걸 전제로 브라우저에 노출해도 되는
+  // 값이다 — supabase/schema.sql의 memorial_messages 테이블은 anon에게 select·insert만
+  // 허용하고 update·delete는 아무에게도 허용하지 않는다(한 번 남긴 글은 고정).
+  var SUPABASE_URL = "https://doxsrvgtrddoewxyoedm.supabase.co";
+  var SUPABASE_ANON_KEY = "sb_publishable_21KMnm1l9BljcOLpYrZJfg_VpI9yoF-";
+  var sb = (window.supabase && window.supabase.createClient)
+    ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
+    : null;
+
+  // 방명록 초기값 4건 — 실제 방문자 글이 쌓이기 전 화면을 보여주기 위한 예시 메시지.
+  // 특정 실존 인물의 증언이 아니라 누구나 남길 법한 일반적인 추모 문구라 voices.html 케이스와는 다르지만,
+  // 그래도 실제 방문자 글과 구분되도록 isSeed로 표시해 둔다.
+  var SEED_MESSAGES = [
+    { id: "seed-1", author: { ko: "제주 도민", en: "A Jeju resident" }, message: { ko: "역사의 아픔을 잊지 않고 기억하겠습니다. 평화롭고 안식하소서.", en: "We will remember this painful history. Rest in peace." }, date: "2026.08.10", likes: 12, isSeed: true },
+    { id: "seed-2", author: { ko: "대학생 탐방단", en: "A university student group" }, message: { ko: "78년 전 그날의 희생이 있었기에 오늘의 평화가 있습니다. 깊이 추모합니다.", en: "Because of the sacrifice of that day 78 years ago, we have today's peace. We deeply mourn." }, date: "2026.08.11", likes: 9, isSeed: true },
+    { id: "seed-3", author: { ko: "추모객", en: "A visitor" }, message: { ko: "어린 영혼들과 무고하게 희생되신 분들의 영전에 한 송이 동백을 바칩니다.", en: "I offer a camellia to the young souls and all who were innocently lost." }, date: "2026.08.12", likes: 15, isSeed: true },
+    { id: "seed-4", author: { ko: "4·3 유족", en: "A bereaved 4·3 family member" }, message: { ko: "기억하고 상생하는 미래를 만들어 가겠습니다.", en: "We will build a future of remembrance and reconciliation." }, date: "2026.08.13", likes: 20, isSeed: true }
+  ];
+
+  var I18N = {
+    ko: {
+      docTitle: "추모의 마음 — 제주 4·3 스토리 지도",
+      backLink: "← 메인으로 돌아가기", breadcrumbHome: "홈", breadcrumbCurrent: "추모의 마음",
+      fzMinus: "글자 작게", fzPlus: "글자 크게", langToggleTitle: "언어 전환",
+      heroBadge: "제주 4·3 78주년",
+      heroTitle: "추모의 마음",
+      heroLead: "78년의 세월을 넘어, 희생자분들의 넋을 기리며 한 송이 동백꽃과 따뜻한 추모의 한 줄을 남겨주세요.",
+      tributeCountTemplate: "오늘 함께한 동백꽃 헌화 {{count}}송이",
+      tributeNote: "이 브라우저에 기록된 누적 헌화 수입니다.",
+      tributeBtnLabel: "한 송이 동백꽃 헌화하기",
+      formTitle: "추모의 글 남기기",
+      authorLabel: "작성자 이름 / 닉네임",
+      messageLabel: "추모 메시지 (최대 100자)",
+      submitBtn: "추모의 글 남기기",
+      submitBtnPending: "저장하는 중…",
+      formError: "이름과 메시지를 모두 입력해 주세요.",
+      formNetworkError: "글을 저장하지 못했습니다. 잠시 후 다시 시도해 주세요.",
+      guestbookLoading: "방명록을 불러오는 중…",
+      guestbookLoadError: "방명록을 불러오지 못했습니다. 예시 메시지만 표시합니다.",
+      likeLabel: "공감",
+      navPeace: "평화와 상생 보러가기", navMap: "지도로 유적지 탐방하기",
+      chatbotFabLabel: "4·3 AI 챗봇",
+      chatbotPanelText: "이 페이지의 AI 챗봇은 아직 준비 중입니다. 장소별 상세 페이지에서 먼저 만나보실 수 있어요."
+    },
+    en: {
+      docTitle: "Tributes of Remembrance — Jeju 4·3 Story Map",
+      backLink: "← Back to Main", breadcrumbHome: "Home", breadcrumbCurrent: "Tributes of Remembrance",
+      fzMinus: "Smaller text", fzPlus: "Larger text", langToggleTitle: "Switch language",
+      heroBadge: "Jeju 4·3, 78th Anniversary",
+      heroTitle: "Tributes of Remembrance",
+      heroLead: "Across 78 years, honor the souls of the victims — leave a camellia and a warm line of remembrance.",
+      tributeCountTemplate: "{{count}} camellias offered together today",
+      tributeNote: "This is the cumulative count recorded on this browser.",
+      tributeBtnLabel: "Offer a Camellia",
+      formTitle: "Leave a Memorial Message",
+      authorLabel: "Your Name / Nickname",
+      messageLabel: "Memorial Message (up to 100 characters)",
+      submitBtn: "Leave This Message",
+      submitBtnPending: "Saving…",
+      formError: "Please fill in both your name and a message.",
+      formNetworkError: "Couldn't save your message. Please try again in a moment.",
+      guestbookLoading: "Loading the guestbook…",
+      guestbookLoadError: "Couldn't load the guestbook. Showing sample messages only.",
+      likeLabel: "Appreciate",
+      navPeace: "See Peace & Reconciliation", navMap: "Explore the Sites on the Map",
+      chatbotFabLabel: "Jeju 4·3 AI Chatbot",
+      chatbotPanelText: "The AI chatbot for this page is still being prepared. You can already try it on individual place pages."
+    }
+  };
+
+  var lang = "ko";
+  try { if (localStorage.getItem("jeju43-lang") === "en") lang = "en"; } catch (e) { /* 무시 */ }
+  function t(key) { return I18N[lang][key]; }
+  function pick(field) { return field[lang] || field.ko; }
+
+  var COUNT_KEY = "jeju43-tribute-count";
+  var LIKES_KEY = "jeju43-memorial-likes";
+  var BASE_COUNT = 4378;
+
+  function readCount() {
+    try {
+      var v = localStorage.getItem(COUNT_KEY);
+      return v ? parseInt(v, 10) : BASE_COUNT;
+    } catch (e) { return BASE_COUNT; }
+  }
+  function writeCount(n) {
+    try { localStorage.setItem(COUNT_KEY, String(n)); } catch (e) { /* 무시 */ }
+  }
+
+  function readLikes() {
+    try { return JSON.parse(localStorage.getItem(LIKES_KEY) || "{}"); } catch (e) { return {}; }
+  }
+  function writeLikes(obj) {
+    try { localStorage.setItem(LIKES_KEY, JSON.stringify(obj)); } catch (e) { /* 무시 */ }
+  }
+
+  function formatDate(d) {
+    return d.getFullYear() + "." + String(d.getMonth() + 1).padStart(2, "0") + "." + String(d.getDate()).padStart(2, "0");
+  }
+
+  function renderTributeCount() {
+    var el = document.getElementById("tributeCount");
+    el.innerHTML = "";
+    var text = t("tributeCountTemplate");
+    var parts = text.split("{{count}}");
+    el.appendChild(document.createTextNode(parts[0]));
+    var numSpan = document.createElement("span");
+    numSpan.className = "num";
+    numSpan.textContent = readCount().toLocaleString();
+    el.appendChild(numSpan);
+    el.appendChild(document.createTextNode(parts[1] || ""));
+  }
+
+  document.getElementById("tributeBtn").addEventListener("click", function () {
+    var next = readCount() + 1;
+    writeCount(next);
+    renderTributeCount();
+    var flower = document.getElementById("fallingFlower");
+    flower.classList.remove("drop");
+    // 리플로우를 강제해 같은 애니메이션을 다시 재생시킨다.
+    void flower.offsetWidth;
+    flower.classList.add("drop");
+  });
+
+  var likes = readLikes();
+
+  // remoteMessages는 memorial_messages 테이블(anon: select·insert만 가능)에서 가져온 실제
+  // 방문자 글이다. 아직 하나도 없거나 불러오기에 실패하면 SEED_MESSAGES만 보여준다 —
+  // 없는 방문자 글을 있는 것처럼 지어내지 않는다.
+  var remoteMessages = [];
+  var remoteStatus = "loading"; // loading | ready | error
+
+  function getAllMessages() {
+    return remoteMessages.concat(SEED_MESSAGES);
+  }
+
+  function fetchRemoteMessages() {
+    if (!sb) { remoteStatus = "error"; renderGuestbook(); return; }
+    sb.from("memorial_messages")
+      .select("id, author, message, created_at")
+      .order("created_at", { ascending: false })
+      .limit(60)
+      .then(function (res) {
+        if (res.error) { remoteStatus = "error"; renderGuestbook(); return; }
+        remoteMessages = (res.data || []).map(function (row) {
+          return { id: row.id, author: row.author, message: row.message, date: formatDate(new Date(row.created_at)), likes: 0 };
+        });
+        remoteStatus = "ready";
+        renderGuestbook();
+      })
+      .catch(function () { remoteStatus = "error"; renderGuestbook(); });
+  }
+
+  function renderGuestbookStatus() {
+    var el = document.getElementById("guestbookStatus");
+    if (remoteStatus === "loading") { el.textContent = t("guestbookLoading"); el.style.display = "block"; }
+    else if (remoteStatus === "error") { el.textContent = t("guestbookLoadError"); el.style.display = "block"; }
+    else { el.style.display = "none"; }
+  }
+
+  function renderGuestbook() {
+    renderGuestbookStatus();
+    var el = document.getElementById("guestbookGrid");
+    el.innerHTML = "";
+    getAllMessages().forEach(function (m) {
+      var card = document.createElement("div");
+      card.className = "memorial-card";
+
+      var icon = document.createElement("div");
+      icon.className = "flower-icon";
+      icon.textContent = "🌸";
+      card.appendChild(icon);
+
+      var msg = document.createElement("p");
+      msg.className = "msg";
+      msg.textContent = m.isSeed ? pick(m.message) : m.message;
+      card.appendChild(msg);
+
+      var footer = document.createElement("div");
+      footer.className = "card-footer";
+
+      var authorLine = document.createElement("div");
+      authorLine.className = "author-line";
+      var authorEl = document.createElement("strong");
+      authorEl.textContent = m.isSeed ? pick(m.author) : m.author;
+      var dateEl = document.createElement("span");
+      dateEl.textContent = m.date;
+      authorLine.appendChild(authorEl);
+      authorLine.appendChild(dateEl);
+      footer.appendChild(authorLine);
+
+      var likeBtn = document.createElement("button");
+      likeBtn.type = "button";
+      likeBtn.className = "like-btn" + (likes[m.id] ? " liked" : "");
+      var likeCount = m.likes + (likes[m.id] ? 1 : 0);
+      likeBtn.innerHTML = (likes[m.id] ? "❤" : "🤍") + " <span>" + likeCount + "</span>";
+      likeBtn.setAttribute("aria-label", t("likeLabel"));
+      likeBtn.addEventListener("click", function () {
+        likes[m.id] = !likes[m.id];
+        writeLikes(likes);
+        renderGuestbook();
+      });
+      footer.appendChild(likeBtn);
+
+      card.appendChild(footer);
+      el.appendChild(card);
+    });
+  }
+
+  var authorInput = document.getElementById("authorInput");
+  var messageInput = document.getElementById("messageInput");
+  var charCountEl = document.getElementById("charCount");
+
+  function updateCharCount() {
+    var len = messageInput.value.length;
+    charCountEl.textContent = len + " / 100";
+    charCountEl.classList.toggle("limit", len >= 100);
+  }
+  messageInput.addEventListener("input", updateCharCount);
+
+  var submitBtn = document.getElementById("submitBtn");
+  document.getElementById("memorialForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var name = authorInput.value.trim();
+    var message = messageInput.value.trim();
+    var errorEl = document.getElementById("formError");
+    var networkErrorEl = document.getElementById("formNetworkError");
+    networkErrorEl.classList.remove("show");
+    if (!name || !message) {
+      errorEl.classList.add("show");
+      return;
+    }
+    errorEl.classList.remove("show");
+
+    if (!sb) { networkErrorEl.classList.add("show"); return; }
+
+    submitBtn.disabled = true;
+    var originalLabel = submitBtn.textContent;
+    submitBtn.textContent = t("submitBtnPending");
+
+    sb.from("memorial_messages")
+      .insert([{ author: name, message: message }])
+      .select("id, author, message, created_at")
+      .then(function (res) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalLabel;
+        if (res.error || !res.data || !res.data[0]) {
+          networkErrorEl.classList.add("show");
+          return;
+        }
+        var row = res.data[0];
+        remoteMessages.unshift({ id: row.id, author: row.author, message: row.message, date: formatDate(new Date(row.created_at)), likes: 0 });
+        remoteStatus = "ready";
+        authorInput.value = "";
+        messageInput.value = "";
+        updateCharCount();
+        renderGuestbook();
+      })
+      .catch(function () {
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalLabel;
+        networkErrorEl.classList.add("show");
+      });
+  });
+
+  function applyStaticText() {
+    document.title = t("docTitle");
+    document.documentElement.lang = lang;
+    document.getElementById("backLink").textContent = t("backLink");
+    document.getElementById("breadcrumbCurrent").textContent = t("breadcrumbCurrent");
+    document.querySelector("#breadcrumb a").textContent = t("breadcrumbHome");
+    document.getElementById("fzMinus").title = t("fzMinus");
+    document.getElementById("fzMinus").setAttribute("aria-label", t("fzMinus"));
+    document.getElementById("fzPlus").title = t("fzPlus");
+    document.getElementById("fzPlus").setAttribute("aria-label", t("fzPlus"));
+    var langBtn = document.getElementById("langToggle");
+    langBtn.title = t("langToggleTitle");
+    langBtn.setAttribute("aria-label", t("langToggleTitle"));
+    langBtn.textContent = lang === "ko" ? "EN" : "KO";
+    document.getElementById("heroBadge").textContent = t("heroBadge");
+    document.getElementById("heroTitle").textContent = t("heroTitle");
+    document.getElementById("heroLead").textContent = t("heroLead");
+    document.getElementById("tributeNote").textContent = t("tributeNote");
+    document.getElementById("tributeBtnLabel").textContent = t("tributeBtnLabel");
+    document.getElementById("formTitle").textContent = t("formTitle");
+    document.getElementById("authorLabel").textContent = t("authorLabel");
+    document.getElementById("messageLabel").textContent = t("messageLabel");
+    document.getElementById("submitBtn").textContent = t("submitBtn");
+    document.getElementById("formError").textContent = t("formError");
+    document.getElementById("formNetworkError").textContent = t("formNetworkError");
+    document.getElementById("navPeace").textContent = t("navPeace");
+    document.getElementById("navMap").textContent = t("navMap");
+    document.getElementById("chatbotFabLabel").textContent = t("chatbotFabLabel");
+    document.getElementById("chatbotPanelText").textContent = t("chatbotPanelText");
+  }
+
+  function renderAll() {
+    applyStaticText();
+    renderTributeCount();
+    renderGuestbook();
+  }
+
+  document.getElementById("langToggle").addEventListener("click", function () {
+    lang = lang === "ko" ? "en" : "ko";
+    try { localStorage.setItem("jeju43-lang", lang); } catch (e) { /* 무시 */ }
+    renderAll();
+  });
+
+  var FZ_MIN = 0.9, FZ_MAX = 1.3, FZ_STEP = 0.1;
+  var fz = 1;
+  function applyFz() { document.documentElement.style.setProperty("--fz", fz.toFixed(2)); }
+  document.getElementById("fzMinus").addEventListener("click", function () {
+    fz = Math.max(FZ_MIN, +(fz - FZ_STEP).toFixed(2)); applyFz();
+  });
+  document.getElementById("fzPlus").addEventListener("click", function () {
+    fz = Math.min(FZ_MAX, +(fz + FZ_STEP).toFixed(2)); applyFz();
+  });
+
+  var chatbotFab = document.getElementById("chatbotFab");
+  var chatbotPanel = document.getElementById("chatbotPanel");
+  chatbotFab.addEventListener("click", function () {
+    var showing = chatbotPanel.classList.toggle("show");
+    chatbotFab.setAttribute("aria-expanded", String(showing));
+  });
+  document.getElementById("chatbotClose").addEventListener("click", function () {
+    chatbotPanel.classList.remove("show");
+    chatbotFab.setAttribute("aria-expanded", "false");
+  });
+
+  renderAll();
+  fetchRemoteMessages();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>제주 4·3 유적지 지도 — 인덱스</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<style>
+/* 제주 4·3 스토리 지도 — 어두운 가죽·나무 톤 팔레트 */
+:root {
+  --ink: #2c2620;
+  --ink-soft: #7a7263;
+  --paper: #f7f1e3;
+  --paper-deep: #ece1c8;
+  --paper-card: #efe6d1;
+  --line: #ddd2ba;
+  --accent: #b8471f;
+  --accent-deep: #8c3412;
+  --navy: #2c2620;
+  --fz-base: 16px;
+}
+
+html {
+  font-size: calc(var(--fz-base) * var(--fz, 1));
+  font-family: 'Pretendard Variable', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+  color: var(--ink);
+  background-color: var(--paper);
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  background-image: radial-gradient(rgba(0, 0, 0, 0.035) 1px, transparent 1px);
+  background-size: 14px 14px;
+}
+
+.wrap {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* 고정 툴바 */
+#toolbar {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  z-index: 1000;
+  background: rgba(44, 38, 32, 0.85);
+  backdrop-filter: blur(8px);
+  padding: 6px 12px;
+  border-radius: 30px;
+  border: 1px solid var(--line);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  display: flex;
+  gap: 6px;
+}
+
+#toolbar button {
+  border: 1px solid var(--line);
+  background: var(--paper-card);
+  color: var(--ink);
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+#toolbar button:hover {
+  background: var(--navy);
+  color: #fff;
+  border-color: var(--navy);
+}
+
+#langToggle {
+  border-radius: 16px !important;
+  width: auto !important;
+  padding: 0 10px;
+}
+
+/* 히어로 */
+.hero {
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 110px 20px 70px;
+  max-width: 1100px;
+  margin: 0 auto;
+  border-bottom: 1px solid var(--line);
+}
+
+.hero .badge {
+  display: inline-block;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  padding: 5px 14px;
+  border-radius: 3px;
+  font-size: 0.85rem;
+  margin-bottom: 22px;
+}
+
+.hero h1 {
+  font-size: 2.6rem;
+  font-weight: 700;
+  margin: 0 0 20px 0;
+  word-break: keep-all;
+  max-width: 640px;
+}
+
+.hero .lead {
+  font-size: 1.1rem;
+  color: var(--ink-soft);
+  max-width: 560px;
+  margin-bottom: 30px;
+  word-break: keep-all;
+}
+
+.scroll-hint {
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* 타임라인 섹션 */
+.timeline-section {
+  padding: 60px 0;
+}
+
+.timeline-lead {
+  color: var(--ink-soft);
+  max-width: 640px;
+  margin: 8px 0 28px;
+  word-break: keep-all;
+}
+
+.timeline {
+  position: relative;
+  overflow-x: auto;
+  padding: 26px 10px 40px;
+}
+
+.timeline-track {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  min-width: max-content;
+}
+
+.timeline-track::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 11px;
+  height: 4px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-deep));
+  opacity: 0.85;
+}
+
+.timeline-marker-wrap {
+  position: relative;
+  flex: 0 0 140px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.timeline-dot {
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 3px solid var(--paper);
+  box-shadow: 0 0 0 3px var(--accent), 0 2px 8px rgba(0, 0, 0, 0.35);
+  cursor: pointer;
+  position: relative;
+  z-index: 2;
+  transition: transform 0.15s, background 0.15s;
+}
+
+.timeline-dot:hover,
+.timeline-dot:focus {
+  background: var(--accent-deep);
+  transform: scale(1.2);
+  outline: none;
+}
+
+.timeline-year {
+  margin-top: 12px;
+  font-size: 0.8rem;
+  color: var(--ink);
+  font-weight: 800;
+  white-space: nowrap;
+  background: rgba(247, 241, 227, 0.92);
+  border: 1px solid var(--line);
+  padding: 3px 10px;
+  border-radius: 999px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+}
+
+/* 탐색 섹션 (지도 + 목록) */
+.explore {
+  padding: 60px 0;
+}
+
+.section-title {
+  font-size: 1.7rem;
+  margin: 8px 0 4px;
+}
+
+.kicker {
+  color: var(--accent);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+}
+
+.explore-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 24px;
+  height: 500px;
+  margin-top: 28px;
+}
+
+#jeju-map {
+  width: 100%;
+  height: 100%;
+  border-radius: 6px;
+  border: 1px solid var(--line);
+}
+
+.card-list {
+  overflow-y: auto;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--paper-card);
+}
+
+.place-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--line);
+  border-left: 4px solid transparent;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+  color: inherit;
+  text-decoration: none;
+}
+
+.place-row:last-child {
+  border-bottom: none;
+}
+
+.place-row:hover, .place-row.active {
+  background: var(--paper-deep);
+}
+
+.place-row.active {
+  border-left-color: var(--accent);
+}
+
+.place-row .thumb-wrap {
+  flex-shrink: 0;
+  width: 60px;
+  height: 60px;
+  position: relative;
+}
+
+.place-row .thumb-wrap img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 6px;
+  display: block;
+}
+
+.place-row .info {
+  min-width: 0;
+  flex: 1;
+}
+
+.place-row .info .name {
+  font-weight: 700;
+  margin-bottom: 3px;
+}
+
+.place-row .info .desc {
+  font-size: 0.83rem;
+  color: var(--ink-soft);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* 메인 메뉴 */
+.main-menu {
+  padding: 70px 0 60px;
+}
+
+.tag-badge {
+  display: inline-block;
+  border: 1px solid var(--accent);
+  color: var(--accent-deep);
+  background: var(--paper-card);
+  padding: 5px 14px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.main-menu-title {
+  font-size: 2.1rem;
+  font-weight: 700;
+  margin: 0 0 14px;
+}
+
+.main-menu-lead {
+  color: var(--ink-soft);
+  max-width: 620px;
+  margin: 0 0 34px;
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.menu-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--paper-card);
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+}
+
+.menu-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+  border-color: var(--accent);
+}
+
+.menu-card-visual {
+  height: 130px;
+  background-size: cover;
+  background-position: center;
+}
+
+.menu-card-body {
+  padding: 16px 18px 18px;
+  flex: 1;
+}
+
+.menu-card-body h3 {
+  margin: 0 0 6px;
+  font-size: 1.05rem;
+}
+
+.menu-card-body p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+}
+
+/* 푸터 */
+footer {
+  background: var(--navy);
+  color: #c7c2b6;
+  padding: 50px 0;
+  font-size: 0.9rem;
+}
+
+footer h3 {
+  color: #fff;
+}
+
+.badge-legend {
+  display: flex;
+  gap: 16px;
+  margin: 12px 0;
+  flex-wrap: wrap;
+}
+
+.fx-tag, .ai-tag {
+  padding: 2px 8px;
+  border-radius: 3px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.fx-tag { background: #6c645a; }
+.ai-tag { background: var(--accent); }
+
+.warn {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 4px 10px;
+  background: rgba(184, 71, 31, 0.15);
+  color: var(--accent-deep);
+  border-radius: 3px;
+  font-size: 0.8rem;
+}
+
+@media (max-width: 768px) {
+  .explore-grid { grid-template-columns: 1fr; height: auto; }
+  #jeju-map { height: 300px; }
+  .menu-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div id="toolbar">
+  <button id="fzMinus" title="글자 작게" aria-label="글자 작게">A-</button>
+  <button id="fzPlus" title="글자 크게" aria-label="글자 크게">A+</button>
+  <button id="langToggle" title="언어 전환">EN</button>
+</div>
+
+<section class="hero">
+  <span class="badge" id="heroBadge">제주 4·3 유적지 스토리 지도</span>
+  <h1 id="heroH1">지도 위에서 만나는<br>제주 4·3의 자리들</h1>
+  <p class="lead" id="heroLead">지도의 핀이나 아래 목록의 장소를 눌러 각 장소에 담긴 이야기로 이동하세요. 검증된 사실을 바탕으로 만든 이야기·이미지·오디오·챗봇을 함께 만나볼 수 있습니다.</p>
+  <p class="scroll-hint" id="scrollHint">아래로 스크롤해 둘러보기 ↓</p>
+</section>
+
+<section class="explore">
+  <div class="wrap">
+    <p class="kicker" id="exploreKicker">EXPLORE</p>
+    <h2 class="section-title" id="exploreTitle">유적지 둘러보기</h2>
+    <div class="explore-grid">
+      <div id="jeju-map"></div>
+      <div class="card-list" id="cardList"></div>
+    </div>
+    <p class="map-note" id="mapNote" style="color:var(--ink-soft);font-size:0.78em;margin-top:8px;">지도 데이터 © OpenStreetMap 기여자 · 지도 표시 라이브러리: Leaflet</p>
+  </div>
+</section>
+
+<section class="timeline-section">
+  <div class="wrap">
+    <p class="kicker" id="timelineKicker">TIMELINE</p>
+    <h2 class="section-title" id="timelineTitle">제주 4·3, 흐름으로 보기</h2>
+    <p class="timeline-lead" id="timelineLead">여러 장소에서 있었던 일들을 시간 순서로 모았습니다.</p>
+    <div class="timeline" id="timelineList"></div>
+  </div>
+</section>
+
+<section class="main-menu" id="sectionMainMenu">
+  <div class="wrap">
+    <span class="tag-badge" id="mainMenuBadge">제주 4·3 78주년</span>
+    <h2 class="main-menu-title" id="mainMenuTitle">제주 4·3을 기억하는 시간</h2>
+    <p class="main-menu-lead" id="mainMenuLead">78년의 세월을 넘어, 지도가 안내하는 길을 따라 그날의 자리에 새겨진 이야기를 만납니다.</p>
+
+    <div class="menu-grid">
+      <a class="menu-card" href="truth.html">
+        <div class="menu-card-visual" style="background-image: url('assets/hero.png');"></div>
+        <div class="menu-card-body">
+          <h3><span id="menuTruthTitle">제주 4·3의 진실</span></h3>
+          <p id="menuTruthDesc">사건의 경과와 검증된 역사적 사실</p>
+        </div>
+      </a>
+
+      <a class="menu-card" href="gallery.html">
+        <div class="menu-card-visual" style="background-image: url('neobeunsungi/assets/img-02.png');"></div>
+        <div class="menu-card-body">
+          <h3><span id="menuGalleryTitle">미디어 갤러리</span></h3>
+          <p id="menuGalleryDesc">영상 및 사진으로 만나는 4·3 시각 사료</p>
+        </div>
+      </a>
+
+      <a class="menu-card" href="memorial.html">
+        <div class="menu-card-visual" style="background-image: url('assets/memory.png');"></div>
+        <div class="menu-card-body">
+          <h3><span id="menuMemorialTitle">추모의 마음</span></h3>
+          <p id="menuMemorialDesc">희생자를 기리며 남기는 온라인 한 줄 추모 메시지</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <h3 id="footerTitle">출처와 고지</h3>
+    <div class="badge-legend">
+      <span><span class="fx-tag">연출</span> 실제 기록이 아닌 AI 연출 이미지·영상</span>
+      <span><span class="ai-tag">AI 생성</span> AI가 생성한 이미지·음성·영상</span>
+    </div>
+    <p class="warn" id="footerWarn">제주 4·3은 민감한 역사 소재입니다 — 각 장소 페이지 하단의 출처 대장에서 근거를 확인하세요.</p>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+(function () {
+  "use strict";
+
+  var PLACES = [
+    {
+      "location_id": "gwandeokjeong",
+      "name": {"ko": "관덕정 광장", "en": "Gwandeokjeong Square"},
+      "lat": 33.5136572, "lng": 126.521839,
+      "one_liner": {"ko": "제주시 원도심, 지금도 사람들이 오가는 자리에 관덕정이 있습니다.", "en": "Gwandeokjeong stands in Jeju City's old downtown."},
+      "thumbnail": "gwandeokjeong/assets/img-01.png",
+      "page_link": "gwandeokjeong/05-assemble.html",
+      "timeline_events": [
+        {"event_id": "tl-01", "date": "1448", "title": {"ko": "관덕정 건립", "en": "Gwandeokjeong built"}, "description": {"ko": "세종 30년 병사 훈련 목적으로 세워짐", "en": "Built in the 30th year of King Sejong's reign"}}
+      ]
+    },
+    {
+      "location_id": "goneuldong",
+      "name": {"ko": "곤을동 옛터 (잃어버린 마을)", "en": "Goneul-dong (The Lost Village)"},
+      "lat": 33.521722, "lng": 126.557375,
+      "one_liner": {"ko": "집터와 돌담이 남아 있는 곤을동이라는 마을 터입니다.", "en": "Site of Goneul-dong with remaining house foundations."},
+      "thumbnail": "goneuldong/assets/img-01.png",
+      "page_link": "goneuldong/05-assemble.html",
+      "timeline_events": [
+        {"event_id": "tl-01", "date": "1949-01-04", "title": {"ko": "곤을동 포위·학살·방화", "en": "Goneul-dong massacre"}, "description": {"ko": "곤을동 포위 및 방화 사건", "en": "Goneul-dong surrounded and burned"}}
+      ]
+    },
+    {
+      "location_id": "neobeunsungi",
+      "name": {"ko": "너븐숭이와 북촌 유적군", "en": "Neobeunsungi and Bukchon Heritage Sites"},
+      "lat": 33.545959, "lng": 126.688749,
+      "one_liner": {"ko": "마을 전체가 같은 날 제사를 지내는 희생의 현장입니다.", "en": "A site where the entire village holds memorial rites on the same day."},
+      "thumbnail": "neobeunsungi/assets/img-01.png",
+      "page_link": "neobeunsungi/05-assemble.html",
+      "timeline_events": [
+        {"event_id": "tl-01", "date": "1949-01-17", "title": {"ko": "북촌대학살", "en": "The Bukchon Massacre"}, "description": {"ko": "북촌리 주민 대규모 희생 사건", "en": "Massive civilian casualty incident in Bukchon-ri"}}
+      ]
+    }
+  ];
+
+  var lang = "ko";
+
+  function pickLang(field) { 
+    return (field && field[lang] && field[lang].trim()) || (field && field.ko) || ""; 
+  }
+
+  // Leaflet 지도 초기화
+  var map = L.map('jeju-map').setView([33.499621, 126.531188], 10);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 18,
+    attribution: '© OpenStreetMap'
+  }).addTo(map);
+
+  // 카드 목록 및 마커 렌더링
+  var cardListEl = document.getElementById('cardList');
+  PLACES.forEach(function (place) {
+    var name = pickLang(place.name);
+    var desc = pickLang(place.one_liner);
+
+    // 지도 마커 생성
+    var marker = L.marker([place.lat, place.lng]).addTo(map);
+    marker.bindPopup('<b>' + name + '</b><br><a href="' + place.page_link + '">자세히 보기</a>');
+
+    // 리스트 행 생성
+    var row = document.createElement('a');
+    row.className = 'place-row';
+    row.href = place.page_link;
+    row.innerHTML = 
+      '<div class="thumb-wrap"><img src="' + place.thumbnail + '" alt="' + name + '"></div>' +
+      '<div class="info">' +
+        '<div class="name">' + name + '</div>' +
+        '<div class="desc">' + desc + '</div>' +
+      '</div>';
+    cardListEl.appendChild(row);
+  });
+
+  // 글꼴 크기 변경 스크립트
+  var currentFz = 1;
+  document.getElementById('fzPlus').addEventListener('click', function() {
+    currentFz += 0.1;
+    document.documentElement.style.setProperty('--fz', currentFz);
+  });
+  document.getElementById('fzMinus').addEventListener('click', function() {
+    if (currentFz > 0.8) {
+      currentFz -= 0.1;
+      document.documentElement.style.setProperty('--fz', currentFz);
+    }
+  });
+
+})();
+</script>
+</body>
+</html>
